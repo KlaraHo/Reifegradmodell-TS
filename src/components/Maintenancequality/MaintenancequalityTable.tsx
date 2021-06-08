@@ -434,7 +434,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq01"
                     name="datasource_mq01"
                     type="text"
-                    placeholder="Datenquelle 1"
+                    placeholder="Instandhaltungsquelle 1"
                   />
                 </div>
                 <div className="col-12">
@@ -454,7 +454,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq02"
                     name="datasource_mq02"
                     type="text"
-                    placeholder="Datenquelle 2"
+                    placeholder="Instandhaltungsquelle 2"
                   />
                 </div>
                 <div className="col-12">
@@ -474,7 +474,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq03"
                     name="datasource_mq03"
                     type="text"
-                    placeholder="Datenquelle 3"
+                    placeholder="Instandhaltungsquelle 3"
                   />
                 </div>
                 <div className="col-12">
@@ -494,7 +494,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq04"
                     name="datasource_mq04"
                     type="text"
-                    placeholder="Datenquelle 4"
+                    placeholder="Instandhaltungsquelle 4"
                   />
                 </div>
                 <div className="col-12">
@@ -514,7 +514,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq05"
                     name="datasource_mq05"
                     type="text"
-                    placeholder="Datenquelle 5"
+                    placeholder="Instandhaltungsquelle 5"
                   />
                 </div>
                 <div className="col-12">
@@ -534,7 +534,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq06"
                     name="datasource_mq06"
                     type="text"
-                    placeholder="Datenquelle 6"
+                    placeholder="Instandhaltungsquelle 6"
                   />
                 </div>
                 <div className="col-12">
@@ -554,7 +554,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq07"
                     name="datasource_mq07"
                     type="text"
-                    placeholder="Datenquelle 7"
+                    placeholder="Instandhaltungsquelle 7"
                   />
                 </div>
                 <div className="col-12">
@@ -574,7 +574,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq08"
                     name="datasource_mq08"
                     type="text"
-                    placeholder="Datenquelle 8"
+                    placeholder="Instandhaltungsquelle 8"
                   />
                 </div>
                 <div className="col-12">
@@ -594,7 +594,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq09"
                     name="datasource_mq09"
                     type="text"
-                    placeholder="Datenquelle 9"
+                    placeholder="Instandhaltungsquelle 9"
                   />
                 </div>
                 <div className="col-12">
@@ -614,7 +614,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq10"
                     name="datasource_mq10"
                     type="text"
-                    placeholder="Datenquelle 10"
+                    placeholder="Instandhaltungsquelle 10"
                   />
                 </div>
                 <div className="col-12">
@@ -634,7 +634,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq11"
                     name="datasource_mq11"
                     type="text"
-                    placeholder="Datenquelle 11"
+                    placeholder="Instandhaltungsquelle 11"
                   />
                 </div>
                 <div className="col-12">
@@ -654,7 +654,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq12"
                     name="datasource_mq12"
                     type="text"
-                    placeholder="Datenquelle 12"
+                    placeholder="Instandhaltungsquelle 12"
                   />
                 </div>
                 <div className="col-12">
@@ -674,7 +674,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq13"
                     name="datasource_mq13"
                     type="text"
-                    placeholder="Datenquelle 13"
+                    placeholder="Instandhaltungsquelle 13"
                   />
                 </div>
                 <div className="col-12">
@@ -694,7 +694,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq14"
                     name="datasource_mq14"
                     type="text"
-                    placeholder="Datenquelle 14"
+                    placeholder="Instandhaltungsquelle 14"
                   />
                 </div>
                 <div className="col-12">
@@ -714,7 +714,7 @@ const MaintenancequalityTable = () => {
                     label="datasource_mq15"
                     name="datasource_mq15"
                     type="text"
-                    placeholder="Datenquelle 15"
+                    placeholder="Instandhaltungsquelle 15"
                   />
                 </div>
                 <div className="col-12">

@@ -1220,7 +1220,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq01"
                     name="datasource_iq01"
                     type="text"
-                    placeholder="Datenquelle 1"
+                    placeholder="Informationsquelle 1"
                   />
                 </div>
                 <div className="col-12">
@@ -1261,7 +1261,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq02"
                     name="datasource_iq02"
                     type="text"
-                    placeholder="Datenquelle 2"
+                    placeholder="Informationsquelle 2"
                   />
                 </div>
                 <div className="col-12">
@@ -1302,7 +1302,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq03"
                     name="datasource_iq03"
                     type="text"
-                    placeholder="Datenquelle 3"
+                    placeholder="Informationsquelle 3"
                   />
                 </div>
                 <div className="col-12">
@@ -1343,7 +1343,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq04"
                     name="datasource_iq04"
                     type="text"
-                    placeholder="Datenquelle 4"
+                    placeholder="Informationsquelle 4"
                   />
                 </div>
                 <div className="col-12">
@@ -1384,7 +1384,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq05"
                     name="datasource_iq05"
                     type="text"
-                    placeholder="Datenquelle 5"
+                    placeholder="Informationsquelle 5"
                   />
                 </div>
                 <div className="col-12">
@@ -1425,7 +1425,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq06"
                     name="datasource_iq06"
                     type="text"
-                    placeholder="Datenquelle 6"
+                    placeholder="Informationsquelle 6"
                   />
                 </div>
                 <div className="col-12">
@@ -1466,7 +1466,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq07"
                     name="datasource_iq07"
                     type="text"
-                    placeholder="Datenquelle 7"
+                    placeholder="Informationsquelle 7"
                   />
                 </div>
                 <div className="col-12">
@@ -1507,7 +1507,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq08"
                     name="datasource_iq08"
                     type="text"
-                    placeholder="Datenquelle 8"
+                    placeholder="Informationsquelle 8"
                   />
                 </div>
                 <div className="col-12">
@@ -1548,7 +1548,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq09"
                     name="datasource_iq09"
                     type="text"
-                    placeholder="Datenquelle 9"
+                    placeholder="Informationsquelle 9"
                   />
                 </div>
                 <div className="col-12">
@@ -1589,7 +1589,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq10"
                     name="datasource_iq10"
                     type="text"
-                    placeholder="Datenquelle 10"
+                    placeholder="Informationsquelle 10"
                   />
                 </div>
                 <div className="col-12">
@@ -1630,7 +1630,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq11"
                     name="datasource_iq11"
                     type="text"
-                    placeholder="Datenquelle 11"
+                    placeholder="Informationsquelle 11"
                   />
                 </div>
                 <div className="col-12">
@@ -1671,7 +1671,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq12"
                     name="datasource_iq12"
                     type="text"
-                    placeholder="Datenquelle 12"
+                    placeholder="Informationsquelle 12"
                   />
                 </div>
                 <div className="col-12">
@@ -1712,7 +1712,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq13"
                     name="datasource_iq13"
                     type="text"
-                    placeholder="Datenquelle 13"
+                    placeholder="Informationsquelle 13"
                   />
                 </div>
                 <div className="col-12">
@@ -1753,7 +1753,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq14"
                     name="datasource_iq14"
                     type="text"
-                    placeholder="Datenquelle 14"
+                    placeholder="Informationsquelle 14"
                   />
                 </div>
                 <div className="col-12">
@@ -1794,7 +1794,7 @@ const InfoqualityTable = () => {
                     label="datasource_iq15"
                     name="datasource_iq15"
                     type="text"
-                    placeholder="Datenquelle 15"
+                    placeholder="Informationsquelle 15"
                   />
                 </div>
                 <div className="col-12">

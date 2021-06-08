@@ -658,7 +658,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq01"
                     name="datasource_kq01"
                     type="text"
-                    placeholder="Datenquelle 1"
+                    placeholder="Wissensquelle 1"
                   />
                 </div>
                 <div className="col-12">
@@ -684,7 +684,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq02"
                     name="datasource_kq02"
                     type="text"
-                    placeholder="Datenquelle 2"
+                    placeholder="Wissensquelle 2"
                   />
                 </div>
                 <div className="col-12">
@@ -710,7 +710,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq03"
                     name="datasource_kq03"
                     type="text"
-                    placeholder="Datenquelle 3"
+                    placeholder="Wissensquelle 3"
                   />
                 </div>
                 <div className="col-12">
@@ -736,7 +736,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq04"
                     name="datasource_kq04"
                     type="text"
-                    placeholder="Datenquelle 4"
+                    placeholder="Wissensquelle 4"
                   />
                 </div>
                 <div className="col-12">
@@ -762,7 +762,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq05"
                     name="datasource_kq05"
                     type="text"
-                    placeholder="Datenquelle 5"
+                    placeholder="Wissensquelle 5"
                   />
                 </div>
                 <div className="col-12">
@@ -788,7 +788,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq06"
                     name="datasource_kq06"
                     type="text"
-                    placeholder="Datenquelle 6"
+                    placeholder="Wissensquelle 6"
                   />
                 </div>
                 <div className="col-12">
@@ -814,7 +814,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq07"
                     name="datasource_kq07"
                     type="text"
-                    placeholder="Datenquelle 7"
+                    placeholder="Wissensquelle 7"
                   />
                 </div>
                 <div className="col-12">
@@ -840,7 +840,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq08"
                     name="datasource_kq08"
                     type="text"
-                    placeholder="Datenquelle 8"
+                    placeholder="Wissensquelle 8"
                   />
                 </div>
                 <div className="col-12">
@@ -866,7 +866,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq09"
                     name="datasource_kq09"
                     type="text"
-                    placeholder="Datenquelle 9"
+                    placeholder="Wissensquelle 9"
                   />
                 </div>
                 <div className="col-12">
@@ -892,7 +892,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq10"
                     name="datasource_kq10"
                     type="text"
-                    placeholder="Datenquelle 10"
+                    placeholder="Wissensquelle 10"
                   />
                 </div>
                 <div className="col-12">
@@ -918,7 +918,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq11"
                     name="datasource_kq11"
                     type="text"
-                    placeholder="Datenquelle 11"
+                    placeholder="Wissensquelle 11"
                   />
                 </div>
                 <div className="col-12">
@@ -944,7 +944,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq12"
                     name="datasource_kq12"
                     type="text"
-                    placeholder="Datenquelle 12"
+                    placeholder="Wissensquelle 12"
                   />
                 </div>
                 <div className="col-12">
@@ -970,7 +970,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq13"
                     name="datasource_kq13"
                     type="text"
-                    placeholder="Datenquelle 13"
+                    placeholder="Wissensquelle 13"
                   />
                 </div>
                 <div className="col-12">
@@ -996,7 +996,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq14"
                     name="datasource_kq14"
                     type="text"
-                    placeholder="Datenquelle 14"
+                    placeholder="Wissensquelle 14"
                   />
                 </div>
                 <div className="col-12">
@@ -1022,7 +1022,7 @@ const KnokqualityTable = () => {
                     label="datasource_kq15"
                     name="datasource_kq15"
                     type="text"
-                    placeholder="Datenquelle 15"
+                    placeholder="Wissensquelle 15"
                   />
                 </div>
                 <div className="col-12">
