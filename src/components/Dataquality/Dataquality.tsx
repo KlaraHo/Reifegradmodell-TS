@@ -14,3 +14,6 @@ const Dataquality = () => {
 }
 
 export default Dataquality;
+
+
+// etwas ändern
