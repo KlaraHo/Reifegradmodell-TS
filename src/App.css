@@ -1,38 +1,347 @@
-.App {
+/* === FARBEN === */
+
+/*
+dunkelblau:   #99d6ff
+mittelblau:   #b3e0ff
+blau:         #ccebff
+hellblau:     #e6f5ff
+buttonfarbe:  #006bb3
+button hover: #004d80
+
+
+
+/* === GLOBAL === */
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: "Raleway", "Lato", "Helvetica Neue", "Arial", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+hr {
+  border-top: 2px solid #006bb3;
+}
+
+.section_seperation {
+  height: 1.5rem;
+  width: auto;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: red;
+}
+
+/* === BUTTONS === */
+
+.btn_type_1 {
+  width: 100%;
+  height: 3rem;
+  background-color: #006bb3;
+  border: 2px solid #006bb3;
+  border-radius: 1.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.btn_type_1:hover {
+  background-color: #004d80;
+  border: 2px solid #004d80;
+}
+
+.btn_type_2 {
+  width: 100%;
+  height: 3rem;
+  background-color: #fff;
+  border: 1px solid #006bb3;
+  border-radius: 1.5rem;
+  color: #006bb3;
+  font-size: 1rem;
+}
+
+.btn_type_2:hover {
+  background-color: #004d80;
+  border: 2px solid #004d80;
+  color: #fff;
+}
+
+.btn_type_3 {
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  margin: 0.5rem;
+}
+
+/* === INTRO-BOX === */
+
+#intro_box {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#intro_box h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  margin-top: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#intro_box p {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+img {
+  float: left;
+  width: 200px;
+  height: auto;
+  margin-top: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+/* === CSV DOWN & UPLOAD === */
+
+#csv .col-8 {
+  float: right;
+  text-align: center;
+  height: 100%;
+  padding-bottom: 0.5rem;
+  margin-right: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#csv span {
+  font-weight: bold;
+  margin: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.csv_img_btn {
+  height: 20px;
+  width: auto;
+}
+
+/* === GLOBAL - TABLES === */
+
+.table_buttons {
+  margin-top: 1rem;
+}
+
+.table_buttons .col-8 {
+  float: right;
+}
+
+.table_headlines h1 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.screenreader {
+  display: none;
+}
+
+/* === DATAQUALITY === */
+
+#dataquality_intro h1 {
+  margin-top: 3rem;
+  text-transform: uppercase;
+}
+
+#dataquality_intro,
+#dataquality_table {
+  background-color: #e6f5ff;
+  padding-bottom: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#dataquality_table input {
+  width: 100%;
+  height: 1.5rem;
+}
+
+#aggregation_dq,
+#targetvalue_dq {
+  color: #004d80;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+/* === INFOQUALITY === */
+
+#infoquality_intro h1 {
+  margin-top: 3rem;
+  text-transform: uppercase;
+}
+
+#infoquality_intro,
+#infoquality_table {
+  background-color: #ccebff;
+  padding-bottom: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#infoquality_table input {
+  width: 100%;
+  height: 1.5rem;
+}
+
+#aggregation_iq,
+#targetvalue_iq {
+  color: #004d80;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+/* === KNOWQUALITY === */
+
+#knowquality_intro h1 {
+  margin-top: 3rem;
+  text-transform: uppercase;
+}
+
+#knowquality_intro,
+#knowquality_table {
+  background-color: #e6f5ff;
+  padding-bottom: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#knowquality_table input {
+  width: 100%;
+  height: 1.5rem;
+}
+
+#aggregation_kq,
+#targetvalue_kq {
+  color: #004d80;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+/* === MAINTENANCEQUALITY === */
+
+#maintenancequality_intro h1 {
+  margin-top: 3rem;
+  text-transform: uppercase;
+}
+
+#maintenancequality_intro,
+#maintenancequality_table {
+  background-color: #ccebff;
+  padding-bottom: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#maintenancequality_table input {
+  width: 100%;
+  height: 1.5rem;
+}
+
+#aggregation_mq,
+#targetvalue_mq {
+  color: #004d80;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+/* === RESULT === */
+
+#result_box h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+#result {
+  height: 500px;
+  width: auto;
+}
+
+/* === FOOTER === */
+
+footer {
+  font-size: 0.5rem;
+  padding-left: 1rem;
+}
+
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+footer a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+footer a:active {
+  text-decoration: none;
+  color: #000;
+}
+
+footer a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+/* === GRID-SYSTEM === */
+
+/* margin-left und margrin-right auto --> container immer mittig zentriert*/
+/* row clearfix hack */
+
+.container {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+[class*="col-"] {
+  float: left;
+  min-height: 1px;
+  padding: 0.3rem;
+}
+
+.col-12 {
+  width: 8.333%;
+}
+.col-10 {
+  width: 10%;
+}
+.col-8 {
+  width: 12.5%;
+}
+.col-6 {
+  width: 16.666%;
+}
+.col-4 {
+  width: 25%;
+}
+.col-3 {
+  width: 33.333%;
+}
+.col-2 {
+  width: 50%;
+}
+.col-1 {
+  width: 100%;
+  text-align: center;
 }
