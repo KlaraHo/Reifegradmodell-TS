@@ -1,6 +1,3 @@
-// dq = dataquality (Datenqualität)
-// tv = target value (Sollwert)
-
 import React from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
@@ -11,7 +8,7 @@ import BtnType2 from "../UI/Buttons/BtnType2";
 
 import "../../App.css";
 
-const MyTextInput = ({ label, ...props }) => {
+const MyTextInput = ({ label, ...props }: any) => {
   const [field, meta] = useField(props);
   return (
     <React.Fragment>
@@ -24,8 +21,8 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
-const MyCheckbox = ({ children, ...props }) => {
-  const [field, meta] = useField({ ...props, type: "checkbox" });
+const MyCheckbox = ({ children, ...props }: any) => {
+  const [field, meta] = useField({ ...props, type: "checkbox" } as any);
   return (
     <div>
       <label className="checkbox-input">
@@ -37,7 +34,10 @@ const MyCheckbox = ({ children, ...props }) => {
   );
 };
 
-const decimalRegExp = /^(0(\,[0-9]{1,2})?|1(\.0{1,2})?)$/;
+const decimalRegExp = /^(0(,[0-9]{1,2})?|1(\.0{1,2})?)$/;
+
+// dq = dataquality (Datenqualität)
+// tv = target value (Sollwert)
 
 const DataqualityTable = () => {
   return (
@@ -502,13 +502,16 @@ const DataqualityTable = () => {
               tv_dq_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
               tv_dq_10: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional()
             })}
-            onSubmit={(values, { setSubmitting }, event) => {
-              event.preventDefault();
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+            onSubmit={(values) => {
+              console.error(values);
             }}
+            // onSubmit={(values, { setSubmitting }, event) => {
+            //   event.preventDefault();
+            //   setTimeout(() => {
+            //     alert(JSON.stringify(values, null, 2));
+            //     setSubmitting(false);
+            //   }, 400);
+            // }}
           >
             <Form>
               <div className="row">

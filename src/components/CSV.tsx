@@ -12,10 +12,10 @@ const CSV = () => {
         <div className="row">
           <div className="col-8">
             <span>.csv</span>
-            <button className="btn_type_3" alt="CSV Upload">
+            <button className="btn_type_3">
               <img className="csv_img_btn" src={UploadIcon} alt="CSV Upload" />
             </button>
-            <button className="btn_type_3" alt="CSV Download">
+            <button className="btn_type_3">
               <img className="csv_img_btn" src={DownloadIcon} alt="CSV Download" />
             </button>
           </div>

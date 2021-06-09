@@ -1,6 +1,3 @@
-// mq = maintenancequality (Instandhaltungsqualität)
-// tv = target value (Sollwert)
-
 import React from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
@@ -11,7 +8,7 @@ import BtnType2 from "../UI/Buttons/BtnType2";
 
 import "../../App.css";
 
-const MyTextInput = ({ label, ...props }) => {
+const MyTextInput = ({ label, ...props }: any) => {
   const [field, meta] = useField(props);
   return (
     <React.Fragment>
@@ -24,20 +21,22 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
-const MyCheckbox = ({ children, ...props }) => {
+// mq = maintenancequality (Instandhaltungsqualität)
+// tv = target value (Sollwert)
+
+const MyCheckbox = ({ ...props }: any) => {
   const [field, meta] = useField({ ...props, type: "checkbox" });
   return (
     <div>
       <label className="checkbox-input">
         <input type="checkbox" {...field} {...props} />
-        {children}
       </label>
       {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
     </div>
   );
 };
 
-const decimalRegExp = /^(0(\,[0-9]{1,2})?|1(\.0{1,2})?)$/;
+const decimalRegExp = /^(0(,[0-9]{1,2})?|1(\.0{1,2})?)$/;
 
 const MaintenancequalityTable = () => {
   return (
@@ -229,13 +228,16 @@ const MaintenancequalityTable = () => {
               tv_mq_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
               tv_mq_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional()
             })}
-            onSubmit={(values, { setSubmitting }, event) => {
-              event.preventDefault();
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+            onSubmit={(values) => {
+              console.error(values);
             }}
+            // onSubmit={(values, { setSubmitting }, event) => {
+            //   event.preventDefault();
+            //   setTimeout(() => {
+            //     alert(JSON.stringify(values, null, 2));
+            //     setSubmitting(false);
+            //   }, 400);
+            // }}
           >
             <Form>
               <div className="row">

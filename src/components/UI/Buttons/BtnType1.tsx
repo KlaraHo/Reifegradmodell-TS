@@ -1,10 +1,11 @@
 import React from "react";
+import { Button } from "antd";
 
-const BtnType1 = (props) => {
+const BtnType1 = (props: any) => {
   return (
-    <button className="btn_type_1" type={props.type || "button"}>
+    <Button className="btn_type_1" type={props.type || "button"}>
       {props.children}
-    </button>
+    </Button>
   );
 };
 
