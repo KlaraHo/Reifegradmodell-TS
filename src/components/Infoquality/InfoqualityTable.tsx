@@ -19,9 +19,7 @@ const MyTextInput = ({ label, ...props }) => {
         {label}
       </label>
       <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
+      {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
     </React.Fragment>
   );
 };
@@ -34,9 +32,7 @@ const MyCheckbox = ({ children, ...props }) => {
         <input type="checkbox" {...field} {...props} />
         {children}
       </label>
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
+      {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
     </React.Fragment>
   );
 };
@@ -244,966 +240,234 @@ const InfoqualityTable = () => {
               tv_iq_06: "",
               tv_iq_07: "",
               tv_iq_08: "",
-              tv_iq_09: "",
+              tv_iq_09: ""
             }}
             // VALIDATION SCHEMA
             validationSchema={Yup.object({
               // LINE 1
-              datasource_iq01: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq01: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq01: Yup.boolean(),
               iq01_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
               iq01_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
               iq01_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
               iq01_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
               iq01_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
               iq01_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
               iq01_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
               iq01_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
               iq01_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
+                .matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen")
                 .required("Erforderlich"),
 
               // LINE 2
-              datasource_iq02: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq02: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq02: Yup.boolean(),
-              iq02_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq02_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq02_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq02_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq02_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq02_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq02_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq02_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq02_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq02_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq02_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq02_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq02_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq02_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq02_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq02_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq02_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq02_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 3
-              datasource_iq03: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq03: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq03: Yup.boolean(),
-              iq03_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq03_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq03_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq03_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq03_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq03_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq03_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq03_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq03_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq03_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq03_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq03_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq03_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq03_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq03_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq03_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq03_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq03_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 4
-              datasource_iq04: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq04: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq04: Yup.boolean(),
-              iq04_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq04_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq04_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq04_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq04_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq04_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq04_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq04_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq04_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq04_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq04_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq04_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq04_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq04_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq04_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq04_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq04_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq04_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 5
-              datasource_iq05: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq05: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq05: Yup.boolean(),
-              iq05_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq05_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq05_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq05_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq05_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq05_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq05_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq05_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq05_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq05_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq05_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq05_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq05_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq05_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq05_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq05_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq05_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq05_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 6
-              datasource_iq06: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq06: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq06: Yup.boolean(),
-              iq06_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq06_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq06_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq06_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq06_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq06_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq06_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq06_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq06_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq06_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq06_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq06_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq06_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq06_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq06_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq06_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq06_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq06_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 7
-              datasource_iq07: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq07: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq07: Yup.boolean(),
-              iq07_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq07_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq07_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq07_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq07_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq07_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq07_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq07_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq07_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq07_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq07_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq07_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq07_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq07_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq07_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq07_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq07_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq07_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 8
-              datasource_iq08: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq08: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq08: Yup.boolean(),
-              iq08_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq08_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq08_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq08_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq08_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq08_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq08_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq08_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq08_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq08_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq08_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq08_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq08_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq08_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq08_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq08_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq08_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq08_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 9
-              datasource_iq09: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq09: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq09: Yup.boolean(),
-              iq09_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq09_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq09_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq09_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq09_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq09_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq09_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq09_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq09_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq09_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq09_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq09_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq09_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq09_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq09_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq09_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq09_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq09_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 10
-              datasource_iq10: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq10: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq10: Yup.boolean(),
-              iq10_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq10_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq10_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq10_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq10_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq10_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq10_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq10_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq10_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq10_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq10_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq10_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq10_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq10_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq10_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq10_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq10_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq10_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 11
-              datasource_iq11: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq11: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq11: Yup.boolean(),
-              iq11_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq11_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq11_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq11_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq11_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq11_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq11_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq11_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq11_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq11_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq11_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq11_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq11_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq11_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq11_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq11_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq11_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq11_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 12
-              datasource_iq12: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq12: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq12: Yup.boolean(),
-              iq12_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq12_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq12_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq12_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq12_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq12_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq12_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq12_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq12_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq12_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq12_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq12_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq12_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq12_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq12_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq12_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq12_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq12_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 13
-              datasource_iq13: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq13: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq13: Yup.boolean(),
-              iq13_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq13_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq13_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq13_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq13_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq13_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq13_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq13_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq13_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq13_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq13_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq13_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq13_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq13_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq13_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq13_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq13_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq13_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 14
-              datasource_iq14: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq14: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq14: Yup.boolean(),
-              iq14_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq14_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq14_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq14_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq14_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq14_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq14_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq14_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq14_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq14_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq14_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq14_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq14_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq14_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq14_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq14_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq14_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq14_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // LINE 15
-              datasource_iq15: Yup.string()
-                .max(50, "Max. 50 Zeichen")
-                .required("Erforderlich"),
+              datasource_iq15: Yup.string().max(50, "Max. 50 Zeichen").required("Erforderlich"),
               checkbox_iq15: Yup.boolean(),
-              iq15_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq15_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq15_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq15_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq15_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq15_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq15_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq15_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              iq15_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              iq15_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq15_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq15_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq15_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq15_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq15_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq15_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq15_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              iq15_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
 
               // TARGET VALUES
               checkbox_tv_iq: Yup.boolean(),
-              tv_iq_01: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              tv_iq_02: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              tv_iq_03: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              tv_iq_04: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              tv_iq_05: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              tv_iq_06: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              tv_iq_07: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              tv_iq_08: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
-              tv_iq_09: Yup.string()
-                .matches(
-                  decimalRegExp,
-                  "Zahl zwischen 0 und 1 mit 2 Dezimalstellen"
-                )
-                .optional(),
+              tv_iq_01: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              tv_iq_02: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              tv_iq_03: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              tv_iq_04: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              tv_iq_05: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              tv_iq_06: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              tv_iq_07: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              tv_iq_08: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional(),
+              tv_iq_09: Yup.string().matches(decimalRegExp, "Zahl zwischen 0 und 1 mit 2 Dezimalstellen").optional()
             })}
             onSubmit={(values, { setSubmitting }, event) => {
               event.preventDefault();

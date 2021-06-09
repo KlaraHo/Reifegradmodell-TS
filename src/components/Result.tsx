@@ -10,10 +10,7 @@ const Result = () => {
               <h1>Ergebnis</h1>
             </div>
             <div className="col-1">
-              <p>
-                Hier wird der berechnete Reifegrad gemäß Ihrer Angaben
-                aufgeführt.
-              </p>
+              <p>Hier wird der berechnete Reifegrad gemäß Ihrer Angaben aufgeführt.</p>
             </div>
             <div id="result"></div>
           </div>

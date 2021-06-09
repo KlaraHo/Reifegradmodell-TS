@@ -1,8 +1,7 @@
-
 import React from "react";
 
-import KnowqualityIntro from './KnowqualityIntro';
-import KnowqualityTable from './KnowqualityTable';
+import KnowqualityIntro from "./KnowqualityIntro";
+import KnowqualityTable from "./KnowqualityTable";
 
 const Knowquality = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-import '../../App.css';
+import "../../App.css";
 
 const MaintenancequalityIntro = () => {
   return (
@@ -13,10 +13,8 @@ const MaintenancequalityIntro = () => {
             </div>
             <div className="col-1">
               <p>
-                Bitte geben Sie die Instandhaltungsqualitätsindikatoren gemäß
-                Ihrer Auswertung ein.
-                <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null
-                und Eins akzeptiert.
+                Bitte geben Sie die Instandhaltungsqualitätsindikatoren gemäß Ihrer Auswertung ein.
+                <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
               </p>
             </div>
           </div>

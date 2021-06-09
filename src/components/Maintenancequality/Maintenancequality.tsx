@@ -1,13 +1,13 @@
 import React from "react";
 
-import MaintenancequalityIntro from './MaintenancequalityIntro';
-import MaintenancequalityTable from './MaintenancequalityTable';
+import MaintenancequalityIntro from "./MaintenancequalityIntro";
+import MaintenancequalityTable from "./MaintenancequalityTable";
 
 const Maintenancequality = () => {
   return (
     <React.Fragment>
-     <MaintenancequalityIntro />
-     <MaintenancequalityTable />
+      <MaintenancequalityIntro />
+      <MaintenancequalityTable />
     </React.Fragment>
   );
 };

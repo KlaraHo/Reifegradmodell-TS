@@ -13,10 +13,8 @@ const DataqualityIntro = () => {
             </div>
             <div className="col-1">
               <p>
-                Bitte geben Sie die Datenqualitätsindikatoren gemäß Ihrer
-                Auswertung ein.
-                <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null
-                und Eins akzeptiert.
+                Bitte geben Sie die Datenqualitätsindikatoren gemäß Ihrer Auswertung ein.
+                <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
               </p>
             </div>
           </div>
