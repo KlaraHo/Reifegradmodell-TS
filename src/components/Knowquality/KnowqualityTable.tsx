@@ -1,15 +1,12 @@
+import { Button, Input } from "antd";
+import { Form, Formik, useField } from "formik";
+import React from "react";
+import * as Yup from "yup";
+import "../../App.css";
+import KnowqualityTableHeadlines from "./KnowqualityTableHeadlines";
+
 // kq = knowquality (Wissensqualität)
 // tv = target value (Sollwert)
-
-import React from "react";
-import { Formik, Form, useField } from "formik";
-import * as Yup from "yup";
-
-import KnowqualityTableHeadlines from "./KnowqualityTableHeadlines";
-import BtnType1 from "../UI/Buttons/BtnType1";
-import BtnType2 from "../UI/Buttons/BtnType2";
-
-import "../../App.css";
 
 const MyTextInput = ({ label, ...props }: any) => {
   const [field, meta] = useField(props);
@@ -18,7 +15,7 @@ const MyTextInput = ({ label, ...props }: any) => {
       <label htmlFor={props.id || props.name} className="screenreader">
         {label}
       </label>
-      <input className="text-input" {...field} {...props} />
+      <Input className="text-input" {...field} {...props} />
       {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
     </React.Fragment>
   );
@@ -29,7 +26,7 @@ const MyCheckbox = ({ ...props }: any) => {
   return (
     <div>
       <label className="checkbox-input">
-        <input type="checkbox" {...field} {...props} />
+        <Input type="checkbox" {...field} {...props} />
       </label>
       {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
     </div>
@@ -848,17 +845,13 @@ const KnokqualityTable = () => {
 
               <div className="row table_buttons">
                 <div className="col-8">
-                  <BtnType1 id="kq-btn-grafik">Grafik</BtnType1>
+                  <Button id="kq-btn-grafik">Grafik</Button>
                 </div>
                 <div className="col-8">
-                  <BtnType1 type="submit" id="kq-btn-aggregation">
-                    Aggregation
-                  </BtnType1>
+                  <Button id="kq-btn-aggregation">Aggregation</Button>
                 </div>
                 <div className="col-8">
-                  <BtnType2 type="reset" id="kq-btn-reset">
-                    Zurücksetzen
-                  </BtnType2>
+                  <Button id="kq-btn-reset">Zurücksetzen</Button>
                 </div>
               </div>
             </Form>

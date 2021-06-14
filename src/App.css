@@ -1,3 +1,8 @@
+.ant-input {
+  height: 24px !important;
+  padding: 4px !important;
+}
+
 /* === FARBEN === */
 
 /*
@@ -14,11 +19,6 @@ button hover: #004d80
 
 html {
   font-size: 16px;
-}
-
-body {
-  margin: 0;
-  font-family: "Raleway", "Lato", "Helvetica Neue", "Arial", sans-serif;
 }
 
 * {

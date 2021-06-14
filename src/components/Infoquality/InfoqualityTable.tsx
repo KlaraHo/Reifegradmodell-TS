@@ -1,12 +1,9 @@
+import { Button, Input } from "antd";
+import { Form, Formik, useField } from "formik";
 import React from "react";
-import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
-
-import InfoqualityTableHeadlines from "./InfoqualityTableHeadlines";
-import BtnType1 from "../UI/Buttons/BtnType1";
-import BtnType2 from "../UI/Buttons/BtnType2";
-
 import "../../App.css";
+import InfoqualityTableHeadlines from "./InfoqualityTableHeadlines";
 
 // iq = infoquality (Informationsqualität)
 // tv = target value (Sollwert)
@@ -19,7 +16,7 @@ const MyTextInput = ({ label, ...props }: any) => {
       <label htmlFor={props.id || props.name} className="screenreader">
         {label}
       </label>
-      <input className="text-input" {...field} {...props} />
+      <Input className="text-input" {...field} {...props} />
       {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
     </React.Fragment>
   );
@@ -30,7 +27,7 @@ const MyCheckbox = ({ children, ...props }: any) => {
   return (
     <React.Fragment>
       <label className="checkbox-input">
-        <input type="checkbox" {...field} {...props} />
+        <Input type="checkbox" {...field} {...props} />
         {children}
       </label>
       {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
@@ -1150,17 +1147,13 @@ const InfoqualityTable = () => {
 
               <div className="row table_buttons">
                 <div className="col-8">
-                  <BtnType1 id="iq-btn-grafik">Grafik</BtnType1>
+                  <Button id="iq-btn-grafik">Grafik</Button>
                 </div>
                 <div className="col-8">
-                  <BtnType1 type="submit" id="iq-btn-aggregation">
-                    Aggregation
-                  </BtnType1>
+                  <Button id="iq-btn-aggregation">Aggregation</Button>
                 </div>
                 <div className="col-8">
-                  <BtnType2 type="reset" id="iq-btn-reset">
-                    Zurücksetzen
-                  </BtnType2>
+                  <Button id="iq-btn-reset">Zurücksetzen</Button>
                 </div>
               </div>
             </Form>
