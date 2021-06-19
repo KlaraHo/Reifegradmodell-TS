@@ -7,6 +7,8 @@ import { CSV } from "../CSV";
 
 export function Table(props: {
   title: string;
+  sourceTitle: string;
+  sourceInputPlaceholder: string;
   description: React.ReactNode;
   backgroundColor: string;
   columns: string[];
@@ -28,7 +30,7 @@ export function Table(props: {
           rowGap: 4
         }}
       >
-        <span style={{ fontWeight: "bold", textDecoration: "underline" }}>Datenquellen</span>
+        <span style={{ fontWeight: "bold", textDecoration: "underline" }}>{props.sourceTitle}</span>
         <span style={{ fontWeight: "bold", textDecoration: "underline" }}>An/Aus</span>
         {props.columns.map((column, index) => {
           return (
@@ -48,21 +50,21 @@ export function Table(props: {
         }}
         style={{ marginTop: 24 }}
       >
-        <TableRow columns={props.columns} row={1} />
-        <TableRow columns={props.columns} row={2} />
-        <TableRow columns={props.columns} row={3} />
-        <TableRow columns={props.columns} row={4} />
-        <TableRow columns={props.columns} row={5} />
-        <TableRow columns={props.columns} row={6} />
-        <TableRow columns={props.columns} row={7} />
-        <TableRow columns={props.columns} row={8} />
-        <TableRow columns={props.columns} row={9} />
-        <TableRow columns={props.columns} row={10} />
-        <TableRow columns={props.columns} row={11} />
-        <TableRow columns={props.columns} row={12} />
-        <TableRow columns={props.columns} row={13} />
-        <TableRow columns={props.columns} row={14} />
-        <TableRow columns={props.columns} row={15} />
+        <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={2} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={3} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={4} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={5} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={6} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={7} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={8} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={9} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={10} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={11} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={12} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={13} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={14} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+        <TableRow columns={props.columns} row={15} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
 
         <Divider />
 
@@ -70,7 +72,7 @@ export function Table(props: {
         <TableRowTargetvalue columns={props.columns} row={17} rowTitle={"Sollwert"} />
 
         <div style={{ justifyContent: "center", marginTop: 16 }}>
-          <Card style={{ width: 300, margin: "auto", backgroundColor: "" }} title={props.resultTitle}>
+          <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
             <p style={{ margin: 0 }}>{props.resultInitials}</p>
           </Card>
         </div>

@@ -15,6 +15,8 @@ function App() {
       <Introbox />
       <Table
         title="Datenqualitätsindikatoren"
+        sourceTitle="Datenquellen"
+        sourceInputPlaceholder="Datenquelle"
         description={
           <>
             Bitte geben Sie die Datenqualitätsindikatoren gemäß Ihrer Auswertung ein.
@@ -40,6 +42,8 @@ function App() {
 
       <Table
         title="Informationsqualitätsindikatoren"
+        sourceTitle="Informationsquellen"
+        sourceInputPlaceholder="Informationsquelle"
         description={
           <>
             Bitte geben Sie die Informationsqualitätsindikatoren gemäß Ihrer Auswertung ein.
@@ -64,6 +68,8 @@ function App() {
 
       <Table
         title="Wissensqualitätsindikatoren"
+        sourceTitle="Wissensquellen"
+        sourceInputPlaceholder="Wissensquelle"
         description={
           <>
             Bitte geben Sie die Wissensqualitätsindikatoren gemäß Ihrer Auswertung ein.

@@ -1,7 +1,7 @@
 import { Checkbox, Form, Input, Divider } from "antd";
 import React from "react";
 
-export function TableRow(props: { columns: string[]; row: number }) {
+export function TableRow(props: { columns: string[]; row: number; sourceInputPlaceholder: string }) {
   const [active, setActive] = React.useState<boolean>(true);
 
   return (
@@ -14,7 +14,7 @@ export function TableRow(props: { columns: string[]; row: number }) {
         rowGap: 16
       }}
     >
-      <Input />
+      <Input placeholder={props.sourceInputPlaceholder}/>
       <Checkbox
         style={{ marginTop: 4 }}
         checked={active}
