@@ -1,20 +1,20 @@
 import { Checkbox, Form, Input } from "antd";
 import React from "react";
 
-export function TableRow(props: { columns: string[]; row: number }) {
+export function TableRowTargetvalue(props: { columns: string[]; row: number, rowTitle: string }) {
   const [active, setActive] = React.useState<boolean>(true);
 
   return (
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: `repeat(${2 + props.columns.length}, 1fr)`,
+        gridTemplateColumns: `repeat(${2 + props.columns.length + 1}, 1fr)`,
         justifyItems: "center",
         columnGap: 16,
         rowGap: 16
       }}
     >
-      <Input />
+      <span style={{ fontWeight: "bold", textDecoration: "underline"}}>{props.rowTitle}</span>
       <Checkbox
         style={{ marginTop: 4 }}
         checked={active}
