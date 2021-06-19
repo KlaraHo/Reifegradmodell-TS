@@ -2,22 +2,14 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <React.Fragment>
-      <footer>
-        <div className="row">
-          <div>
-            Icons made by{" "}
-            <a href="https://www.flaticon.com/authors/becris" title="Becris">
-              Becris
-            </a>{" "}
-            from{" "}
-            <a href="https://www.flaticon.com/" title="Flaticon">
-              www.flaticon.com
-            </a>
-          </div>
+    <>
+      <footer style={{ marginTop: 160, fontSize: "0.5rem", }}>
+        <div style={{ marginLeft: 16 }}>
+          Dieses Tool wurde von xxx gebaut???
+          {/* put some more Info about the Tool here? */}
         </div>
       </footer>
-    </React.Fragment>
+    </>
   );
 };
 

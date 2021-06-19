@@ -1,29 +1,18 @@
 import { Button } from "antd";
+import { DownloadOutlined, UploadOutlined } from "@ant-design/icons";
 import React from "react";
 
 import "../App.css";
 
-import DownloadIcon from "./assets/download.png";
-import UploadIcon from "./assets/upload.png";
-
-const CSV = () => {
+export function CSV(props: any) {
   return (
-    <React.Fragment>
-      <section id="csv">
-        <div className="row">
-          <div className="col-8">
-            <span>.csv</span>
-            <Button className="btn_type_3">
-              <img className="csv_img_btn" src={UploadIcon} alt="CSV Upload" />
-            </Button>
-            <Button className="btn_type_3">
-              <img className="csv_img_btn" src={DownloadIcon} alt="CSV Download" />
-            </Button>
-          </div>
-        </div>
-      </section>
-    </React.Fragment>
+    <>
+      <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 40, marginRight: 40 }}>
+        <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
+        <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
+        <Button type="primary" icon={<UploadOutlined />} size={"large"} />
+      </div>
+    </>
   );
 };
 
-export default CSV;

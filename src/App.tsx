@@ -1,22 +1,18 @@
 import React from "react";
 
 import Introbox from "./components/Introbox";
-import CSV from "./components/CSV";
-import Dataquality from "./components/Dataquality/Dataquality";
-import Infoquality from "./components/Infoquality/Infoquality";
-import Knowquality from "./components/Knowquality/Knowquality";
-import Maintenancequality from "./components/Maintenancequality/Maintenancequality";
 import Result from "./components/Result";
+
 
 import "./App.css";
 import { Table } from "./components/table/Table";
+import { TableMQ } from './components/table/TableMQ';
 import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
       <Introbox />
-      <CSV />
       <Table
         title="Datenqualitätsindikatoren"
         description={
@@ -38,9 +34,11 @@ function App() {
           "Zugänglichkeit",
           "Pünktlichkeit"
         ]}
+        resultTitle="Ergebnis Datenqualität:"
+        resultInitials="DQ ="
       />
 
-      {/* <Table
+      <Table
         title="Informationsqualitätsindikatoren"
         description={
           <>
@@ -48,11 +46,43 @@ function App() {
             <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
           </>
         }
-        backgroundColor="#e6f5ff"
+        backgroundColor="#cceeff"
+        columns={[
+          "Korrektheit",
+          "Validität",
+          "Erklärbarkeit",
+          "Aktualität",
+          "Prägnanz",
+          "Vollständigkeit",
+          "Pünktlichkeit",
+          "Zweckmäßigkeit",
+          "Informationsfluss"
+        ]}
+        resultTitle="Ergebnis Informationsqualität:"
+        resultInitials="IQ ="
       />
 
       <Table
-        title="Datenqualitätsindikatoren"
+        title="Wissensqualitätsindikatoren"
+        description={
+          <>
+            Bitte geben Sie die Wissensqualitätsindikatoren gemäß Ihrer Auswertung ein.
+            <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
+          </>
+        }
+        backgroundColor="#e6f5ff"
+        columns={[
+          "Bildungsniveau eines Mitarbeiters",
+          "Erfahrungsniveau eines Mitarbeiters",
+          "Leistungsnieveau eines Mitarbeiters",
+          "Zweckmäßigkeit eines IT-Systems zur Wissensbereitstellung"
+        ]}
+        resultTitle="Ergebnis Wissensqualität:"
+        resultInitials="KQ ="
+      />
+
+      <TableMQ
+        title="Instandhaltungsqualitätsindikatoren"
         description={
           <>
             Bitte geben Sie die Datenqualitätsindikatoren gemäß Ihrer Auswertung ein.
@@ -60,13 +90,20 @@ function App() {
           </>
         }
         backgroundColor="#e6f5ff"
-      /> */}
-      {/* <Table />
-      <Table /> */}
-      <Dataquality />
-      <Infoquality />
-      <Knowquality />
-      <Maintenancequality />
+        columns={[
+          "Perspektive",
+          "An/Aus",
+          "Stufe",
+          "Kennzahl",
+          "Ist, [%]",
+          "Soll, [%]",
+          "Erfüllungsgrad",
+          "Aggregation",
+        ]}
+        resultTitle="Ergebnis Instandhaltungsqualität:"
+        resultInitials="MQ ="
+      />
+
       <Result />
       <Footer />
     </>

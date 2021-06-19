@@ -3,22 +3,27 @@ import React from "react";
 import Logo from "./img/TU-Wien-Logo.png";
 
 import "../App.css";
+import { AutoComplete } from "antd";
 
 const Introbox = () => {
   return (
     <React.Fragment>
-      <section id="intro_box">
+      <section style={{ textAlign: "center" }}>
         <div className="container">
           <div className="row">
-            <img src={Logo} alt="TU Wien Logo" />
+            <img
+              style={{ float: "left", width: 200, height: "auto", marginTop: "1rem" }}
+              src={Logo}
+              alt="TU Wien Logo"
+            />
           </div>
 
           <div className="row">
-            <h1>Reifegradmodell</h1>
-            <h2>der Instandhaltung</h2>
+            <h1 style={{ fontSize: "4rem", textTransform: "uppercase" }}>Reifegradmodell</h1>
+            <h2 style={{ marginTop: "1rem" }}>der Instandhaltung</h2>
           </div>
           <div className="row">
-            <p>
+            <p style={{ marginTop: "3rem" }}>
               Hier ist ein Infotext zum Reifegradmodell.
               <br />
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam rerum itaque, maiores ut nesciunt
