@@ -3,11 +3,10 @@ import React from "react";
 import Logo from "./img/TU-Wien-Logo.png";
 
 import "../App.css";
-import { AutoComplete } from "antd";
 
 const Introbox = () => {
   return (
-    <React.Fragment>
+    <>
       <section style={{ textAlign: "center" }}>
         <div className="container">
           <div className="row">
@@ -33,7 +32,7 @@ const Introbox = () => {
           </div>
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 };
 

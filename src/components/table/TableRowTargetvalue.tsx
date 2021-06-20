@@ -14,9 +14,9 @@ export function TableRowTargetvalue(props: { columns: string[]; row: number, row
         rowGap: 16
       }}
     >
-      <span style={{ fontWeight: "bold", textDecoration: "underline"}}>{props.rowTitle}</span>
+      <span style={{ fontWeight: "bold", textDecoration: "underline", marginTop: 6}}>{props.rowTitle}</span>
       <Checkbox
-        style={{ marginTop: 4 }}
+        style={{ marginTop: 6 }}
         checked={active}
         onChange={(event) => {
           setActive(event.target.checked);

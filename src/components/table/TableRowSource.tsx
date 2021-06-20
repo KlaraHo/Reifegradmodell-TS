@@ -1,4 +1,4 @@
-import { Checkbox, Form, Input, Divider } from "antd";
+import { Checkbox, Form, Input } from "antd";
 import React from "react";
 
 export function TableRow(props: { columns: string[]; row: number; sourceInputPlaceholder: string }) {
@@ -14,9 +14,9 @@ export function TableRow(props: { columns: string[]; row: number; sourceInputPla
         rowGap: 16
       }}
     >
-      <Input placeholder={props.sourceInputPlaceholder}/>
+      <Input placeholder={props.sourceInputPlaceholder} style={{ marginTop: 6 }} />
       <Checkbox
-        style={{ marginTop: 4 }}
+        style={{ marginTop: 6 }}
         checked={active}
         onChange={(event) => {
           setActive(event.target.checked);
@@ -29,7 +29,7 @@ export function TableRow(props: { columns: string[]; row: number; sourceInputPla
           </Form.Item>
         );
       })}
-      <div style={{height: 20, width: 40, border: "1px solid #004d80"}}/>
+      <div style={{height: "24px", width: 40, border: "1px solid #004d80", marginTop: 4}}/>
     </div>
   );
 }

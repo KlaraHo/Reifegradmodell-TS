@@ -1,4 +1,4 @@
-import { Checkbox, Form, Input } from "antd";
+import { Checkbox, Form } from "antd";
 import React from "react";
 
 export function TableRowAggregation(props: { columns: string[]; row: number }) {
@@ -14,9 +14,9 @@ export function TableRowAggregation(props: { columns: string[]; row: number }) {
         rowGap: 16
       }}
     >
-      <span style={{ fontWeight: "bold", textDecoration: "underline"}}>Aggregation</span>
+      <span style={{ fontWeight: "bold", textDecoration: "underline", marginTop: 6}}>Aggregation</span>
       <Checkbox
-        style={{ marginTop: 4, color: "#004d80" }}
+        style={{ marginTop: 6, color: "#004d80" }}
         checked={active}
         onChange={(event) => {
           setActive(event.target.checked);
@@ -25,7 +25,7 @@ export function TableRowAggregation(props: { columns: string[]; row: number }) {
       {props.columns.map((column, index) => {
         return (
           <Form.Item name={column.toLowerCase() + "_" + props.row} rules={[{ required: false, message: "TODO" }]}>
-            <div style={{height: 20, width: 40, border: "1px solid #004d80"}}/>
+            <div style={{height: "24px", width: 40, border: "1px solid #004d80"}} key={index}/>
           </Form.Item>
         );
       })}
