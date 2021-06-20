@@ -24,12 +24,18 @@ export function TableRow(props: { columns: string[]; row: number; sourceInputPla
       />
       {props.columns.map((column, index) => {
         return (
-          <Form.Item name={column.toLowerCase() + "_" + props.row} rules={[{ required: false, message: "TODO" }]}>
+          <Form.Item
+            name={column.toLowerCase() + "_" + props.row}
+            rules={[{ required: false, type: "regexp", message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}
+          >
             <Input disabled={!active} key={index} />
           </Form.Item>
         );
       })}
-      <div style={{height: "24px", width: 40, border: "1px solid #004d80", marginTop: 4}}/>
+      <div style={{ height: "24px", width: 40, border: "1px solid #004d80", marginTop: 4 }} />
     </div>
   );
 }
+
+
+// regexp: ^(?:0*(?:\.\d+)?|1(\.0*)?)$

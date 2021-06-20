@@ -15,6 +15,22 @@ export function Table(props: {
   resultTitle: string;
   resultInitials: string;
 }) {
+  const [form] = Form.useForm();
+
+  const onReset = () => {
+    form.resetFields();
+  };
+
+  const onFinish = (values: string ) => {
+    parseFloat(values); // so anscheinend nicht
+    console.log(values);
+    // Berechnung kommt hierher
+    
+
+   
+
+  };
+
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
@@ -42,29 +58,23 @@ export function Table(props: {
 
         <span style={{ fontWeight: "bold", textDecoration: "underline" }}>Aggregation</span>
       </div>
-      <Form
-        initialValues={{}}
-        onFinish={(values) => {
-          console.error(values);
-          // TODO: Sum up values, etc.
-        }}
-        style={{ marginTop: 24 }}
-      >
-        <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={2} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={3} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={4} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={5} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={6} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={7} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={8} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={9} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={10} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={11} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={12} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={13} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={14} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
-        <TableRow columns={props.columns} row={15} sourceInputPlaceholder={props.sourceInputPlaceholder}/>
+
+      <Form form={form} initialValues={{}} onFinish={onFinish} style={{ marginTop: 24 }}>
+        <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={2} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={3} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={4} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={5} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={6} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={7} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={8} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={9} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={10} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={11} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={12} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={13} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={14} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        <TableRow columns={props.columns} row={15} sourceInputPlaceholder={props.sourceInputPlaceholder} />
 
         <Divider />
 
@@ -78,7 +88,7 @@ export function Table(props: {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button type="text" danger style={{ marginRight: 16 }}>
+          <Button type="text" danger style={{ marginRight: 16 }} onClick={onReset}>
             Zurücksetzen
           </Button>
           <Button type="primary" htmlType="submit" style={{ marginRight: 16 }}>
