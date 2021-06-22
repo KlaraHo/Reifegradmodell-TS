@@ -91,7 +91,7 @@ function App() {
         title="Instandhaltungsqualitätsindikatoren"
         description={
           <>
-            Bitte geben Sie die Datenqualitätsindikatoren gemäß Ihrer Auswertung ein.
+            Bitte geben Sie die Instandhaltungsqualitätsindikatoren gemäß Ihrer Auswertung ein.
             <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
           </>
         }

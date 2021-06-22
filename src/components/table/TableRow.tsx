@@ -26,7 +26,7 @@ export function TableRow(props: { columns: string[]; row: number; sourceInputPla
         return (
           <Form.Item
             name={column.toLowerCase() + "_" + props.row}
-            rules={[{ required: false, type: "regexp", message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}
+            rules={[{ required: false, pattern: new RegExp(/^(?:0*(?:\.\d+)?|1(\.0*)?)$/), message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}
           >
             <Input disabled={!active} key={index} />
           </Form.Item>

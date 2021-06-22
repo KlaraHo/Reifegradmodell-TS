@@ -1,6 +1,6 @@
 import { Button, Form, Divider, Card } from "antd";
 import React from "react";
-import { TableRow } from "./TableRowSource";
+import { TableRow } from "./TableRow";
 import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import { CSV } from "../CSV";
