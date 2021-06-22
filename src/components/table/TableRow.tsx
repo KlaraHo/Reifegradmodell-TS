@@ -39,6 +39,7 @@ export function TableRow(props: {
         }
 
         setSum(total / totalWeights);
+        sum.toFixed(2);
       }}
       initialValues={{
         active: true
@@ -60,13 +61,14 @@ export function TableRow(props: {
         return (
           <Form.Item
             name={column}
-            rules={[{ required: false, pattern: new RegExp(/^(?:0*(?:\.\d+)?|1(\.0*)?)$/), message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}
+            rules={[{ required: false, message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}
+            // pattern: new RegExp(/^(?:0*(?:\.\d+)?|1(\.0*)?)$/)
+            //Fehlermeldung wird nicht mehr angezeigt, jedoch wird Zahl auf die richtigen Werte gerundet
           >
-            <InputNumber disabled={!active} key={index} size="small" />
+            <InputNumber disabled={!active} key={index} size="small" min="0" max="1" step="0.01" precision={2}/>
           </Form.Item>
         );
       })}
-
       <div style={{ height: "24px", width: 40, border: "1px solid #004d80", marginTop: 4 }}>{sum}</div>
     </Form>
   );

@@ -21,8 +21,8 @@ button hover: #004d80
   border-color: #004d80;
 } */
 
-.ant-form-item-explain-error {
-  font-size: 10px;
+.ant-form-item-explain{
+  font-size: 10px !important;
 }
 
 /* === GLOBAL === */

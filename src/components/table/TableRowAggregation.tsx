@@ -1,4 +1,4 @@
-import { Checkbox, Form } from "antd";
+import { Checkbox } from "antd";
 import React from "react";
 
 export function TableRowAggregation(props: { values: number[] }) {

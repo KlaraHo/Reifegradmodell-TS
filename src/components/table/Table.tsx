@@ -19,10 +19,13 @@ export function Table(props: {
   const [form] = Form.useForm();
   const [deactivatedRowIds, setDeactivatedRowIds] = React.useState<number[]>([]);
   const [sums, setSums] = React.useState<number[]>([]);
+  // Dynamisch Array mit 0 auffüllen? Aber wo? Vorm onChange passiert dann beim onChange nix mehr
 
   const onReset = () => {
     form.resetFields();
+    // TODO: Reset for Form in Form
   };
+
 
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
@@ -51,6 +54,7 @@ export function Table(props: {
 
         <span style={{ fontWeight: "bold", textDecoration: "underline" }}>Aggregation</span>
       </div>
+
       <Form.Provider
         onFormChange={(name, info) => {
           const sums: number[] = [];
@@ -59,19 +63,29 @@ export function Table(props: {
             sums[i] = 0;
           }
 
+          let totalColumn = 0;
+          let totalColumnWeights = 0;
+
           props.columns.forEach((column, index) => {
             for (const [formName, form] of Object.entries(info.forms)) {
               if (!deactivatedRowIds.includes(parseInt(formName))) {
                 const formColumnValue = form.getFieldValue(column);
 
                 if (formColumnValue !== undefined) {
-                  sums[index] += formColumnValue;
-                  // TODO: Add calculation
+                  if (formColumnValue <= 0.5) {
+                    totalColumn += formColumnValue * 1.3;
+                    totalColumnWeights += 1.3;
+                  } else {
+                    totalColumn += formColumnValue;
+                    totalColumnWeights += 1;
+                  }
+                  sums[index] = (totalColumn / totalColumnWeights);
+                  // Something still wrong with this: changing first column changes aggregation of 2nd column
                 }
               }
             }
           });
-
+          sums.map(i => i.toFixed(2)) // How to show only 2 decimals in aggregation? toFixed also no option
           setSums(sums);
         }}
       >
