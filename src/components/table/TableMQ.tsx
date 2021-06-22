@@ -1,8 +1,9 @@
 import { Button, Form } from "antd";
 import Grid from "antd/lib/card/Grid";
 import React from "react";
-import { TableMQRow } from "./TableMQRow";
+import { TableMQRowPI } from "./TableMQRowPI";
 import { CSV } from "../CSV";
+import { TableMQPerspective } from "./TableMQPerspective";
 
 export function TableMQ(props: {
   title: string;
@@ -53,15 +54,12 @@ export function TableMQ(props: {
         }}
         style={{ marginTop: 24 }}
       >
-        {/* <TableRowsGroup name="Maschinenpersadsafgoire">
-          <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-          <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-          <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        </TableRowsGroup> */}
-        {/* Tabelle
-        Wie kann ich Maschinenperspektive über mehrere Zeilen bauen?
-        Wie kann ich die Rows, weil sie nicht immer gleich sind, dynamisch bauen?
-        Macht es hier überhaupt Sinn? */}
+
+        <TableMQPerspective perspectiveTitle="Maschinenperspektive" />
+        <TableMQPerspective perspectiveTitle="Prozessperspektive" />
+        <TableMQPerspective perspectiveTitle="Kostenperspektive" />
+        <TableMQPerspective perspectiveTitle="Ressourcenperspektive" />
+       
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button type="text" danger style={{ marginRight: 16 }}>

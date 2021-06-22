@@ -20,12 +20,14 @@ export function Table(props: {
   const [deactivatedRowIds, setDeactivatedRowIds] = React.useState<number[]>([]);
   const [sums, setSums] = React.useState<number[]>([]);
   // Dynamisch Array mit 0 auffüllen? Aber wo? Vorm onChange passiert dann beim onChange nix mehr
+  // iwo initial values angeben?
+  const [reset, setReset] = React.useState<boolean>(false);
 
-  const onReset = () => {
-    form.resetFields();
+  const onReset = (props: any) => {
+    setReset(true);
+    form.resetFields(); // should go in every TableRow, but how?
     // TODO: Reset for Form in Form
   };
-
 
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
@@ -79,13 +81,13 @@ export function Table(props: {
                     totalColumn += formColumnValue;
                     totalColumnWeights += 1;
                   }
-                  sums[index] = (totalColumn / totalColumnWeights);
+                  sums[index] = totalColumn / totalColumnWeights;
                   // Something still wrong with this: changing first column changes aggregation of 2nd column
                 }
               }
             }
           });
-          sums.map(i => i.toFixed(2)) // How to show only 2 decimals in aggregation? toFixed also no option
+          sums.map((i) => i.toFixed(2)); // How to show only 2 decimals in aggregation? toFixed also no option
           setSums(sums);
         }}
       >

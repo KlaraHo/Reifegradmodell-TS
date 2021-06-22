@@ -63,9 +63,9 @@ export function TableRow(props: {
             name={column}
             rules={[{ required: false, message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}
             // pattern: new RegExp(/^(?:0*(?:\.\d+)?|1(\.0*)?)$/)
-            //Fehlermeldung wird nicht mehr angezeigt, jedoch wird Zahl auf die richtigen Werte gerundet
+            // no error is showed anymore, but input is being fixed to right range of numbers with 2 decimals
           >
-            <InputNumber disabled={!active} key={index} size="small" min="0" max="1" step="0.01" precision={2}/>
+            <InputNumber disabled={!active} key={index} size="small" min="0" max="1" step="0.01" precision={2} />
           </Form.Item>
         );
       })}
