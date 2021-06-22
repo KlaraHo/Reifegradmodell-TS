@@ -3,10 +3,9 @@ import React from "react";
 import Introbox from "./components/Introbox";
 import Result from "./components/Result";
 
-
 import "./App.css";
 import { Table } from "./components/table/Table";
-import { TableMQ } from './components/table/TableMQ';
+import { TableMQ } from "./components/table/TableMQ";
 import Footer from "./components/Footer";
 
 function App() {
@@ -38,6 +37,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Datenqualität:"
         resultInitials="DQ ="
+        rowsCount={1}
       />
 
       <Table
@@ -64,6 +64,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Informationsqualität:"
         resultInitials="IQ ="
+        rowsCount={10}
       />
 
       <Table
@@ -85,6 +86,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Wissensqualität:"
         resultInitials="KQ ="
+        rowsCount={10}
       />
 
       <TableMQ
@@ -104,7 +106,7 @@ function App() {
           "Ist, [%]",
           "Soll, [%]",
           "Erfüllungsgrad",
-          "Aggregation",
+          "Aggregation"
         ]}
         resultTitle="Ergebnis Instandhaltungsqualität:"
         resultInitials="MQ ="

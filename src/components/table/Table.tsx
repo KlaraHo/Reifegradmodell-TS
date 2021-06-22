@@ -14,21 +14,14 @@ export function Table(props: {
   columns: string[];
   resultTitle: string;
   resultInitials: string;
+  rowsCount: number;
 }) {
   const [form] = Form.useForm();
+  const [deactivatedRowIds, setDeactivatedRowIds] = React.useState<number[]>([]);
+  const [sums, setSums] = React.useState<number[]>([]);
 
   const onReset = () => {
     form.resetFields();
-  };
-
-  const onFinish = (values: string ) => {
-    parseFloat(values); // so anscheinend nicht
-    console.log(values);
-    // Berechnung kommt hierher
-    
-
-   
-
   };
 
   return (
@@ -58,28 +51,51 @@ export function Table(props: {
 
         <span style={{ fontWeight: "bold", textDecoration: "underline" }}>Aggregation</span>
       </div>
+      <Form.Provider
+        onFormChange={(name, info) => {
+          const sums: number[] = [];
 
-      <Form form={form} initialValues={{}} onFinish={onFinish} style={{ marginTop: 24 }}>
-        <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={2} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={3} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={4} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={5} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={6} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={7} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={8} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={9} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={10} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={11} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={12} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={13} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={14} sourceInputPlaceholder={props.sourceInputPlaceholder} />
-        <TableRow columns={props.columns} row={15} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+          for (let i = 0; i < props.columns.length; i++) {
+            sums[i] = 0;
+          }
+
+          props.columns.forEach((column, index) => {
+            for (const [formName, form] of Object.entries(info.forms)) {
+              if (!deactivatedRowIds.includes(parseInt(formName))) {
+                const formColumnValue = form.getFieldValue(column);
+
+                if (formColumnValue !== undefined) {
+                  sums[index] += formColumnValue;
+                  // TODO: Add calculation
+                }
+              }
+            }
+          });
+
+          setSums(sums);
+        }}
+      >
+        {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
+          return (
+            <TableRow
+              columns={props.columns}
+              row={row}
+              sourceInputPlaceholder={props.sourceInputPlaceholder}
+              onActiveChange={(active) => {
+                if (active) {
+                  setDeactivatedRowIds(deactivatedRowIds.filter((id) => id !== row));
+                } else {
+                  setDeactivatedRowIds(deactivatedRowIds.concat([row]));
+                }
+              }}
+            />
+          );
+        })}
 
         <Divider />
 
-        <TableRowAggregation columns={props.columns} row={16} />
-        <TableRowTargetvalue columns={props.columns} row={17} rowTitle={"Sollwert"} />
+        <TableRowAggregation values={sums} />
+        <TableRowTargetvalue columns={props.columns} row={props.rowsCount + 1} rowTitle={"Sollwert"} />
 
         <div style={{ justifyContent: "center", marginTop: 16 }}>
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
@@ -96,7 +112,7 @@ export function Table(props: {
           </Button>
           <Button type="primary">Grafik</Button>
         </div>
-      </Form>
+      </Form.Provider>
     </div>
   );
 }

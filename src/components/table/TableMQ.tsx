@@ -4,7 +4,6 @@ import React from "react";
 import { TableMQRow } from "./TableMQRow";
 import { CSV } from "../CSV";
 
-
 export function TableMQ(props: {
   title: string;
   description: React.ReactNode;
@@ -14,10 +13,18 @@ export function TableMQ(props: {
   resultInitials: string;
 }) {
   return (
-    <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40, backgroundColor: "#cceeff" }}>
+    <div
+      style={{
+        textAlign: "center",
+        background: props.backgroundColor,
+        padding: 40,
+        marginTop: 40,
+        backgroundColor: "#cceeff"
+      }}
+    >
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
       <p>{props.description}</p>
-      < CSV />
+      <CSV />
       {/* Überschriften */}
       <div
         style={{
@@ -46,11 +53,15 @@ export function TableMQ(props: {
         }}
         style={{ marginTop: 24 }}
       >
+        {/* <TableRowsGroup name="Maschinenpersadsafgoire">
+          <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+          <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+          <TableRow columns={props.columns} row={1} sourceInputPlaceholder={props.sourceInputPlaceholder} />
+        </TableRowsGroup> */}
         {/* Tabelle
         Wie kann ich Maschinenperspektive über mehrere Zeilen bauen?
         Wie kann ich die Rows, weil sie nicht immer gleich sind, dynamisch bauen?
         Macht es hier überhaupt Sinn? */}
-
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button type="text" danger style={{ marginRight: 16 }}>
