@@ -81,7 +81,7 @@ export function Table(props: {
               columns={props.columns}
               row={row}
               sourceInputPlaceholder={props.sourceInputPlaceholder}
-              onActiveChange={(active) => {
+              onActiveChange={(active: any) => {
                 if (active) {
                   setDeactivatedRowIds(deactivatedRowIds.filter((id) => id !== row));
                 } else {
