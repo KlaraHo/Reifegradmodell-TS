@@ -21,7 +21,7 @@ button hover: #004d80
   border-color: #004d80;
 } */
 
-.ant-form-item-explain{
+.ant-form-item-explain {
   font-size: 10px !important;
 }
 
@@ -35,7 +35,6 @@ html {
   box-sizing: border-box;
 }
 
-
 .section_seperation {
   height: 1.5rem;
   width: auto;
@@ -45,7 +44,6 @@ html {
   font-size: 0.8rem;
   color: red;
 }
-
 
 /* === GRID-SYSTEM === */
 

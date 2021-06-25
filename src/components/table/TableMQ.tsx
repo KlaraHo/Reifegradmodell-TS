@@ -1,7 +1,6 @@
 import { Button, Form } from "antd";
 import Grid from "antd/lib/card/Grid";
 import React from "react";
-import { TableMQRowPI } from "./TableMQRowPI";
 import { CSV } from "../CSV";
 import { TableMQPerspective } from "./TableMQPerspective";
 
@@ -55,10 +54,8 @@ export function TableMQ(props: {
         style={{ marginTop: 24 }}
       >
 
-        <TableMQPerspective perspectiveTitle="Maschinenperspektive" />
-        <TableMQPerspective perspectiveTitle="Prozessperspektive" />
-        <TableMQPerspective perspectiveTitle="Kostenperspektive" />
-        <TableMQPerspective perspectiveTitle="Ressourcenperspektive" />
+        <TableMQPerspective/>
+
        
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>

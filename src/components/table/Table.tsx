@@ -20,7 +20,7 @@ export function Table(props: {
   const [deactivatedRowIds, setDeactivatedRowIds] = React.useState<number[]>([]);
   const [sums, setSums] = React.useState<number[]>([]);
   // Dynamisch Array mit 0 auffüllen? Aber wo? Vorm onChange passiert dann beim onChange nix mehr
-  // iwo initial values angeben?
+  // irgendwo initial values angeben?
   const [reset, setReset] = React.useState<boolean>(false);
 
   const onReset = (props: any) => {
@@ -58,6 +58,8 @@ export function Table(props: {
       </div>
 
       <Form.Provider
+
+        
         onFormChange={(name, info) => {
           const sums: number[] = [];
 
