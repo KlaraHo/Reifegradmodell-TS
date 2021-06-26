@@ -7,8 +7,10 @@ export function TableRow(props: {
   sourceInputPlaceholder: string;
   onActiveChange(active: boolean): void;
 }) {
+
   const [active, setActive] = React.useState<boolean>(true);
   const [sum, setSum] = React.useState<number>(0);
+  const [sumAsString, setSumAsString] = React.useState<string>("0");
 
   return (
     <Form
@@ -25,7 +27,7 @@ export function TableRow(props: {
         let totalWeights = 0;
 
         for (const [key, value] of Object.entries(values)) {
-          if (Number.isInteger(value)) {
+          if (Number.isFinite(value)) {
             let qi = value as number;
 
             if (qi <= 0.5) {
@@ -39,7 +41,8 @@ export function TableRow(props: {
         }
 
         setSum(total / totalWeights);
-        sum.toFixed(2);
+        setSumAsString((total / totalWeights).toFixed(2));
+
       }}
       initialValues={{
         active: true
@@ -69,7 +72,7 @@ export function TableRow(props: {
           </Form.Item>
         );
       })}
-      <div style={{ height: "24px", width: 40, border: "1px solid #004d80", marginTop: 4 }}>{sum}</div>
+      <div style={{ height: "24px", border: "1px solid #004d80", marginTop: 4 }}>{sumAsString}</div>
     </Form>
   );
 }
