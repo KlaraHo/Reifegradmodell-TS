@@ -65,14 +65,12 @@ export function TableRow(props: {
           <Form.Item
             name={column}
             rules={[{ required: false, message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}
-            // pattern: new RegExp(/^(?:0*(?:\.\d+)?|1(\.0*)?)$/)
-            // no error is showed anymore, but input is being fixed to right range of numbers with 2 decimals
           >
             <InputNumber disabled={!active} key={index} size="small" min="0" max="1" step="0.01" precision={2} />
           </Form.Item>
         );
       })}
-      <div style={{ height: "24px", border: "1px solid #004d80", marginTop: 4 }}>{sumAsString}</div>
+      <div style={{ height: "24px", marginTop: 4 }}>{sumAsString}</div>
     </Form>
   );
 }

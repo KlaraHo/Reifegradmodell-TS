@@ -1,4 +1,4 @@
-/* === FARBEN === */
+/* === COLOURS === */
 
 /*
 dunkelblau:   #99d6ff
@@ -9,20 +9,36 @@ buttonfarbe:  #006bb3
 button hover: #004d80
 
 
-/* === ANT STYLING === */
+/* === ANTD-STYLING === */
 
 .ant-input {
   height: 24px !important;
   padding: 4px !important;
 }
 
-/* .ant-checkbox-checked .ant-checkbox-inner {
-  background-color: #004d80;
-  border-color: #004d80;
-} */
+.ant-form-item {
+  margin-bottom: 2px !important;
+}
 
-.ant-form-item-explain {
-  font-size: 10px !important;
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #006bb3 !important;
+  border-color: #006bb3 !important;
+}
+
+.ant-btn-primary {
+  background-color: #006bb3 !important;
+  border-color: #006bb3 !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: #004d80 !important;
+  border-color: #004d80 !important;
+}
+
+.ant-btn-dangerous:hover {
+  border: 1px solid #ff4d4f !important;
+  background-color: #fff !important;
+  color: #ff4d4f !important;
 }
 
 /* === GLOBAL === */

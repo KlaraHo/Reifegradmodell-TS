@@ -16,7 +16,7 @@ export function TableRowAggregation(props: { values: string[] }) {
     >
       <span style={{ fontWeight: "bold", textDecoration: "underline", marginTop: 6 }}>Aggregation</span>
       <Checkbox
-        style={{ marginTop: 6, color: "#004d80" }}
+        style={{ marginTop: 6 }}
         checked={active}
         onChange={(event) => {
           setActive(event.target.checked);
@@ -24,7 +24,7 @@ export function TableRowAggregation(props: { values: string[] }) {
       />
       {props.values.map((value, index) => {
         return (
-          <div style={{ height: "24px", border: "1px solid #004d80" }} key={index}>
+          <div style={{ height: "24px"}} key={index}>
             {value}
           </div>
         );

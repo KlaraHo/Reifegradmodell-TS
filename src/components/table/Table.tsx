@@ -38,6 +38,21 @@ export function Table(props: {
     // TODO: Reset for Form in Form
   };
 
+  // Calculate DQ, IQ, KQ
+  const weightsDQ = [0.18, 0.16, 0.14, 0.13, 0.09, 0.09, 0.08, 0.07, 0.06, 0.02];
+  const weightsIQ = [0.20, 0.15, 0.14, 0.14, 0.12, 0.09, 0.07, 0.06, 0.02];
+  const weightsKQ = [0.31, 0.31, 0.21, 0.18];
+
+  const onBerechnen = (props: {title: string}) => {
+    if (props.title === "Datenqualitätsindikatoren") {
+
+    } else if (props.title === "Informationsqualitätsindikatoren") {
+
+    } else if (props.title === "Wissensqualitätsindikatoren") {
+
+    };
+  }
+
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
@@ -133,7 +148,7 @@ export function Table(props: {
           <Button type="text" danger style={{ marginRight: 16 }} onClick={onReset}>
             Zurücksetzen
           </Button>
-          <Button type="primary" htmlType="submit" style={{ marginRight: 16 }}>
+          <Button type="primary" htmlType="submit" style={{ marginRight: 16 }} onClick={onBerechnen}>
             Berechnen
           </Button>
           <Button type="primary">Grafik</Button>
