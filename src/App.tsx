@@ -38,6 +38,7 @@ function App() {
         resultTitle="Ergebnis Datenqualität:"
         resultInitials="DQ ="
         rowsCount={15}
+        tableID="dq"
       />
 
       <Table
@@ -65,6 +66,7 @@ function App() {
         resultTitle="Ergebnis Informationsqualität:"
         resultInitials="IQ ="
         rowsCount={10}
+        tableID="iq"
       />
 
       <Table
@@ -87,6 +89,7 @@ function App() {
         resultTitle="Ergebnis Wissensqualität:"
         resultInitials="KQ ="
         rowsCount={10}
+        tableID="kq"
       />
 
       <TableMQ

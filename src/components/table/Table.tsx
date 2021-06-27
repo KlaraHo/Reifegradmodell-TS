@@ -15,6 +15,7 @@ export function Table(props: {
   resultTitle: string;
   resultInitials: string;
   rowsCount: number;
+  tableID: string;
 }) {
   const [form] = Form.useForm();
   const [deactivatedRowIds, setDeactivatedRowIds] = React.useState<number[]>([]);
