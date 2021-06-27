@@ -149,7 +149,7 @@ export function Table(props: {
           <Button type="text" danger style={{ marginRight: 16 }} onClick={onReset}>
             Zurücksetzen
           </Button>
-          <Button type="primary" htmlType="submit" style={{ marginRight: 16 }} onClick={onBerechnen}>
+          <Button type="primary" htmlType="submit" style={{ marginRight: 16 }} >
             Berechnen
           </Button>
           <Button type="primary">Grafik</Button>
