@@ -44,12 +44,12 @@ export function Table(props: {
   const weightsIQ = [0.20, 0.15, 0.14, 0.14, 0.12, 0.09, 0.07, 0.06, 0.02];
   const weightsKQ = [0.31, 0.31, 0.21, 0.18];
 
-  const onBerechnen = (props: {title: string}) => {
-    if (props.title === "Datenqualitätsindikatoren") {
+  const onBerechnen = (props: {tableID: string}) => {
+    if (props.tableID === "dq") {
 
-    } else if (props.title === "Informationsqualitätsindikatoren") {
+    } else if (props.tableID === "iq") {
 
-    } else if (props.title === "Wissensqualitätsindikatoren") {
+    } else if (props.tableID === "kq") {
 
     };
   }
