@@ -2,6 +2,12 @@ import React from "react";
 import { Button, Card } from "antd";
 
 const Result = () => {
+
+  const g_dq = 0.36;
+  const g_iq = 0.23;
+  const g_kq = 0.28;
+  const g_mq = 0.13;
+
   return (
     <React.Fragment>
       <section style={{ marginTop: 40, textAlign: "center", backgroundColor: "#e6f5ff", padding: 40 }}>

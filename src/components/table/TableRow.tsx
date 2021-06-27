@@ -6,6 +6,7 @@ export function TableRow(props: {
   row: number;
   sourceInputPlaceholder: string;
   onActiveChange(active: boolean): void;
+  tableID: string;
 }) {
 
   const [active, setActive] = React.useState<boolean>(true);
@@ -14,7 +15,7 @@ export function TableRow(props: {
 
   return (
     <Form
-      name={props.row.toString()}
+      name={props.tableID + "_" + props.row.toString()}
       style={{
         display: "grid",
         gridTemplateColumns: `repeat(${2 + props.columns.length + 1}, 1fr)`,

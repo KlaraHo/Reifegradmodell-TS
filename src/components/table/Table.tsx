@@ -40,9 +40,32 @@ export function Table(props: {
   };
 
   // Calculate DQ, IQ, KQ
-  const weightsDQ = [0.18, 0.16, 0.14, 0.13, 0.09, 0.09, 0.08, 0.07, 0.06, 0.02];
-  const weightsIQ = [0.20, 0.15, 0.14, 0.14, 0.12, 0.09, 0.07, 0.06, 0.02];
-  const weightsKQ = [0.31, 0.31, 0.21, 0.18];
+  // Quality Indictor weights definition
+  const ko_dq = 0.18;
+  const sk_dq = 0.16;
+  const ve_dq = 0.14;
+  const vo_dq = 0.13;
+  const gr_dq = 0.09;
+  const va_dq = 0.09;
+  const pr_dq = 0.08;
+  const pue_dq = 0.07
+  const zu_dq = 0.06
+  const ei_dq = 0.02;
+
+  const ko_iq = 0.20;
+  const vo_iq = 0.15;
+  const ak_iq = 0.14;
+  const va_iq = 0.14;
+  const pue_iq = 0.12;
+  const er_iq = 0.09;
+  const zw_iq = 0.07;
+  const in_iq = 0.06;
+  const pg_iq = 0.02;
+
+  const en_kq = 0.31;
+  const le_kq = 0.31;
+  const zw_kq = 0.21;
+  const bn_kq = 0.18;
 
   const onBerechnen = (props: {tableID: string}) => {
     if (props.tableID === "dq") {
@@ -114,7 +137,6 @@ export function Table(props: {
 
           const sumsAsStrings = sums.map((i) => i.toFixed(2));
           setSumsAsStrings(sumsAsStrings);
-           // How to show only 2 decimals in aggregation? toFixed also no option
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -130,6 +152,7 @@ export function Table(props: {
                   setDeactivatedRowIds(deactivatedRowIds.concat([row]));
                 }
               }}
+              tableID={props.tableID}
             />
           );
         })}
