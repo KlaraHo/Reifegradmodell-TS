@@ -67,7 +67,7 @@ export function Table(props: {
   const zw_kq = 0.21;
   const bn_kq = 0.18;
 
-  const onBerechnen = (props: {tableID: string}) => {
+  const onCalculate = (event: any) => {
     if (props.tableID === "dq") {
 
     } else if (props.tableID === "iq") {
@@ -159,7 +159,7 @@ export function Table(props: {
 
         <Divider />
 
-        <TableRowAggregation values={sumsAsStrings} />
+        <TableRowAggregation values={sumsAsStrings} tableID={props.tableID} />
         <TableRowTargetvalue columns={props.columns} row={props.rowsCount + 1} rowTitle={"Sollwert"} />
 
         <div style={{ justifyContent: "center", marginTop: 16 }}>
@@ -172,7 +172,7 @@ export function Table(props: {
           <Button type="text" danger style={{ marginRight: 16 }} onClick={onReset}>
             Zurücksetzen
           </Button>
-          <Button type="primary" htmlType="submit" style={{ marginRight: 16 }} >
+          <Button type="primary" htmlType="submit" style={{ marginRight: 16 }} onClick={onCalculate}>
             Berechnen
           </Button>
           <Button type="primary">Grafik</Button>
