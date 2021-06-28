@@ -1,4 +1,4 @@
-import { Button, Form, Divider, Card } from "antd";
+import { Button, Form, Divider, Card, Popconfirm, message } from "antd";
 import React from "react";
 import { TableRow } from "./TableRow";
 import { TableRowTargetvalue } from "./TableRowTargetvalue";
@@ -17,24 +17,13 @@ export function Table(props: {
   rowsCount: number;
   tableID: string;
 }) {
-  const [form] = Form.useForm();
-
-  const initialSumsAsStrings = [];
-
   const initialSums = [];
   for (let i = 0; i < props.columns.length; i++) {
     initialSums.push(0);
-    initialSumsAsStrings.push("0");
   }
 
   const [sums, setSums] = React.useState<number[]>(initialSums);
-
-  const [reset, setReset] = React.useState<boolean>(false);
-  const onReset = (props: any) => {
-    setReset(true);
-    form.resetFields(); // should go in every TableRow, but how?
-    // TODO: Reset for Form in Form
-  };
+  const [reset, setReset] = React.useState<number>(0);
 
   // Calculate DQ, IQ, KQ
   // Quality Indictor weights definition
@@ -138,6 +127,7 @@ export function Table(props: {
               row={row}
               sourceInputPlaceholder={props.sourceInputPlaceholder}
               tableID={props.tableID}
+              reset={reset}
             />
           );
         })}
@@ -154,9 +144,22 @@ export function Table(props: {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button type="text" danger style={{ marginRight: 16 }} onClick={onReset}>
-            Zurücksetzen
-          </Button>
+          <Popconfirm
+            title="Sicher?"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={() => {
+              setReset(reset + 1);
+              for (let i = 0; i < props.columns.length; i++) {
+                sums[i] = 0;
+              }
+              message.success("Daten gelöscht! Yeiy");
+            }}
+          >
+            <Button type="text" danger style={{ marginRight: 16 }}>
+              Zurücksetzen
+            </Button>
+          </Popconfirm>
           <Button type="primary" htmlType="submit" style={{ marginRight: 16 }} onClick={onCalculate}>
             Berechnen
           </Button>

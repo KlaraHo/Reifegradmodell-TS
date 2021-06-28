@@ -4,15 +4,26 @@ import React from "react";
 export function TableRow(props: {
   columns: string[];
   row: number;
-  sourceInputPlaceholder: string;
-  onActiveChange?(active: boolean): void;
   tableID: string;
+  sourceInputPlaceholder: string;
+  reset: number;
+  onActiveChange?(active: boolean): void;
 }) {
+  const [form] = Form.useForm();
   const [active, setActive] = React.useState<boolean>(true);
   const [sum, setSum] = React.useState<number>(0);
 
+  React.useEffect(() => {
+    if (form) {
+      form.resetFields();
+    }
+    setSum(0);
+    setActive(true);
+  }, [props.reset]);
+
   return (
     <Form
+      form={form}
       name={props.tableID + "_" + props.row.toString()}
       style={{
         display: "grid",
@@ -50,7 +61,10 @@ export function TableRow(props: {
         active: true
       }}
     >
-      <Input placeholder={props.sourceInputPlaceholder} style={{ marginTop: 6 }} />
+      <Form.Item name="description">
+        <Input placeholder={props.sourceInputPlaceholder} style={{ marginTop: 6 }} />
+      </Form.Item>
+
       <Form.Item name="active" rules={[{ required: false }]} valuePropName="checked">
         <Checkbox
           style={{ marginTop: 6 }}
