@@ -1,4 +1,4 @@
-import { Checkbox, Form, Input, Divider } from "antd";
+import { Checkbox, Input } from "antd";
 import React from "react";
 
 export function TableMQRowKPI(props: { indicatorTitle: string; targetValue: string; gridRow: string }) {

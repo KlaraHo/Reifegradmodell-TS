@@ -18,7 +18,6 @@ export function Table(props: {
   tableID: string;
 }) {
   const [form] = Form.useForm();
-  const [deactivatedRowIds, setDeactivatedRowIds] = React.useState<number[]>([]);
 
   const initialSumsAsStrings = [];
 
@@ -29,8 +28,6 @@ export function Table(props: {
   }
 
   const [sums, setSums] = React.useState<number[]>(initialSums);
-  const [sumsAsStrings, setSumsAsStrings] = React.useState<string[]>(initialSumsAsStrings);
-
 
   const [reset, setReset] = React.useState<boolean>(false);
   const onReset = (props: any) => {
@@ -48,11 +45,11 @@ export function Table(props: {
   const gr_dq = 0.09;
   const va_dq = 0.09;
   const pr_dq = 0.08;
-  const pue_dq = 0.07
-  const zu_dq = 0.06
+  const pue_dq = 0.07;
+  const zu_dq = 0.06;
   const ei_dq = 0.02;
 
-  const ko_iq = 0.20;
+  const ko_iq = 0.2;
   const vo_iq = 0.15;
   const ak_iq = 0.14;
   const va_iq = 0.14;
@@ -69,13 +66,10 @@ export function Table(props: {
 
   const onCalculate = (event: any) => {
     if (props.tableID === "dq") {
-
     } else if (props.tableID === "iq") {
-
     } else if (props.tableID === "kq") {
-
-    };
-  }
+    }
+  };
 
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
@@ -116,8 +110,9 @@ export function Table(props: {
           props.columns.forEach((column, index) => {
             let totalColumn = 0;
             let totalColumnWeights = 0;
-            for (const [formName, form] of Object.entries(info.forms)) {
-              if (!deactivatedRowIds.includes(parseInt(formName))) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            for (const [_formName, form] of Object.entries(info.forms)) {
+              if (form.getFieldValue("active")) {
                 const formColumnValue = form.getFieldValue(column);
 
                 if (formColumnValue !== undefined) {
@@ -134,9 +129,6 @@ export function Table(props: {
             }
           });
           setSums(sums);
-
-          const sumsAsStrings = sums.map((i) => i.toFixed(2));
-          setSumsAsStrings(sumsAsStrings);
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -145,13 +137,6 @@ export function Table(props: {
               columns={props.columns}
               row={row}
               sourceInputPlaceholder={props.sourceInputPlaceholder}
-              onActiveChange={(active: any) => {
-                if (active) {
-                  setDeactivatedRowIds(deactivatedRowIds.filter((id) => id !== row));
-                } else {
-                  setDeactivatedRowIds(deactivatedRowIds.concat([row]));
-                }
-              }}
               tableID={props.tableID}
             />
           );
@@ -159,7 +144,7 @@ export function Table(props: {
 
         <Divider />
 
-        <TableRowAggregation values={sumsAsStrings} tableID={props.tableID} />
+        <TableRowAggregation values={sums.map((i) => i.toFixed(2))} tableID={props.tableID} />
         <TableRowTargetvalue columns={props.columns} row={props.rowsCount + 1} rowTitle={"Sollwert"} />
 
         <div style={{ justifyContent: "center", marginTop: 16 }}>

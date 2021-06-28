@@ -1,8 +1,6 @@
-import Grid from "antd/lib/card/Grid";
 import React from "react";
-import { resolveProjectReferencePath } from "typescript";
-import { TableMQRowPI } from "./TableMQRowPI";
 import { TableMQRowKPI } from "./TableMQRowKPI";
+import { TableMQRowPI } from "./TableMQRowPI";
 
 export function TableMQPerspective(props: any) {
   return (
@@ -26,7 +24,7 @@ export function TableMQPerspective(props: any) {
         <div style={{ border: "1px solid black", gridColumn: 8, gridRow: "1/6" }}>Platzhalter Aggregation</div>
       </div>
 
-        {/* Hier kommen die weiteren Perspektiven rein, wie oben nur mit anderen Inhalten */}
+      {/* Hier kommen die weiteren Perspektiven rein, wie oben nur mit anderen Inhalten */}
     </>
   );
 }
