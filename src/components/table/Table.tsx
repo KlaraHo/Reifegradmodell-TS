@@ -4,6 +4,7 @@ import { TableRow } from "./TableRow";
 import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import { CSV } from "../CSV";
+import Chart from "react-apexcharts";
 
 export interface ITableColumn {
   name: string;
@@ -147,12 +148,49 @@ export function Table(props: {
         <TableRowAggregation values={sums.map((i) => i.toFixed(2))} tableID={props.tableID} />
         <TableRowTargetvalue columns={props.columns} row={props.rowsCount + 1} rowTitle={"Sollwert"} />
 
-        <div style={{ justifyContent: "center", marginTop: 16 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
             <p style={{ margin: 0 }}>
               {props.resultInitials} {calculateDQ()}
             </p>
           </Card>
+
+          <Chart
+            options={{
+              chart: {
+                id: "basic-bar"
+              },
+              xaxis: {
+                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+              }
+            }}
+            series={[
+              {
+                name: "series-1",
+                data: [30, 40, 45, 50, 49, 60, 70, 91]
+              }
+            ]}
+            type="radar"
+            width="500"
+          />
+          <Chart
+            options={{
+              chart: {
+                id: "basic-bar"
+              },
+              xaxis: {
+                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+              }
+            }}
+            series={[
+              {
+                name: "series-1",
+                data: [30, 40, 45, 50, 49, 60, 70, 91]
+              }
+            ]}
+            type="radar"
+            width="500"
+          />
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -175,7 +213,7 @@ export function Table(props: {
           {/* <Button type="primary" htmlType="submit" style={{ marginRight: 16 }}>
             Berechnen
           </Button> */}
-          <Button type="primary">Grafik</Button>
+          {/* <Button type="primary">Grafik</Button> */}
         </div>
       </Form.Provider>
     </div>
