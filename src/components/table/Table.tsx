@@ -5,13 +5,18 @@ import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import { CSV } from "../CSV";
 
+export interface ITableColumn {
+  name: string;
+  weight: number;
+}
+
 export function Table(props: {
   title: string;
   sourceTitle: string;
   sourceInputPlaceholder: string;
   description: React.ReactNode;
   backgroundColor: string;
-  columns: string[];
+  columns: ITableColumn[];
   resultTitle: string;
   resultInitials: string;
   rowsCount: number;
@@ -53,11 +58,16 @@ export function Table(props: {
   const zw_kq = 0.21;
   const bn_kq = 0.18;
 
-  const onCalculate = (event: any) => {
-    if (props.tableID === "dq") {
-    } else if (props.tableID === "iq") {
-    } else if (props.tableID === "kq") {
-    }
+  const calculateDQ = () => {
+    let total = 0;
+
+    props.columns.forEach((column, index) => {
+      sums.forEach((sum) => {
+        total += column.weight * sum;
+      });
+    });
+
+    return total;
   };
 
   return (
@@ -80,7 +90,7 @@ export function Table(props: {
         {props.columns.map((column, index) => {
           return (
             <span style={{ fontWeight: "bold" }} key={index}>
-              {column}
+              {column.name}
             </span>
           );
         })}
@@ -102,7 +112,7 @@ export function Table(props: {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             for (const [_formName, form] of Object.entries(info.forms)) {
               if (form.getFieldValue("active")) {
-                const formColumnValue = form.getFieldValue(column);
+                const formColumnValue = form.getFieldValue(column.name);
 
                 if (formColumnValue !== undefined) {
                   if (formColumnValue <= 0.5) {
@@ -139,7 +149,9 @@ export function Table(props: {
 
         <div style={{ justifyContent: "center", marginTop: 16 }}>
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
-            <p style={{ margin: 0 }}>{props.resultInitials}</p>
+            <p style={{ margin: 0 }}>
+              {props.resultInitials} {calculateDQ()}
+            </p>
           </Card>
         </div>
 
@@ -160,9 +172,9 @@ export function Table(props: {
               Zurücksetzen
             </Button>
           </Popconfirm>
-          <Button type="primary" htmlType="submit" style={{ marginRight: 16 }} onClick={onCalculate}>
+          {/* <Button type="primary" htmlType="submit" style={{ marginRight: 16 }}>
             Berechnen
-          </Button>
+          </Button> */}
           <Button type="primary">Grafik</Button>
         </div>
       </Form.Provider>

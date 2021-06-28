@@ -1,8 +1,9 @@
 import { Checkbox, Form, Input, InputNumber } from "antd";
 import React from "react";
+import { ITableColumn } from "./Table";
 
 export function TableRow(props: {
-  columns: string[];
+  columns: ITableColumn[];
   row: number;
   tableID: string;
   sourceInputPlaceholder: string;
@@ -80,7 +81,7 @@ export function TableRow(props: {
 
       {props.columns.map((column, index) => {
         return (
-          <Form.Item name={column} rules={[{ required: false, message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}>
+          <Form.Item name={column.name} rules={[{ required: false, message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}>
             <InputNumber disabled={!active} key={index} size="small" min="0" max="1" step="0.01" precision={2} />
           </Form.Item>
         );

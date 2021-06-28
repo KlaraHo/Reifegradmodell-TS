@@ -24,23 +24,23 @@ function App() {
         }
         backgroundColor="#e6f5ff"
         columns={[
-          "Korrektheit",
-          "Validität",
-          "Provenienz",
-          "Vollständigkeit",
-          "Verfügbarkeit",
-          "Granularität",
-          "Einzigartigkeit",
-          "System-Konsistenz",
-          "Zugänglichkeit",
-          "Pünktlichkeit"
+          { name: "Korrektheit", weight: 0.2 },
+          { name: "Validität", weight: 0.2 },
+          { name: "Provenienz", weight: 0.2 },
+          { name: "Vollständigkeit", weight: 0.2 },
+          { name: "Verfügbarkeit", weight: 0.2 },
+          { name: "Granularität", weight: 0.2 },
+          { name: "Einzigartigkeit", weight: 0.2 },
+          { name: "System-Konsistenz", weight: 0.2 },
+          { name: "Zugänglichkeit", weight: 0.2 },
+          { name: "Pünktlichkeit", weight: 0.2 }
         ]}
         resultTitle="Ergebnis Datenqualität:"
         resultInitials="DQ ="
-        rowsCount={15}
+        rowsCount={2}
         tableID="dq"
       />
-
+{/*
       <Table
         title="Informationsqualitätsindikatoren"
         sourceTitle="Informationsquellen"
@@ -90,7 +90,7 @@ function App() {
         resultInitials="KQ ="
         rowsCount={10}
         tableID="kq"
-      />
+      /> */}
 
       <TableMQ
         title="Instandhaltungsqualitätsindikatoren"
