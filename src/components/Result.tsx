@@ -8,6 +8,8 @@ const Result = () => {
   const g_kq = 0.28;
   const g_mq = 0.13;
 
+
+
   return (
     <React.Fragment>
       <section style={{ marginTop: 40, textAlign: "center", backgroundColor: "#e6f5ff", padding: 40 }}>
@@ -23,8 +25,8 @@ const Result = () => {
               <p>x</p>
             </Card>
           </div>
-          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 16 }}>
-            <Button type="primary" style={{ marginRight: 16 }}>
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 16 }} >
+            <Button type="primary" style={{ marginRight: 16 }} >
               Berechnen
             </Button>
           </div>

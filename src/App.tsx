@@ -36,7 +36,7 @@ function App() {
           { name: "Pünktlichkeit", weight: 0.07 }
         ]}
         resultTitle="Ergebnis Datenqualität:"
-        resultInitials="DQ ="
+        resultInitials="DQ"
         rowsCount={15}
         tableID="dq"
       />
@@ -64,7 +64,7 @@ function App() {
           { name: "Informationsfluss", weight: 0.06 }
         ]}
         resultTitle="Ergebnis Informationsqualität:"
-        resultInitials="IQ ="
+        resultInitials="IQ"
         rowsCount={15}
         tableID="iq"
       />
@@ -87,8 +87,8 @@ function App() {
           { name: "Zweckmäßigkeit eines IT-Systems zur Wissensbereitstellung", weight: 0.21 }
         ]}
         resultTitle="Ergebnis Wissensqualität:"
-        resultInitials="KQ ="
-        rowsCount={15}
+        resultInitials="KQ"
+        rowsCount={4}
         tableID="kq"
       />
 
@@ -112,7 +112,7 @@ function App() {
           "Aggregation"
         ]}
         resultTitle="Ergebnis Instandhaltungsqualität:"
-        resultInitials="MQ ="
+        resultInitials="MQ"
       />
 
       <Result />

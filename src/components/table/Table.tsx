@@ -5,6 +5,9 @@ import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import { CSV } from "../CSV";
 import Chart from "react-apexcharts";
+import ColumnGroup from "antd/lib/table/ColumnGroup";
+import Column from "antd/lib/table/Column";
+import { isDecorator } from "typescript";
 
 export interface ITableColumn {
   name: string;
@@ -36,14 +39,14 @@ export function Table(props: {
   const calculateMetric = () => {
     let total = 0;
 
+    // console.log(sums);
+    // sums are multiplied 4x right now - we need only one
     props.columns.forEach((column, index) => {
       sums.forEach((sum) => {
         total += column.weight * sum;
+        console.log(total);
       });
     });
-
-    console.log(sums);
-    console.log(total);
 
     return total.toFixed(2);
   };
@@ -106,6 +109,38 @@ export function Table(props: {
             }
           });
           setSums(sums);
+
+          // Stuff for source Chart
+          let sources: string[] = [];
+
+          for (let i = 0; i < props.rowsCount; i++) {
+            // code goes here, fill array with desciprtion (placeholder Field)
+          }
+
+          //   for (let j = 0; j < props.rowsCount; j++) {
+          //   for (const [_formName, form] of Object.entries(info.forms)) {
+          //     if (form.getFieldValue("active")) {
+          //       const sourceName = form.getFieldValue(description) // placeholder Field from Row
+
+          //       if (sourceName === undefined) {
+
+          //       }
+          //     }
+          //   }
+          // }
+
+          // Stuff for KPI Chart
+
+          // let chartXAxis = []
+
+          // for (let i = 0; i < props.columns.length; i++) {
+          //   chartXAxis.push(props.columns.name);
+          // }
+
+          // props.columns.forEach((column, index) => {
+
+          // })
+
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -123,22 +158,32 @@ export function Table(props: {
         <Divider />
 
         <TableRowAggregation values={sums.map((i) => i.toFixed(2))} tableID={props.tableID} />
-        <TableRowTargetvalue columns={props.columns} row={props.rowsCount + 1} rowTitle={"Sollwert"} tableID={props.tableID} />
+        <TableRowTargetvalue
+          columns={props.columns}
+          row={props.rowsCount + 1}
+          rowTitle={"Sollwert"}
+          tableID={props.tableID}
+        />
 
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
-          <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
-            <p style={{ margin: 0 }}>
-              {props.resultInitials} {calculateMetric()}
-            </p>
-          </Card>
+        <Divider />
 
+
+
+
+
+
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 40 }}>
           <Chart
+            // Metric Chart
             options={{
               chart: {
                 id: "basic-bar"
               },
               xaxis: {
                 categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+              },
+              title: {
+                text: `${props.resultInitials} Indikatoren Diagramm`
               }
             }}
             series={[
@@ -150,13 +195,35 @@ export function Table(props: {
             type="radar"
             width="500"
           />
+
+
+
+
+
+
+
+
+
+
+
+
+          <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
+            <p style={{ margin: 0 }}>
+              {props.resultInitials} = {calculateMetric()}
+            </p>
+          </Card>
+
           <Chart
+            // Source Chart
             options={{
               chart: {
                 id: "basic-bar"
               },
               xaxis: {
                 categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+              },
+              title: {
+                text: `${props.sourceTitle} Diagramm`
               }
             }}
             series={[
