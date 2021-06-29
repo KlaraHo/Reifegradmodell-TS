@@ -22,6 +22,8 @@ export function TableRow(props: {
     setActive(true);
   }, [props.reset]);
 
+  let rowString = props.row.toString();
+
   return (
     <Form
       form={form}
@@ -82,11 +84,12 @@ export function TableRow(props: {
       {props.columns.map((column, index) => {
         return (
           <Form.Item name={column.name} rules={[{ required: false, message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}>
-            <InputNumber disabled={!active} key={index} size="small" min="0" max="1" step="0.01" precision={2} />
+            <InputNumber disabled={!active} key={props.tableID + "_" + index} size="small" min="0" max="1" step="0.01" precision={2} />
           </Form.Item>
         );
       })}
-      <div style={{ height: "24px", marginTop: 4, color: active ? "#000" : "#ccc" }}>{sum.toFixed(2)}</div>
+      <div key={props.tableID + "_"} style={{ height: "24px", marginTop: 4, color: active ? "#000" : "#ccc" }}>{sum.toFixed(2)}</div>
+      {/* unique key for aggregation should be defined here */}
     </Form>
   );
 }

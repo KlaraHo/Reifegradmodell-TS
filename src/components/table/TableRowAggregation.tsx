@@ -25,6 +25,7 @@ export function TableRowAggregation(props: { values: string[], tableID: string }
       {props.values.map((value, index) => {
         return (
           <div style={{ height: "24px" }} key={ props.tableID + "_" + index }>
+            {/* unique Key for every aggregation does not work here. why? */}
             {value}
           </div>
         );

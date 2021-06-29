@@ -2,7 +2,7 @@ import { Checkbox, Form, Input } from "antd";
 import React from "react";
 import { ITableColumn } from "./Table";
 
-export function TableRowTargetvalue(props: { columns: ITableColumn[]; row: number, rowTitle: string }) {
+export function TableRowTargetvalue(props: { columns: ITableColumn[]; row: number, rowTitle: string, tableID: string }) {
   const [active, setActive] = React.useState<boolean>(true);
 
   return (
@@ -25,8 +25,8 @@ export function TableRowTargetvalue(props: { columns: ITableColumn[]; row: numbe
       />
       {props.columns.map((column, index) => {
         return (
-          <Form.Item name={ column.name.toLowerCase() + "_" + props.row} rules={[{ required: false, type: "regexp", message: "TODO" }]}>
-            <Input disabled={!active} key={index} />
+          <Form.Item name={ props.tableID + "_" + column.name.toLowerCase() + "_" + props.row} rules={[{ required: false, type: "regexp", message: "TODO" }]}>
+            <Input disabled={!active} key={props.tableID + "_" + index} />
           </Form.Item>
         );
       })}

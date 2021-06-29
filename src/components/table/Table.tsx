@@ -31,35 +31,9 @@ export function Table(props: {
   const [sums, setSums] = React.useState<number[]>(initialSums);
   const [reset, setReset] = React.useState<number>(0);
 
-  // Calculate DQ, IQ, KQ
-  // Quality Indictor weights definition
-  const ko_dq = 0.18;
-  const sk_dq = 0.16;
-  const ve_dq = 0.14;
-  const vo_dq = 0.13;
-  const gr_dq = 0.09;
-  const va_dq = 0.09;
-  const pr_dq = 0.08;
-  const pue_dq = 0.07;
-  const zu_dq = 0.06;
-  const ei_dq = 0.02;
+  // Calculate Metrics: DQ, IQ, KQ
 
-  const ko_iq = 0.2;
-  const vo_iq = 0.15;
-  const ak_iq = 0.14;
-  const va_iq = 0.14;
-  const pue_iq = 0.12;
-  const er_iq = 0.09;
-  const zw_iq = 0.07;
-  const in_iq = 0.06;
-  const pg_iq = 0.02;
-
-  const en_kq = 0.31;
-  const le_kq = 0.31;
-  const zw_kq = 0.21;
-  const bn_kq = 0.18;
-
-  const calculateDQ = () => {
+  const calculateMetric = () => {
     let total = 0;
 
     props.columns.forEach((column, index) => {
@@ -68,7 +42,10 @@ export function Table(props: {
       });
     });
 
-    return total;
+    console.log(sums);
+    console.log(total);
+
+    return total.toFixed(2);
   };
 
   return (
@@ -146,12 +123,12 @@ export function Table(props: {
         <Divider />
 
         <TableRowAggregation values={sums.map((i) => i.toFixed(2))} tableID={props.tableID} />
-        <TableRowTargetvalue columns={props.columns} row={props.rowsCount + 1} rowTitle={"Sollwert"} />
+        <TableRowTargetvalue columns={props.columns} row={props.rowsCount + 1} rowTitle={"Sollwert"} tableID={props.tableID} />
 
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16 }}>
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
             <p style={{ margin: 0 }}>
-              {props.resultInitials} {calculateDQ()}
+              {props.resultInitials} {calculateMetric()}
             </p>
           </Card>
 
