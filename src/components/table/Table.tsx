@@ -8,6 +8,7 @@ import Chart from "react-apexcharts";
 import ColumnGroup from "antd/lib/table/ColumnGroup";
 import Column from "antd/lib/table/Column";
 import { isDecorator } from "typescript";
+import { WarningOutlined } from "@ant-design/icons";
 
 export interface ITableColumn {
   name: string;
@@ -140,7 +141,6 @@ export function Table(props: {
           // props.columns.forEach((column, index) => {
 
           // })
-
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -165,12 +165,31 @@ export function Table(props: {
           tableID={props.tableID}
         />
 
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Popconfirm
+          icon={<WarningOutlined style={{color: "red" }} />} 
+            title="Wollen Sie die Werte dieser Tabelle wirklich zurücksetzen?"
+            okText="OK"
+            cancelText="Abbrechen"
+            onConfirm={() => {
+              setReset(reset + 1);
+              for (let i = 0; i < props.columns.length; i++) {
+                sums[i] = 0;
+              }
+              message.success("Tabelle wurde erfolgreich zurückgesetzt!");
+            }}
+          >
+            <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
+              Zurücksetzen
+            </Button>
+          </Popconfirm>
+          {/* <Button type="primary" htmlType="submit" style={{ marginRight: 16 }}>
+            Berechnen
+          </Button> */}
+          {/* <Button type="primary">Grafik</Button> */}
+        </div>
+
         <Divider />
-
-
-
-
-
 
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 40 }}>
           <Chart
@@ -195,17 +214,6 @@ export function Table(props: {
             type="radar"
             width="500"
           />
-
-
-
-
-
-
-
-
-
-
-
 
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
             <p style={{ margin: 0 }}>
@@ -235,29 +243,6 @@ export function Table(props: {
             type="radar"
             width="500"
           />
-        </div>
-
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Popconfirm
-            title="Sicher?"
-            okText="Yes"
-            cancelText="No"
-            onConfirm={() => {
-              setReset(reset + 1);
-              for (let i = 0; i < props.columns.length; i++) {
-                sums[i] = 0;
-              }
-              message.success("Daten gelöscht! Yeiy");
-            }}
-          >
-            <Button type="text" danger style={{ marginRight: 16 }}>
-              Zurücksetzen
-            </Button>
-          </Popconfirm>
-          {/* <Button type="primary" htmlType="submit" style={{ marginRight: 16 }}>
-            Berechnen
-          </Button> */}
-          {/* <Button type="primary">Grafik</Button> */}
         </div>
       </Form.Provider>
     </div>
