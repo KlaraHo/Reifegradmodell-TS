@@ -40,13 +40,21 @@ export function Table(props: {
   const calculateMetric = () => {
     let total = 0;
 
-    // console.log(sums);
-    // sums are multiplied 4x right now - we need only one
+    // console.log(sums); -> sums are fine here
+    // sums are multiplied 4x right now -> we only need one
+    
     props.columns.forEach((column, index) => {
-      sums.forEach((sum) => {
-        total += column.weight * sum;
+      for (let i = 0; i < 1; i++) {
+        total += column.weight * sums[i]
         console.log(total);
-      });
+      }
+      // this also does not work
+
+
+      // sums.forEach((sum) => {
+      //   total += column.weight * sum;
+      //   console.log(total);
+      // });
     });
 
     return total.toFixed(2);
