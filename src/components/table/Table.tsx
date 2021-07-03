@@ -5,9 +5,6 @@ import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import { CSV } from "../CSV";
 import Chart from "react-apexcharts";
-import ColumnGroup from "antd/lib/table/ColumnGroup";
-import Column from "antd/lib/table/Column";
-import { isDecorator } from "typescript";
 import { WarningOutlined } from "@ant-design/icons";
 
 export interface ITableColumn {
@@ -36,29 +33,32 @@ export function Table(props: {
   const [reset, setReset] = React.useState<number>(0);
 
   // Calculate Metrics: DQ, IQ, KQ
-
   const calculateMetric = () => {
     let total = 0;
 
     // console.log(sums); -> sums are fine here
     // sums are multiplied 4x right now -> we only need one
-    
+
     props.columns.forEach((column, index) => {
-      for (let i = 0; i < 1; i++) {
-        total += column.weight * sums[i]
+      sums.forEach((sum) => {
+        total += column.weight * sum;
         console.log(total);
-      }
+      });
+
       // this also does not work
 
-
-      // sums.forEach((sum) => {
-      //   total += column.weight * sum;
+      // for (let i = 0; i < 1; i++) {
+      //   total += column.weight[] * sums[i]
       //   console.log(total);
-      // });
+      // }
     });
 
     return total.toFixed(2);
   };
+
+  // Metric Chart Categories
+  let categoriesMetricChart = props.columns.map((a) => a.name);
+  console.log(categoriesMetricChart);
 
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
@@ -119,11 +119,14 @@ export function Table(props: {
           });
           setSums(sums);
 
+          // Stuff for KPI Chart
+          
+
           // Stuff for source Chart
           let sources: string[] = [];
 
           for (let i = 0; i < props.rowsCount; i++) {
-            // code goes here, fill array with desciprtion (placeholder Field)
+            // code goes here, fill array with description (placeholder Field)
           }
 
           //   for (let j = 0; j < props.rowsCount; j++) {
@@ -138,17 +141,7 @@ export function Table(props: {
           //   }
           // }
 
-          // Stuff for KPI Chart
 
-          // let chartXAxis = []
-
-          // for (let i = 0; i < props.columns.length; i++) {
-          //   chartXAxis.push(props.columns.name);
-          // }
-
-          // props.columns.forEach((column, index) => {
-
-          // })
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -175,7 +168,7 @@ export function Table(props: {
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Popconfirm
-          icon={<WarningOutlined style={{color: "red" }} />} 
+            icon={<WarningOutlined style={{ color: "red" }} />}
             title="Wollen Sie die Werte dieser Tabelle wirklich zurücksetzen?"
             okText="OK"
             cancelText="Abbrechen"
@@ -191,10 +184,6 @@ export function Table(props: {
               Zurücksetzen
             </Button>
           </Popconfirm>
-          {/* <Button type="primary" htmlType="submit" style={{ marginRight: 16 }}>
-            Berechnen
-          </Button> */}
-          {/* <Button type="primary">Grafik</Button> */}
         </div>
 
         <Divider />
@@ -207,7 +196,10 @@ export function Table(props: {
                 id: "basic-bar"
               },
               xaxis: {
-                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+                categories: categoriesMetricChart
+              },
+              yaxis: {
+                forceNiceScale: true,
               },
               title: {
                 text: `${props.resultInitials} Indikatoren Diagramm`
@@ -215,12 +207,13 @@ export function Table(props: {
             }}
             series={[
               {
-                name: "series-1",
-                data: [30, 40, 45, 50, 49, 60, 70, 91]
-              }
+                name: `${props.resultInitials} Indikatoren`,
+                data: sums
+              },
+              { name: `${props.resultInitials} Sollwerte`, data: sums }
             ]}
             type="radar"
-            width="500"
+            width="800"
           />
 
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
@@ -249,7 +242,7 @@ export function Table(props: {
               }
             ]}
             type="radar"
-            width="500"
+            width="800"
           />
         </div>
       </Form.Provider>

@@ -12,7 +12,6 @@ export function TableRowTargetvalue(props: { columns: ITableColumn[]; row: numbe
         gridTemplateColumns: `repeat(${2 + props.columns.length + 1}, 1fr)`,
         justifyItems: "center",
         columnGap: 16,
-        rowGap: 16
       }}
     >
       <span style={{ fontWeight: "bold", textDecoration: "underline", marginTop: 6}}>{props.rowTitle}</span>
