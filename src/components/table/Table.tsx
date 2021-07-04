@@ -31,6 +31,7 @@ export function Table(props: {
 
   const [sums, setSums] = React.useState<number[]>(initialSums);
   const [reset, setReset] = React.useState<number>(0);
+  const [targetValues, setTargetValues] = React.useState<number[]>();
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
@@ -58,7 +59,6 @@ export function Table(props: {
 
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
-  console.log(categoriesMetricChart);
 
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
@@ -99,10 +99,13 @@ export function Table(props: {
           props.columns.forEach((column, index) => {
             let totalColumn = 0;
             let totalColumnWeights = 0;
+            let targetValues: number[] = [];
+
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             for (const [_formName, form] of Object.entries(info.forms)) {
               if (form.getFieldValue("active")) {
                 const formColumnValue = form.getFieldValue(column.name);
+                const formTargetValue = form.getFieldValue(props.tableID + "_targetValue_" + column.name);
 
                 if (formColumnValue !== undefined) {
                   if (formColumnValue <= 0.5) {
@@ -114,34 +117,19 @@ export function Table(props: {
                   }
                   sums[index] = totalColumn / totalColumnWeights;
                 }
+
+                if (formTargetValue !== undefined) {
+                  targetValues.push(1);
+                } else if (formTargetValue === undefined) {
+                  targetValues.push(0);
+                }
               }
             }
           });
           setSums(sums);
-
-          // Stuff for KPI Chart
-          
+          setTargetValues(targetValues);
 
           // Stuff for source Chart
-          let sources: string[] = [];
-
-          for (let i = 0; i < props.rowsCount; i++) {
-            // code goes here, fill array with description (placeholder Field)
-          }
-
-          //   for (let j = 0; j < props.rowsCount; j++) {
-          //   for (const [_formName, form] of Object.entries(info.forms)) {
-          //     if (form.getFieldValue("active")) {
-          //       const sourceName = form.getFieldValue(description) // placeholder Field from Row
-
-          //       if (sourceName === undefined) {
-
-          //       }
-          //     }
-          //   }
-          // }
-
-
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -196,10 +184,21 @@ export function Table(props: {
                 id: "basic-bar"
               },
               xaxis: {
-                categories: categoriesMetricChart
+                categories: categoriesMetricChart,
+                labels: {
+                  trim: true
+                }
               },
               yaxis: {
                 forceNiceScale: true,
+                min: 0,
+                max: 1,
+                labels: {
+                  maxWidth: 1,
+                  style: {
+                    colors: ["#000"]
+                  }
+                }
               },
               title: {
                 text: `${props.resultInitials} Indikatoren Diagramm`
@@ -210,7 +209,7 @@ export function Table(props: {
                 name: `${props.resultInitials} Indikatoren`,
                 data: sums
               },
-              { name: `${props.resultInitials} Sollwerte`, data: sums }
+              { name: `${props.resultInitials} Sollwerte`, data: targetValues }
             ]}
             type="radar"
             width="800"
@@ -231,13 +230,18 @@ export function Table(props: {
               xaxis: {
                 categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
               },
+              // yaxis: {
+              //   forceNiceScale: true,
+              //   min: 0,
+              //   max: 1
+              // },
               title: {
                 text: `${props.sourceTitle} Diagramm`
               }
             }}
             series={[
               {
-                name: "series-1",
+                name: `${props.resultInitials} Quellen`,
                 data: [30, 40, 45, 50, 49, 60, 70, 91]
               }
             ]}

@@ -1,4 +1,4 @@
-import { Checkbox, Form, Input } from "antd";
+import { Checkbox, Form, InputNumber } from "antd";
 import React from "react";
 import { ITableColumn } from "./Table";
 
@@ -24,8 +24,15 @@ export function TableRowTargetvalue(props: { columns: ITableColumn[]; row: numbe
       />
       {props.columns.map((column, index) => {
         return (
-          <Form.Item name={ props.tableID + "_" + column.name.toLowerCase() + "_" + props.row} rules={[{ required: false, type: "regexp", message: "TODO" }]}>
-            <Input disabled={!active} key={props.tableID + "_" + index} />
+          <Form.Item name={ props.tableID + "_targetValue_" + column.name } rules={[{ required: false, type: "regexp", message: "TODO" }]}>
+            {/* oder hier trotzdem column.name für name? */}
+            <InputNumber disabled={!active}
+              key={props.tableID + "_" + index}
+              size="small"
+              min="0"
+              max="1"
+              step="0.01"
+              precision={2} />
           </Form.Item>
         );
       })}

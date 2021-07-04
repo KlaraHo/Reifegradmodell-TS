@@ -83,7 +83,7 @@ function App() {
         columns={[
           { name: "Bildungsniveau eines Mitarbeiters", weight: 0.18 },
           { name: "Erfahrungsniveau eines Mitarbeiters", weight: 0.31 },
-          { name: "Leistungsnieveau eines Mitarbeiters", weight: 0.31 },
+          { name: "Leistungsniveau eines Mitarbeiters", weight: 0.31 },
           { name: "Zweckmäßigkeit eines IT-Systems zur Wissensbereitstellung", weight: 0.21 }
         ]}
         resultTitle="Ergebnis Wissensqualität:"
