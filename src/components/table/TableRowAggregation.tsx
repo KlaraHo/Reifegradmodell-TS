@@ -1,9 +1,6 @@
-import { Checkbox } from "antd";
 import React from "react";
 
 export function TableRowAggregation(props: { values: string[]; tableID: string }) {
-  const [active, setActive] = React.useState<boolean>(true);
-
   return (
     <div
       style={{
@@ -26,13 +23,7 @@ export function TableRowAggregation(props: { values: string[]; tableID: string }
       >
         Aggregation
       </span>
-      <Checkbox
-        style={{ marginTop: 6 }}
-        checked={active}
-        onChange={(event) => {
-          setActive(event.target.checked);
-        }}
-      />
+      <div />
       {props.values.map((value, index) => {
         return (
           <div style={{ height: "24px" }} key={props.tableID + "_" + index}>
