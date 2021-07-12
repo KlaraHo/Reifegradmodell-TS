@@ -31,7 +31,7 @@ export function Table(props: {
 
   const [sums, setSums] = React.useState<number[]>(initialSums);
   const [reset, setReset] = React.useState<number>(0);
-  const [targetValues, setTargetValues] = React.useState<number[]>();
+  const [targetValues, setTargetValues] = React.useState<number[]>([]);
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
@@ -90,46 +90,52 @@ export function Table(props: {
 
       <Form.Provider
         onFormChange={(name, info) => {
-          const sums: number[] = [];
+          if (name === "targetValues") {
+            const targetValuesForm = info.forms.targetValues;
+            const targetValues: number[] = [];
 
-          for (let i = 0; i < props.columns.length; i++) {
-            sums[i] = 0;
-          }
+            props.columns.forEach((column, index) => {
+              const formTargetValue = targetValuesForm.getFieldValue(props.tableID + "_targetValue_" + column.name);
+              if (formTargetValue !== undefined) {
+                targetValues[index] = formTargetValue;
+              } else {
+                targetValues[index] = 0;
+              }
+            });
 
-          props.columns.forEach((column, index) => {
-            let totalColumn = 0;
-            let totalColumnWeights = 0;
-            let targetValues: number[] = [];
+            setTargetValues(targetValues);
+          } else {
+            const sums: number[] = [];
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            for (const [_formName, form] of Object.entries(info.forms)) {
-              if (form.getFieldValue("active")) {
-                const formColumnValue = form.getFieldValue(column.name);
-                const formTargetValue = form.getFieldValue(props.tableID + "_targetValue_" + column.name);
+            for (let i = 0; i < props.columns.length; i++) {
+              sums[i] = 0;
+            }
 
-                if (formColumnValue !== undefined) {
-                  if (formColumnValue <= 0.5) {
-                    totalColumn += formColumnValue * 1.3;
-                    totalColumnWeights += 1.3;
-                  } else {
-                    totalColumn += formColumnValue;
-                    totalColumnWeights += 1;
+            props.columns.forEach((column, index) => {
+              let totalColumn = 0;
+              let totalColumnWeights = 0;
+
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              for (const [_formName, form] of Object.entries(info.forms)) {
+                if (form.getFieldValue("active")) {
+                  const formColumnValue = form.getFieldValue(column.name);
+
+                  if (formColumnValue !== undefined) {
+                    if (formColumnValue <= 0.5) {
+                      totalColumn += formColumnValue * 1.3;
+                      totalColumnWeights += 1.3;
+                    } else {
+                      totalColumn += formColumnValue;
+                      totalColumnWeights += 1;
+                    }
+                    sums[index] = totalColumn / totalColumnWeights;
                   }
-                  sums[index] = totalColumn / totalColumnWeights;
-                }
-
-                if (formTargetValue !== undefined) {
-                  targetValues.push(1);
-                } else if (formTargetValue === undefined) {
-                  targetValues.push(0);
                 }
               }
-            }
-          });
-          setSums(sums);
-          setTargetValues(targetValues);
+            });
 
-          // Stuff for source Chart
+            setSums(sums);
+          }
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -197,6 +203,18 @@ export function Table(props: {
                   maxWidth: 1,
                   style: {
                     colors: ["#000"]
+                  },
+                  formatter: function (val, index) {
+                    return val.toFixed(2);
+                  }
+                }
+              },
+              plotOptions: {
+                radar: {
+                  size: 140,
+                  polygons: {
+                    strokeColors: "#333",
+                    connectorColors: "#333"
                   }
                 }
               },

@@ -20,7 +20,7 @@ export function TableRow(props: {
     }
     setSum(0);
     setActive(true);
-  }, [props.reset]);
+  }, [form, props.reset]);
 
   return (
     <Form
