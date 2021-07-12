@@ -37,7 +37,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Datenqualität:"
         resultInitials="DQ"
-        rowsCount={1}
+        rowsCount={5}
         tableID="dq"
       />
 

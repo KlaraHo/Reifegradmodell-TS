@@ -59,14 +59,12 @@ export function TableRow(props: {
         }
       }}
       initialValues={{
-        active: true
+        active: true,
+        description: `${props.sourceInputPlaceholder} ${props.row + 1}`
       }}
     >
       <Form.Item name="description">
-        <Input
-          placeholder={props.sourceInputPlaceholder}
-          style={{ marginTop: 6 }}
-        />
+        <Input style={{ marginTop: 6 }} />
       </Form.Item>
 
       <Form.Item name="active" rules={[{ required: false }]} valuePropName="checked">

@@ -24,12 +24,24 @@ export function Table(props: {
   rowsCount: number;
   tableID: string;
 }) {
-  const initialSums = [];
+  const initialSums: number[] = [];
   for (let i = 0; i < props.columns.length; i++) {
     initialSums.push(0);
   }
 
+  const initialSumsRows: number[] = [];
+  for (let i = 0; i < props.rowsCount; i++) {
+    initialSumsRows.push(0);
+  }
+
+  const initialRowDescriptions: string[] = [];
+  for (let i = 0; i < props.rowsCount; i++) {
+    initialRowDescriptions.push(`${props.sourceInputPlaceholder} ${i + 1}`);
+  }
+
   const [sums, setSums] = React.useState<number[]>(initialSums);
+  const [rowSums, setRowSums] = React.useState<number[]>(initialSumsRows);
+  const [rowDescriptions, setRowDescription] = React.useState<string[]>(initialRowDescriptions);
   const [reset, setReset] = React.useState<number>(0);
   const [targetValues, setTargetValues] = React.useState<number[]>([]);
 
@@ -157,6 +169,45 @@ export function Table(props: {
             });
 
             setSums(sums);
+
+            const newRowSums = [];
+            const newRowDescriptions = [];
+
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            for (const [formName, form] of Object.entries(info.forms)) {
+              if (formName !== "targetValues") {
+                let rowColumn = 0;
+                let rowColumnWeights = 0;
+
+                newRowDescriptions.push(form.getFieldValue("description"));
+
+                if (form.getFieldValue("active")) {
+                  props.columns.forEach((column, index) => {
+                    const formColumnValue = form.getFieldValue(column.name);
+
+                    if (Number.isFinite(formColumnValue)) {
+                      if (formColumnValue <= 0.5) {
+                        rowColumn += formColumnValue * 1.3;
+                        rowColumnWeights += 1.3;
+                      } else {
+                        rowColumn += formColumnValue;
+                        rowColumnWeights += 1;
+                      }
+                      sums[index] = rowColumn / rowColumnWeights;
+                    }
+                  });
+                }
+
+                if (rowColumnWeights) {
+                  newRowSums.push(rowColumn / rowColumnWeights);
+                } else {
+                  newRowSums.push(0);
+                }
+              }
+            }
+
+            setRowSums(newRowSums);
+            setRowDescription(newRowDescriptions);
           }
         }}
       >
@@ -268,13 +319,34 @@ export function Table(props: {
                 id: "basic-bar"
               },
               xaxis: {
-                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+                categories: rowDescriptions,
+                labels: {
+                  trim: true
+                }
               },
-              // yaxis: {
-              //   forceNiceScale: true,
-              //   min: 0,
-              //   max: 1
-              // },
+              yaxis: {
+                forceNiceScale: true,
+                min: 0,
+                max: 1,
+                labels: {
+                  maxWidth: 1,
+                  style: {
+                    colors: ["#000"]
+                  },
+                  formatter: function (val, index) {
+                    return val.toFixed(2);
+                  }
+                }
+              },
+              plotOptions: {
+                radar: {
+                  size: 140,
+                  polygons: {
+                    strokeColors: "#333",
+                    connectorColors: "#333"
+                  }
+                }
+              },
               title: {
                 text: `${props.sourceTitle} Diagramm`
               }
@@ -282,7 +354,7 @@ export function Table(props: {
             series={[
               {
                 name: `${props.resultInitials} Quellen`,
-                data: [30, 40, 45, 50, 49, 60, 70, 91]
+                data: rowSums
               }
             ]}
             type="radar"
