@@ -1,7 +1,7 @@
 import { Checkbox } from "antd";
 import React from "react";
 
-export function TableRowAggregation(props: { values: string[], tableID: string }) {
+export function TableRowAggregation(props: { values: string[]; tableID: string }) {
   const [active, setActive] = React.useState<boolean>(true);
 
   return (
@@ -14,7 +14,18 @@ export function TableRowAggregation(props: { values: string[], tableID: string }
         rowGap: 16
       }}
     >
-      <span style={{ fontWeight: "bold", textDecoration: "underline", marginTop: 6 }}>Aggregation</span>
+      <span
+        style={{
+          fontWeight: "bold",
+          textDecoration: "underline",
+          marginTop: 6,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          width: " 100%"
+        }}
+      >
+        Aggregation
+      </span>
       <Checkbox
         style={{ marginTop: 6 }}
         checked={active}
@@ -24,7 +35,7 @@ export function TableRowAggregation(props: { values: string[], tableID: string }
       />
       {props.values.map((value, index) => {
         return (
-          <div style={{ height: "24px" }} key={ props.tableID + "_" + index }>
+          <div style={{ height: "24px" }} key={props.tableID + "_" + index}>
             {/* unique Key for every aggregation does not work here. why? */}
             {value}
           </div>

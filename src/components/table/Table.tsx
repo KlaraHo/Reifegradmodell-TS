@@ -37,21 +37,10 @@ export function Table(props: {
   const calculateMetric = () => {
     let total = 0;
 
-    // console.log(sums); -> sums are fine here
-    // sums are multiplied 4x right now -> we only need one
+    sums.forEach((sum, index) => {
+      const weightedSum = props.columns[index].weight * sum;
 
-    props.columns.forEach((column, index) => {
-      sums.forEach((sum) => {
-        total += column.weight * sum;
-        console.log(total);
-      });
-
-      // this also does not work
-
-      // for (let i = 0; i < 1; i++) {
-      //   total += column.weight[] * sums[i]
-      //   console.log(total);
-      // }
+      total += weightedSum;
     });
 
     return total.toFixed(2);
@@ -75,17 +64,50 @@ export function Table(props: {
           rowGap: 4
         }}
       >
-        <span style={{ fontWeight: "bold", textDecoration: "underline" }}>{props.sourceTitle}</span>
-        <span style={{ fontWeight: "bold", textDecoration: "underline" }}>An/Aus</span>
+        <span
+          style={{
+            fontWeight: "bold",
+            textDecoration: "underline",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            width: " 100%"
+          }}
+        >
+          {props.sourceTitle}
+        </span>
+        <span
+          style={{
+            fontWeight: "bold",
+            textDecoration: "underline",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            width: " 100%"
+          }}
+        >
+          An/Aus
+        </span>
         {props.columns.map((column, index) => {
           return (
-            <span style={{ fontWeight: "bold" }} key={index}>
+            <span
+              style={{ fontWeight: "bold", overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }}
+              key={index}
+            >
               {column.name}
             </span>
           );
         })}
 
-        <span style={{ fontWeight: "bold", textDecoration: "underline" }}>Aggregation</span>
+        <span
+          style={{
+            fontWeight: "bold",
+            textDecoration: "underline",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            width: " 100%"
+          }}
+        >
+          Aggregation
+        </span>
       </div>
 
       <Form.Provider

@@ -20,7 +20,18 @@ export function TableRowTargetvalue(props: {
       }}
       name="targetValues"
     >
-      <span style={{ fontWeight: "bold", textDecoration: "underline", marginTop: 6 }}>{props.rowTitle}</span>
+      <span
+        style={{
+          fontWeight: "bold",
+          textDecoration: "underline",
+          marginTop: 6,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          width: " 100%"
+        }}
+      >
+        {props.rowTitle}
+      </span>
       <Checkbox
         style={{ marginTop: 6 }}
         checked={active}
