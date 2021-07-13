@@ -39,19 +39,20 @@ function App() {
         resultInitials="DQ"
         rowsCount={5}
         tableID="dq"
+        tableLegend={[]}
       />
 
       <Table
         title="Informationsqualitätsindikatoren"
         sourceTitle="Informationsquellen"
-        sourceInputPlaceholder="Informationsquelle"
+        sourceInputPlaceholder="Infoquelle"
         description={
           <>
             Bitte geben Sie die Informationsqualitätsindikatoren gemäß Ihrer Auswertung ein.
             <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
           </>
         }
-        backgroundColor="#cceeff"
+        backgroundColor="#dbf1ff"
         columns={[
           { name: "Korrektheit", weight: 0.2 },
           { name: "Validität", weight: 0.14 },
@@ -67,6 +68,7 @@ function App() {
         resultInitials="IQ"
         rowsCount={15}
         tableID="iq"
+        tableLegend={[]}
       />
 
       <Table
@@ -81,15 +83,21 @@ function App() {
         }
         backgroundColor="#e6f5ff"
         columns={[
-          { name: "Bildungsniveau eines Mitarbeiters", weight: 0.18 },
-          { name: "Erfahrungsniveau eines Mitarbeiters", weight: 0.31 },
-          { name: "Leistungsniveau eines Mitarbeiters", weight: 0.31 },
-          { name: "Zweckmäßigkeit eines IT-Systems zur Wissensbereitstellung", weight: 0.21 }
+          { name: "BnKQ,k", weight: 0.18 },
+          { name: "EnKQ,k", weight: 0.31 },
+          { name: "LeKQ,k", weight: 0.31 },
+          { name: "ZwKQ", weight: 0.21 }
         ]}
         resultTitle="Ergebnis Wissensqualität:"
         resultInitials="KQ"
         rowsCount={4}
         tableID="kq"
+        tableLegend={[
+          { shortcut: "BnKQ,k", name: "Bildungsniveau eines Mitarbeiters"},
+          { shortcut: "EnKQ,k", name: "Erfahrungsniveau eines Mitarbeiters"},
+          { shortcut: "LeKQ,k", name: "Leistungsniveau eines Mitarbeiters"},
+          { shortcut: "ZwKQ", name: "Zweckmäßigkeit eines IT-Systems zur Wissensbereitstellung"},
+        ]}
       />
 
       <TableMQ
@@ -100,7 +108,7 @@ function App() {
             <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
           </>
         }
-        backgroundColor="#e6f5ff"
+        backgroundColor="#dbf1ff"
         columns={[
           "Perspektive",
           "An/Aus",

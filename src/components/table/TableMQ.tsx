@@ -15,10 +15,9 @@ export function TableMQ(props: {
     <div
       style={{
         textAlign: "center",
-        background: props.backgroundColor,
+        backgroundColor: props.backgroundColor,
         padding: 40,
-        marginTop: 40,
-        backgroundColor: "#cceeff"
+        marginTop: 40
       }}
     >
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>

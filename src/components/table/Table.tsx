@@ -12,6 +12,11 @@ export interface ITableColumn {
   weight: number;
 }
 
+export interface tableLegend {
+  shortcut: string;
+  name: string;
+}
+
 export function Table(props: {
   title: string;
   sourceTitle: string;
@@ -23,6 +28,7 @@ export function Table(props: {
   resultInitials: string;
   rowsCount: number;
   tableID: string;
+  tableLegend: tableLegend[];
 }) {
   const initialSums: number[] = [];
   for (let i = 0; i < props.columns.length; i++) {
@@ -253,6 +259,16 @@ export function Table(props: {
           </Popconfirm>
         </div>
 
+        <div style={{ textAlign: "center", marginTop: 4 }}>
+          {props.tableLegend.map((term, index) => {
+            return (
+              <span style={{ fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }} key={index}>
+                {term.shortcut + "..." + term.name}
+              </span>
+            );
+          })}
+        </div>
+
         <Divider />
 
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 40 }}>
@@ -265,8 +281,12 @@ export function Table(props: {
               xaxis: {
                 categories: categoriesMetricChart,
                 labels: {
-                  trim: true
-                }
+                  show: true,
+                  style: {
+                    colors: ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"],
+                    fontSize: "12px"
+                  }
+                },
               },
               yaxis: {
                 forceNiceScale: true,
@@ -280,6 +300,26 @@ export function Table(props: {
                   formatter: function (val, index) {
                     return val.toFixed(2);
                   }
+                }
+              },
+              legend: {
+                markers: {
+                  fillColors: ["#ff8e03", "#0a9bf0"]
+                }
+              },
+              stroke: {
+                show: true,
+                colors: ["#ff8e03", "#0a9bf0"]
+              },
+              fill: {
+                colors: ["#ff8e03", "#0a9bf0"],
+                opacity: 0.1
+              },
+              markers: {
+                size: 3,
+                colors: ["#ff8e03", "#0a9bf0"],
+                hover: {
+                  size: 5
                 }
               },
               plotOptions: {
@@ -321,7 +361,27 @@ export function Table(props: {
               xaxis: {
                 categories: rowDescriptions,
                 labels: {
-                  trim: true
+                  show: true,
+                  style: {
+                    colors: [
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000",
+                      "#000"
+                    ],
+                    fontSize: "12px"
+                  }
                 }
               },
               yaxis: {
@@ -336,6 +396,27 @@ export function Table(props: {
                   formatter: function (val, index) {
                     return val.toFixed(2);
                   }
+                }
+              },
+              legend: {
+                showForSingleSeries: true,
+                markers: {
+                  fillColors: ["#4EEE94"]
+                }
+              },
+              stroke: {
+                show: true,
+                colors: ["#4EEE94"]
+              },
+              fill: {
+                colors: ["#4EEE94"],
+                opacity: 0.1
+              },
+              markers: {
+                size: 3,
+                colors: ["#4EEE94"],
+                hover: {
+                  size: 5
                 }
               },
               plotOptions: {
