@@ -7,7 +7,19 @@ export function TableRowTargetvalue(props: {
   row: number;
   rowTitle: string;
   tableID: string;
+  reset: number;
 }) {
+
+  //reset does not work
+  const [form] = Form.useForm();
+
+  React.useEffect(() => {
+    if (form) {
+      form.resetFields();
+    }
+  }, [form, props.reset]);
+
+
   return (
     <Form
       style={{

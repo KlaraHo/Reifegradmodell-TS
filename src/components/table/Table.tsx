@@ -5,7 +5,7 @@ import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import { CSV } from "../CSV";
 import Chart from "react-apexcharts";
-import { WarningOutlined } from "@ant-design/icons";
+import { WarningOutlined, BorderOutlined } from "@ant-design/icons";
 
 export interface ITableColumn {
   name: string;
@@ -63,6 +63,8 @@ export function Table(props: {
 
     return total.toFixed(2);
   };
+
+
 
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
@@ -185,8 +187,6 @@ export function Table(props: {
                 let rowColumn = 0;
                 let rowColumnWeights = 0;
 
-                newRowDescriptions.push(form.getFieldValue("description"));
-
                 if (form.getFieldValue("active")) {
                   props.columns.forEach((column, index) => {
                     const formColumnValue = form.getFieldValue(column.name);
@@ -202,12 +202,14 @@ export function Table(props: {
                       sums[index] = rowColumn / rowColumnWeights;
                     }
                   });
-                }
 
-                if (rowColumnWeights) {
-                  newRowSums.push(rowColumn / rowColumnWeights);
-                } else {
-                  newRowSums.push(0);
+                  newRowDescriptions.push(form.getFieldValue("description"));
+
+                  if (rowColumnWeights) {
+                    newRowSums.push(rowColumn / rowColumnWeights);
+                  } else {
+                    newRowSums.push(0);
+                  }
                 }
               }
             }
@@ -237,12 +239,13 @@ export function Table(props: {
           row={props.rowsCount + 1}
           rowTitle={"Sollwert"}
           tableID={props.tableID}
+          reset={reset}
         />
 
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end", marginRight: 12 }}>
           <Popconfirm
             icon={<WarningOutlined style={{ color: "red" }} />}
-            title="Wollen Sie die Werte dieser Tabelle wirklich zurücksetzen?"
+            title="Wollen Sie die Werte dieses Abschnitts wirklich zurücksetzen?"
             okText="OK"
             cancelText="Abbrechen"
             onConfirm={() => {
@@ -250,7 +253,7 @@ export function Table(props: {
               for (let i = 0; i < props.columns.length; i++) {
                 sums[i] = 0;
               }
-              message.success("Tabelle wurde erfolgreich zurückgesetzt!");
+              message.success("Daten wurden erfolgreich zurückgesetzt!");
             }}
           >
             <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
@@ -286,7 +289,7 @@ export function Table(props: {
                     colors: ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"],
                     fontSize: "12px"
                   }
-                },
+                }
               },
               yaxis: {
                 forceNiceScale: true,
@@ -343,13 +346,14 @@ export function Table(props: {
               { name: `${props.resultInitials} Sollwerte`, data: targetValues }
             ]}
             type="radar"
-            width="800"
+            width="700"
           />
 
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
-            <p style={{ margin: 0 }}>
+            <span style={{ margin: 0 }}>
               {props.resultInitials} = {calculateMetric()}
-            </p>
+            </span>
+            <span style={{ marginLeft: 8 }}><BorderOutlined style= {{color: "red" }} /></span>
           </Card>
 
           <Chart
@@ -439,7 +443,7 @@ export function Table(props: {
               }
             ]}
             type="radar"
-            width="800"
+            width="700"
           />
         </div>
       </Form.Provider>
