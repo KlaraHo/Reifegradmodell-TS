@@ -153,6 +153,7 @@ export function Table(props: {
               sums[i] = 0;
             }
 
+            // Calculate Aggregation Columns
             props.columns.forEach((column, index) => {
               let totalColumn = 0;
               let totalColumnWeights = 0;
@@ -178,6 +179,7 @@ export function Table(props: {
 
             setSums(sums);
 
+            // Calculate Row Aggregation for Chart
             const newRowSums = [];
             const newRowDescriptions = [];
 
@@ -199,7 +201,7 @@ export function Table(props: {
                         rowColumn += formColumnValue;
                         rowColumnWeights += 1;
                       }
-                      sums[index] = rowColumn / rowColumnWeights;
+                      rowSums[index] = rowColumn / rowColumnWeights;
                     }
                   });
 
@@ -319,10 +321,10 @@ export function Table(props: {
                 opacity: 0.1
               },
               markers: {
-                size: 3,
+                size: 4,
                 colors: ["#ff8e03", "#0a9bf0"],
                 hover: {
-                  size: 5
+                  size: 6
                 }
               },
               plotOptions: {
@@ -417,10 +419,10 @@ export function Table(props: {
                 opacity: 0.1
               },
               markers: {
-                size: 3,
+                size: 4,
                 colors: ["#4EEE94"],
                 hover: {
-                  size: 5
+                  size: 6
                 }
               },
               plotOptions: {
