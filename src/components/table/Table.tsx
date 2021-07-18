@@ -29,6 +29,7 @@ export function Table(props: {
   rowsCount: number;
   tableID: string;
   tableLegend: tableLegend[];
+  maturityWeight: number;
 }) {
   const initialSums: number[] = [];
   for (let i = 0; i < props.columns.length; i++) {
@@ -50,20 +51,23 @@ export function Table(props: {
   const [rowDescriptions, setRowDescription] = React.useState<string[]>(initialRowDescriptions);
   const [reset, setReset] = React.useState<number>(0);
   const [targetValues, setTargetValues] = React.useState<number[]>([]);
+  // const [weightedMetric, setWeightedMetric] = React.useState<number>();
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
-    let total = 0;
+    let totalMetric = 0;
+    let weightedMetric = 0;
 
     sums.forEach((sum, index) => {
       const weightedSum = props.columns[index].weight * sum;
 
-      total += weightedSum;
+      totalMetric += weightedSum;
     });
 
-    return total.toFixed(2);
-  };
+    weightedMetric = totalMetric*props.maturityWeight;
 
+    return totalMetric.toFixed(2);
+  };
 
 
   // Metric Chart Categories
@@ -219,6 +223,9 @@ export function Table(props: {
             setRowSums(newRowSums);
             setRowDescription(newRowDescriptions);
           }
+
+
+
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -355,7 +362,7 @@ export function Table(props: {
             <span style={{ margin: 0 }}>
               {props.resultInitials} = {calculateMetric()}
             </span>
-            <span style={{ marginLeft: 8 }}><BorderOutlined style= {{color: "red" }} /></span>
+            {/* <span style={{ marginLeft: 8 }}><BorderOutlined style= {{color: "red" }} /></span> */}
           </Card>
 
           <Chart

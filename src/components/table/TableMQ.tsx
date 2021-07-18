@@ -10,6 +10,7 @@ export function TableMQ(props: {
   columns: string[];
   resultTitle: string;
   resultInitials: string;
+  maturityWeight: number;
 }) {
   return (
     <div

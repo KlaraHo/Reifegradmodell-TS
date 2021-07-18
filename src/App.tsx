@@ -40,6 +40,7 @@ function App() {
         rowsCount={5}
         tableID="dq"
         tableLegend={[]}
+        maturityWeight={0.36}
       />
 
       <Table
@@ -66,9 +67,10 @@ function App() {
         ]}
         resultTitle="Ergebnis Informationsqualität:"
         resultInitials="IQ"
-        rowsCount={15}
+        rowsCount={5}
         tableID="iq"
         tableLegend={[]}
+        maturityWeight={0.23}
       />
 
       <Table
@@ -98,6 +100,7 @@ function App() {
           { shortcut: "LeKQ,k", name: "Leistungsniveau eines Mitarbeiters"},
           { shortcut: "ZwKQ", name: "Zweckmäßigkeit eines IT-Systems zur Wissensbereitstellung"},
         ]}
+        maturityWeight={0.28}
       />
 
       <TableMQ
@@ -121,6 +124,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Instandhaltungsqualität:"
         resultInitials="MQ"
+        maturityWeight={0.13}
       />
 
       <Result />

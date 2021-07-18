@@ -3,11 +3,10 @@ import { Button, Card } from "antd";
 
 const Result = () => {
 
-  const g_dq = 0.36;
-  const g_iq = 0.23;
-  const g_kq = 0.28;
-  const g_mq = 0.13;
-
+//Calculate overall maturity level
+const calculateOverallMaturty = () => {
+  //wie hole ich mir hier alle 4 weightedMetric Werte und summiere sie auf?
+}
 
 
   return (
@@ -22,7 +21,9 @@ const Result = () => {
           </div>
           <div style={{ marginTop: 40 }}>
             <Card title="Ihr momentaner Reifegrad" style={{ width: 300, margin: "auto" }}>
-              <p>x</p>
+              <p>%</p>
+              <p>=</p>
+              <p>Reifegrad</p>
             </Card>
           </div>
           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 16 }} >
