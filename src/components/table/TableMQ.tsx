@@ -7,10 +7,12 @@ export function TableMQ(props: {
   title: string;
   description: React.ReactNode;
   backgroundColor: string;
-  columns: string[];
+  outerColumns: string[];
+  innerColumns: string[];
   resultTitle: string;
   resultInitials: string;
   maturityWeight: number;
+  tableID: string
 }) {
   return (
     <div
@@ -28,13 +30,29 @@ export function TableMQ(props: {
         style={{
           marginTop: 40,
           display: "grid",
-          gridTemplateColumns: `repeat(${props.columns.length}, 1fr)`,
+          gridTemplateColumns: `repeat(${props.outerColumns.length}, 1fr)`,
           justifyItems: "center",
-          columnGap: 16,
-          rowGap: 4
+          columnGap: 16
         }}
       >
-        {props.columns.map((column, index) => {
+        {props.outerColumns.map((column, index) => {
+          return (
+            <span style={{ fontWeight: "bold" }} key={index}>
+              {column}
+            </span>
+          );
+        })}
+      </div>
+      <div
+        style={{
+          marginTop: 40,
+          display: "grid",
+          gridTemplateColumns: `repeat(${props.innerColumns.length}, 1fr)`,
+          justifyItems: "center",
+          columnGap: 16
+        }}
+      >
+        {props.innerColumns.map((column, index) => {
           return (
             <span style={{ fontWeight: "bold" }} key={index}>
               {column}
@@ -52,7 +70,6 @@ export function TableMQ(props: {
         style={{ marginTop: 24 }}
       >
         <TableMQPerspective />
-
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button type="text" danger style={{ marginRight: 16 }}>

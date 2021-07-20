@@ -126,19 +126,12 @@ function App() {
           </>
         }
         backgroundColor="#dbf1ff"
-        columns={[
-          "Perspektive",
-          "An/Aus",
-          "Stufe",
-          "Kennzahl",
-          "Ist, [%]",
-          "Soll, [%]",
-          "Erfüllungsgrad",
-          "Aggregation"
-        ]}
+        outerColumns={["Perspektive", "", "Aggregation"]}
+        innerColumns={["An/Aus", "Stufe", "Kennzahl", "Ist, [%]", "Soll, [%]", "Erfüllungsgrad"]}
         resultTitle="Ergebnis Instandhaltungsqualität:"
         resultInitials="MQ"
         maturityWeight={0.13}
+        tableID="mq"
         // hier noch Funktion für weighted einfügen
       />
 

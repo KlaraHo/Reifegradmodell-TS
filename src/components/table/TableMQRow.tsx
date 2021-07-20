@@ -1,32 +1,69 @@
-import { Form, Checkbox, Input } from "antd";
+import { Form, Checkbox, Input, InputNumber } from "antd";
 import React from "react";
 
-export function TableMQRow(props: { gridRow: string; isKpiRow?: boolean; step: string; defaultValue?: string }) {
+export function TableMQRow(props: {
+  gridRow: string;
+  isKpiRow?: boolean;
+  step: string;
+  defaultValueName?: string;
+  defaultValueTarget?: number;
+  tableID: string;
+}) {
+  const [form] = Form.useForm();
   const [active, setActive] = React.useState<boolean>(true);
+  const [fulfilment, setFulfilment] = React.useState<number>(0);
 
   return (
-    <Form style={{ gridRow: `${props.gridRow}`, gridColumn: 2 }}>
+    <Form
+      form={form}
+      name={props.tableID + "_" + props.gridRow}
+      style={{ gridRow: `${props.gridRow}`, gridColumn: 2 }}
+      onValuesChange={(_, values) => {
+
+        let actualValue = form.getFieldValue('actual_value');
+        let targetValue = form.getFieldValue("target_value");
+
+        setFulfilment((actualValue / targetValue) * 100);
+      }}
+    >
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(6,  1fr)",
           justifyContent: "center",
-          columnGap: 16,
-          rowGap: 4
+          columnGap: 16
         }}
       >
-        <Checkbox
-          style={{ marginTop: 4 }}
-          checked={active}
-          onChange={(event) => {
-            setActive(event.target.checked);
-          }}
-        />
+        <Form.Item>
+          <Checkbox
+            style={{ marginTop: 4 }}
+            checked={active}
+            onChange={(event) => {
+              setActive(event.target.checked);
+            }}
+          />
+        </Form.Item>
         <span>{props.step}</span>
-        <Input disabled={props.isKpiRow} defaultValue={props.defaultValue} />
-        <Input />
-        <Input />
-        <span style={{ border: "1px solid black", width: 80, height: 20 }}></span>
+        <Form.Item>
+          <Input name="description" disabled={props.isKpiRow} defaultValue={props.defaultValueName} />
+        </Form.Item>
+        <Form.Item>
+          <InputNumber
+            name="actual_value"
+            disabled={!active}
+            key={Math.random()}
+            size="small"
+            min="0"
+            max="100"
+            step="1"
+          />
+        </Form.Item>
+        <Form.Item>
+          <Input name="target_value" disabled={props.isKpiRow} defaultValue={props.defaultValueTarget} />
+        </Form.Item>
+        <Form.Item>
+          <span>{fulfilment}</span>
+        </Form.Item>
       </div>
     </Form>
   );
