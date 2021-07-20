@@ -9,7 +9,6 @@ export function TableRowTargetvalue(props: {
   tableID: string;
   reset: number;
 }) {
-
   //reset does not work
   const [form] = Form.useForm();
 
@@ -19,9 +18,9 @@ export function TableRowTargetvalue(props: {
     }
   }, [form, props.reset]);
 
-
   return (
     <Form
+      form={form}
       style={{
         display: "grid",
         gridTemplateColumns: `repeat(${2 + props.columns.length + 1}, 1fr)`,

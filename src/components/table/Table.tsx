@@ -253,10 +253,12 @@ export function Table(props: {
             okText="OK"
             cancelText="Abbrechen"
             onConfirm={() => {
-              setReset(reset + 1);
               for (let i = 0; i < props.columns.length; i++) {
                 sums[i] = 0;
               }
+              setRowSums(initialSumsRows);
+              setTargetValues([]);
+              setReset(reset + 1);
               message.success("Daten wurden erfolgreich zurückgesetzt!");
             }}
           >
@@ -351,6 +353,7 @@ export function Table(props: {
             ]}
             type="radar"
             width="700"
+            key={reset + "a"}
           />
 
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
@@ -448,6 +451,7 @@ export function Table(props: {
             ]}
             type="radar"
             width="700"
+            key={reset + "b"}
           />
         </div>
       </Form.Provider>
