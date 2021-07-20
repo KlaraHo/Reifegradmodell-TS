@@ -38,7 +38,7 @@ const Result = (props: { maturityLevel: number }) => {
       <section style={{ marginTop: 40, textAlign: "center", backgroundColor: "#e6f5ff", padding: 40 }}>
         <div className="row">
           <div>
-            <h1 style={{ fontSize: "2rem", textTransform: "uppercase", textDecoration: "underline" }}>Ergebnis</h1>
+            <h1 style={{ fontSize: "2em", textTransform: "uppercase", textDecoration: "underline" }}>Ergebnis</h1>
           </div>
           <div>
             <p>Hier wird der berechnete Reifegrad gemäß Ihrer Angaben aufgeführt.</p>
