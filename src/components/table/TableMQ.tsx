@@ -24,7 +24,6 @@ export function TableMQ(props: {
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
       <p>{props.description}</p>
       <CSV />
-      {/* Überschriften */}
       <div
         style={{
           marginTop: 40,
@@ -53,10 +52,9 @@ export function TableMQ(props: {
         style={{ marginTop: 24 }}
       >
         <TableMQPerspective />
-        <TableMQPerspective />
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button type="text" danger style={{ marginRight: 16 }}>
+          <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
             Zurücksetzen
           </Button>
         </div>

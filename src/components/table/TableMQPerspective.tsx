@@ -1,10 +1,11 @@
 import React from "react";
-import { TableMQRowPI } from "./TableMQRowPI";
+import { Form } from "antd";
+import { TableMQRow } from "./TableMQRow";
 
 export function TableMQPerspective(props: any) {
   return (
     <>
-      <div
+      <Form
         style={{
           display: "grid",
           gridTemplateColumns: "repeat (3, 1fr)",
@@ -15,13 +16,13 @@ export function TableMQPerspective(props: any) {
         }}
       >
         <div style={{ border: "1px solid black", gridColumn: 1, gridRow: "1/6" }}>Maschinenperspektive</div>
-        <TableMQRowPI gridRow="1" isKpiRow />
-        <TableMQRowPI gridRow="2" />
-        <TableMQRowPI gridRow="3" />
-        <TableMQRowPI gridRow="4" />
-        <TableMQRowPI gridRow="5" />
+        <TableMQRow gridRow="1" isKpiRow step="KPI" defaultValue="Ratio ungeplante Stillstandzeit" />
+        <TableMQRow gridRow="2" isKpiRow step="KPI" defaultValue="Overall Equipment Effectivenesss" />
+        <TableMQRow gridRow="3" isKpiRow={false} step="PI" />
+        <TableMQRow gridRow="4" isKpiRow={false} step="PI" />
+        <TableMQRow gridRow="5" isKpiRow={false} step="PI" />
         <div style={{ border: "1px solid black", gridColumn: 8, gridRow: "1/6" }}>Platzhalter Aggregation</div>
-      </div>
+      </Form>
 
       {/* Hier kommen die weiteren Perspektiven rein, wie oben nur mit anderen Inhalten */}
     </>

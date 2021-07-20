@@ -5,7 +5,7 @@ import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import { CSV } from "../CSV";
 import Chart from "react-apexcharts";
-import { WarningOutlined, BorderOutlined } from "@ant-design/icons";
+import { WarningOutlined, StarFilled } from "@ant-design/icons";
 
 export interface ITableColumn {
   name: string;
@@ -64,6 +64,29 @@ export function Table(props: {
     });
 
     return totalMetric;
+  };
+
+  const colorIcon = () => {
+    let totalMetric = 0;
+    let iconColor = "#FFFFFF";
+
+    sums.forEach((sum, index) => {
+      const weightedSum = props.columns[index].weight * sum;
+
+      totalMetric += weightedSum;
+    });
+
+    if (totalMetric <= 0.5) {
+      return (iconColor = "#FF0000");
+    } else if (0.51 < totalMetric && totalMetric <= 0.66) {
+      return (iconColor = "#ff8e03");
+    } else if (0.67 < totalMetric && totalMetric <= 0.82) {
+      return (iconColor = "#FFE000");
+    } else if (0.83 < totalMetric && totalMetric <= 1) {
+      return (iconColor = "#4EEE94");
+    } else {
+      return iconColor;
+    }
   };
 
   // Metric Chart Categories
@@ -272,7 +295,7 @@ export function Table(props: {
           {props.tableLegend.map((term, index) => {
             return (
               <span style={{ fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }} key={index}>
-                {term.shortcut + "..." + term.name}
+                {term.shortcut + "..." + term.name + "; "}
               </span>
             );
           })}
@@ -361,7 +384,7 @@ export function Table(props: {
               {props.resultInitials} = {calculateMetric().toFixed(2)}
             </span>
             <span style={{ marginLeft: 8 }}>
-              <BorderOutlined style={{ color: "red" }} />
+              <StarFilled style={{ color: colorIcon() }} />
             </span>
           </Card>
 
