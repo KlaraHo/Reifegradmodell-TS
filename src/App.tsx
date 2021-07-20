@@ -9,6 +9,11 @@ import { TableMQ } from "./components/table/TableMQ";
 import Footer from "./components/Footer";
 
 function App() {
+  const [weightedMetricDQ, setWeightedMetricDQ] = React.useState<number>(0);
+  const [weightedMetricIQ, setWeightedMetricIQ] = React.useState<number>(0);
+  const [weightedMetricKQ, setWeightedMetricKQ] = React.useState<number>(0);
+  const [weightedMetricMQ, setWeightedMetricMQ] = React.useState<number>(0);
+
   return (
     <>
       <Introbox />
@@ -41,6 +46,9 @@ function App() {
         tableID="dq"
         tableLegend={[]}
         maturityWeight={0.36}
+        onQualityLevelChange={(value) => {
+          setWeightedMetricDQ(value);
+        }}
       />
 
       <Table
@@ -71,6 +79,9 @@ function App() {
         tableID="iq"
         tableLegend={[]}
         maturityWeight={0.23}
+        onQualityLevelChange={(value) => {
+          setWeightedMetricIQ(value);
+        }}
       />
 
       <Table
@@ -95,12 +106,15 @@ function App() {
         rowsCount={4}
         tableID="kq"
         tableLegend={[
-          { shortcut: "BnKQ,k", name: "Bildungsniveau eines Mitarbeiters"},
-          { shortcut: "EnKQ,k", name: "Erfahrungsniveau eines Mitarbeiters"},
-          { shortcut: "LeKQ,k", name: "Leistungsniveau eines Mitarbeiters"},
-          { shortcut: "ZwKQ", name: "Zweckmäßigkeit eines IT-Systems zur Wissensbereitstellung"},
+          { shortcut: "BnKQ,k", name: "Bildungsniveau eines Mitarbeiters" },
+          { shortcut: "EnKQ,k", name: "Erfahrungsniveau eines Mitarbeiters" },
+          { shortcut: "LeKQ,k", name: "Leistungsniveau eines Mitarbeiters" },
+          { shortcut: "ZwKQ", name: "Zweckmäßigkeit eines IT-Systems zur Wissensbereitstellung" }
         ]}
         maturityWeight={0.28}
+        onQualityLevelChange={(value) => {
+          setWeightedMetricKQ(value);
+        }}
       />
 
       <TableMQ
@@ -125,9 +139,10 @@ function App() {
         resultTitle="Ergebnis Instandhaltungsqualität:"
         resultInitials="MQ"
         maturityWeight={0.13}
+        // hier noch Funktion für weighted einfügen
       />
 
-      <Result />
+      <Result maturityLevel={weightedMetricDQ + weightedMetricIQ + weightedMetricKQ + weightedMetricMQ} />
       <Footer />
     </>
   );

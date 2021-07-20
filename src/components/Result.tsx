@@ -1,14 +1,7 @@
 import React from "react";
 import { Button, Card } from "antd";
 
-const Result = () => {
-
-//Calculate overall maturity level
-const calculateOverallMaturty = () => {
-  //wie hole ich mir hier alle 4 weightedMetric Werte und summiere sie auf?
-}
-
-
+const Result = (props: { maturityLevel: number }) => {
   return (
     <React.Fragment>
       <section style={{ marginTop: 40, textAlign: "center", backgroundColor: "#e6f5ff", padding: 40 }}>
@@ -24,12 +17,8 @@ const calculateOverallMaturty = () => {
               <p>%</p>
               <p>=</p>
               <p>Reifegrad</p>
+              <p>{props.maturityLevel}</p>
             </Card>
-          </div>
-          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 16 }} >
-            <Button type="primary" style={{ marginRight: 16 }} >
-              Berechnen
-            </Button>
           </div>
         </div>
       </section>

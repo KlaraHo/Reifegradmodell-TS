@@ -30,6 +30,7 @@ export function Table(props: {
   tableID: string;
   tableLegend: tableLegend[];
   maturityWeight: number;
+  onQualityLevelChange(value: number): void;
 }) {
   const initialSums: number[] = [];
   for (let i = 0; i < props.columns.length; i++) {
@@ -51,12 +52,10 @@ export function Table(props: {
   const [rowDescriptions, setRowDescription] = React.useState<string[]>(initialRowDescriptions);
   const [reset, setReset] = React.useState<number>(0);
   const [targetValues, setTargetValues] = React.useState<number[]>([]);
-  // const [weightedMetric, setWeightedMetric] = React.useState<number>();
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
     let totalMetric = 0;
-    let weightedMetric = 0;
 
     sums.forEach((sum, index) => {
       const weightedSum = props.columns[index].weight * sum;
@@ -64,11 +63,8 @@ export function Table(props: {
       totalMetric += weightedSum;
     });
 
-    weightedMetric = totalMetric*props.maturityWeight;
-
-    return totalMetric.toFixed(2);
+    return totalMetric;
   };
-
 
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
@@ -224,8 +220,7 @@ export function Table(props: {
             setRowDescription(newRowDescriptions);
           }
 
-
-
+          props.onQualityLevelChange(calculateMetric() * props.maturityWeight);
         }}
       >
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
@@ -360,7 +355,7 @@ export function Table(props: {
 
           <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
             <span style={{ margin: 0 }}>
-              {props.resultInitials} = {calculateMetric()}
+              {props.resultInitials} = {calculateMetric().toFixed(2)}
             </span>
             {/* <span style={{ marginLeft: 8 }}><BorderOutlined style= {{color: "red" }} /></span> */}
           </Card>
