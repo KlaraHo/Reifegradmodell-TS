@@ -201,7 +201,6 @@ export function Table(props: {
                         rowColumn += formColumnValue;
                         rowColumnWeights += 1;
                       }
-                      rowSums[index] = rowColumn / rowColumnWeights;
                     }
                   });
 
