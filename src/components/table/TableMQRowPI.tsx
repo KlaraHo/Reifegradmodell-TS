@@ -1,7 +1,7 @@
 import { Checkbox, Input } from "antd";
 import React from "react";
 
-export function TableMQRowPI(props: { gridRow: string }) {
+export function TableMQRowPI(props: { gridRow: string; isKpiRow?: boolean }) {
   const [active, setActive] = React.useState<boolean>(true);
 
   return (
@@ -10,7 +10,6 @@ export function TableMQRowPI(props: { gridRow: string }) {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(6,  1fr)",
-          gridTemplateRows: 1,
           justifyContent: "center",
           columnGap: 16,
           rowGap: 4
@@ -24,7 +23,7 @@ export function TableMQRowPI(props: { gridRow: string }) {
           }}
         />
         <span>PI</span>
-        <Input />
+        <Input disabled={props.isKpiRow} />
         <Input />
         <Input />
         <span style={{ border: "1px solid black", width: 80, height: 20 }}></span>
