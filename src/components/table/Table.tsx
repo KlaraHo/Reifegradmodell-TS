@@ -257,6 +257,7 @@ export function Table(props: {
               }
               setRowSums(initialSumsRows);
               setTargetValues([]);
+              setRowDescription(initialRowDescriptions);
               setReset(reset + 1);
               message.success("Daten wurden erfolgreich zurückgesetzt!");
             }}
@@ -359,7 +360,9 @@ export function Table(props: {
             <span style={{ margin: 0 }}>
               {props.resultInitials} = {calculateMetric().toFixed(2)}
             </span>
-            {/* <span style={{ marginLeft: 8 }}><BorderOutlined style= {{color: "red" }} /></span> */}
+            <span style={{ marginLeft: 8 }}>
+              <BorderOutlined style={{ color: "red" }} />
+            </span>
           </Card>
 
           <Chart
