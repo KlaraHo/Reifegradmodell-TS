@@ -1,11 +1,11 @@
-import { Checkbox, Input } from "antd";
+import { Form, Checkbox, Input } from "antd";
 import React from "react";
 
-export function TableMQRowPI(props: { gridRow: string; isKpiRow?: boolean }) {
+export function TableMQRow(props: { gridRow: string; isKpiRow?: boolean; step: string; defaultValue?: string }) {
   const [active, setActive] = React.useState<boolean>(true);
 
   return (
-    <div style={{ gridRow: `${props.gridRow}`, gridColumn: 2 }}>
+    <Form style={{ gridRow: `${props.gridRow}`, gridColumn: 2 }}>
       <div
         style={{
           display: "grid",
@@ -22,12 +22,12 @@ export function TableMQRowPI(props: { gridRow: string; isKpiRow?: boolean }) {
             setActive(event.target.checked);
           }}
         />
-        <span>PI</span>
-        <Input disabled={props.isKpiRow} />
+        <span>{props.step}</span>
+        <Input disabled={props.isKpiRow} defaultValue={props.defaultValue} />
         <Input />
         <Input />
         <span style={{ border: "1px solid black", width: 80, height: 20 }}></span>
       </div>
-    </div>
+    </Form>
   );
 }
