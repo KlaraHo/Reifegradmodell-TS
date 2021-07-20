@@ -15,7 +15,16 @@ export function TableMQPerspective(props: any) {
           marginBottom: 24
         }}
       >
-        <div style={{ border: "1px solid black", gridColumn: 1, gridRow: "1/6" }}>Maschinenperspektive</div>
+        <div
+          style={{
+            border: "1px solid black",
+            gridColumn: 1,
+            gridRow: "1/6",
+            padding: 8
+          }}
+        >
+          Maschinenperspektive
+        </div>
         <TableMQRow gridRow="1" isKpiRow step="KPI" defaultValue="Ratio ungeplante Stillstandzeit" />
         <TableMQRow gridRow="2" isKpiRow step="KPI" defaultValue="Overall Equipment Effectivenesss" />
         <TableMQRow gridRow="3" isKpiRow={false} step="PI" />

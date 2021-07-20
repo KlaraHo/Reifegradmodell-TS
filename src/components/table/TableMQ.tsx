@@ -53,8 +53,9 @@ export function TableMQ(props: {
       >
         <TableMQPerspective />
 
+
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
+          <Button type="text" danger style={{ marginRight: 16 }}>
             Zurücksetzen
           </Button>
         </div>

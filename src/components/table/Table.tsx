@@ -82,7 +82,7 @@ export function Table(props: {
       return (iconColor = "#ff8e03");
     } else if (0.67 < totalMetric && totalMetric <= 0.82) {
       return (iconColor = "#FFE000");
-    } else if (0.83 < totalMetric && totalMetric <= 1) {
+    } else if (0.83 < totalMetric && totalMetric <= 1.03) {
       return (iconColor = "#4EEE94");
     } else {
       return iconColor;
@@ -268,7 +268,7 @@ export function Table(props: {
           reset={reset}
         />
 
-        <div style={{ display: "flex", justifyContent: "flex-end", marginRight: 12 }}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Popconfirm
             icon={<WarningOutlined style={{ color: "red" }} />}
             title="Wollen Sie die Werte dieses Abschnitts wirklich zurücksetzen?"
@@ -295,7 +295,7 @@ export function Table(props: {
           {props.tableLegend.map((term, index) => {
             return (
               <span style={{ fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }} key={index}>
-                {term.shortcut + "..." + term.name + "; "}
+                {term.shortcut + "..." + term.name + ", "}
               </span>
             );
           })}
