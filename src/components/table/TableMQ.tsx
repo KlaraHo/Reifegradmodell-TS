@@ -1,4 +1,4 @@
-import { Button, Form } from "antd";
+import { Button, Form, Card } from "antd";
 import React from "react";
 import { CSV } from "../CSV";
 import { TableMQPerspective } from "./TableMQPerspective";
@@ -7,12 +7,11 @@ export function TableMQ(props: {
   title: string;
   description: React.ReactNode;
   backgroundColor: string;
-  outerColumns: string[];
-  innerColumns: string[];
+  columns: string[];
   resultTitle: string;
   resultInitials: string;
   maturityWeight: number;
-  tableID: string
+  tableID: string;
 }) {
   return (
     <div
@@ -26,35 +25,22 @@ export function TableMQ(props: {
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
       <p>{props.description}</p>
       <CSV />
+
       <div
         style={{
-          marginTop: 40,
           display: "grid",
-          gridTemplateColumns: `repeat(${props.outerColumns.length}, 1fr)`,
+          gridTemplateColumns: `repeat(${props.columns.length}, 1fr)`,
           justifyItems: "center",
-          columnGap: 16
+          columnGap: 16,
+          marginTop: 40
         }}
       >
-        {props.outerColumns.map((column, index) => {
+        {props.columns.map((column, index) => {
           return (
-            <span style={{ fontWeight: "bold" }} key={index}>
-              {column}
-            </span>
-          );
-        })}
-      </div>
-      <div
-        style={{
-          marginTop: 40,
-          display: "grid",
-          gridTemplateColumns: `repeat(${props.innerColumns.length}, 1fr)`,
-          justifyItems: "center",
-          columnGap: 16
-        }}
-      >
-        {props.innerColumns.map((column, index) => {
-          return (
-            <span style={{ fontWeight: "bold" }} key={index}>
+            <span
+              style={{ textDecoration: "underline", fontWeight: "bold", marginLeft: 5, marginRight: 5 }}
+              key={index}
+            >
               {column}
             </span>
           );
@@ -69,7 +55,11 @@ export function TableMQ(props: {
         }}
         style={{ marginTop: 24 }}
       >
-        <TableMQPerspective />
+        <TableMQPerspective
+          perspective={["Maschinenperspektive", "Prozessperspektive", "Kostenperspektive", "Ressourcenperspektive"]}
+          tableID={props.tableID}
+        />
+
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button type="text" danger style={{ marginRight: 16 }}>
@@ -77,6 +67,10 @@ export function TableMQ(props: {
           </Button>
         </div>
       </Form>
+
+      <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
+        <span style={{ margin: 0 }}>{props.resultInitials} = Platzhalter</span>
+      </Card>
     </div>
   );
 }

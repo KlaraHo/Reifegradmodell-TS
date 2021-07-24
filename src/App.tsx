@@ -126,8 +126,7 @@ function App() {
           </>
         }
         backgroundColor="#dbf1ff"
-        outerColumns={["Perspektive", "", "Aggregation"]}
-        innerColumns={["An/Aus", "Stufe", "Kennzahl", "Ist, [%]", "Soll, [%]", "Erfüllungsgrad"]}
+        columns={["An/Aus", "Stufe", "Kennzahl", "Ist, [%]", "Soll, [%]", "Erfüllungsgrad"]}
         resultTitle="Ergebnis Instandhaltungsqualität:"
         resultInitials="MQ"
         maturityWeight={0.13}

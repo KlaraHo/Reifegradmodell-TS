@@ -8,6 +8,7 @@ export function TableMQRow(props: {
   defaultValueName?: string;
   defaultValueTarget?: number;
   tableID: string;
+  perspective: string;
 }) {
   const [form] = Form.useForm();
   const [active, setActive] = React.useState<boolean>(true);
@@ -16,11 +17,10 @@ export function TableMQRow(props: {
   return (
     <Form
       form={form}
-      name={props.tableID + "_" + props.gridRow}
+      name={props.tableID + "_" + props.perspective + "_" + props.gridRow}
       style={{ gridRow: `${props.gridRow}`, gridColumn: 2 }}
       onValuesChange={(_, values) => {
-
-        let actualValue = form.getFieldValue('actual_value');
+        let actualValue = form.getFieldValue("actual_value");
         let targetValue = form.getFieldValue("target_value");
 
         setFulfilment((actualValue / targetValue) * 100);
@@ -51,7 +51,7 @@ export function TableMQRow(props: {
           <InputNumber
             name="actual_value"
             disabled={!active}
-            key={Math.random()}
+            key={props.tableID + "_" + props.perspective + "_" + props.gridRow + "_actualValue"}
             size="small"
             min="0"
             max="100"
@@ -59,7 +59,12 @@ export function TableMQRow(props: {
           />
         </Form.Item>
         <Form.Item>
-          <Input name="target_value" disabled={props.isKpiRow} defaultValue={props.defaultValueTarget} />
+          <Input
+            name="target_value"
+            disabled={props.isKpiRow}
+            defaultValue={props.defaultValueTarget}
+            key={props.tableID + "_" + props.perspective + "_" + props.gridRow + "_targetValue"}
+          />
         </Form.Item>
         <Form.Item>
           <span>{fulfilment}</span>
