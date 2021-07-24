@@ -20,10 +20,14 @@ export function TableMQRow(props: {
       name={props.tableID + "_" + props.perspective + "_" + props.gridRow}
       style={{ gridRow: `${props.gridRow}`, gridColumn: 2 }}
       onValuesChange={(_, values) => {
-        let actualValue = form.getFieldValue("actual_value");
-        let targetValue = form.getFieldValue("target_value");
+        if (values.active) {
+          let actualValue = form.getFieldValue("actual_value");
+          let targetValue = form.getFieldValue("target_value");
 
-        setFulfilment((actualValue / targetValue) * 100);
+          console.log(actualValue);
+
+          setFulfilment((actualValue / targetValue) * 100);
+        }
       }}
     >
       <div

@@ -47,26 +47,20 @@ export function TableMQ(props: {
         })}
       </div>
 
-      <Form
-        initialValues={{}}
-        onFinish={(values) => {
-          console.error(values);
-          // TODO: Sum up values, etc.
-        }}
-        style={{ marginTop: 24 }}
-      >
-        <TableMQPerspective
-          perspective={["Maschinenperspektive", "Prozessperspektive", "Kostenperspektive", "Ressourcenperspektive"]}
-          tableID={props.tableID}
-        />
+      <Form.Provider>
+        <div style={{ marginTop: 24 }}>
+          <TableMQPerspective
+            perspective={["Maschinenperspektive", "Prozessperspektive", "Kostenperspektive", "Ressourcenperspektive"]}
+            tableID={props.tableID}
+          />
 
-
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button type="text" danger style={{ marginRight: 16 }}>
-            Zurücksetzen
-          </Button>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button type="text" danger style={{ marginRight: 16 }}>
+              Zurücksetzen
+            </Button>
+          </div>
         </div>
-      </Form>
+      </Form.Provider>
 
       <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
         <span style={{ margin: 0 }}>{props.resultInitials} = Platzhalter</span>
