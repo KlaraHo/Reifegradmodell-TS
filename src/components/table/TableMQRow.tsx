@@ -53,6 +53,7 @@ export function TableMQRow(props: {
             name="description"
             disabled={active ? props.isKpiRow : !active}
             defaultValue={props.defaultValueName}
+            style={{ width: 400 }}
           />
         </Form.Item>
         <Form.Item>
