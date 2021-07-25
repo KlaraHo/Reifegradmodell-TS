@@ -125,8 +125,8 @@ function App() {
         description={
           <>
             Bitte geben Sie die Instandhaltungsqualitätsindikatoren gemäß Ihrer Auswertung ein.
-            <br /> PI Kennzahlen können selbst benannt werden. Für Prozentangaben werden ganze Zahlen zwischen Null und
-            100 akzeptiert.
+            <br /> Für Prozentangaben werden ganze Zahlen zwischen Null und 100 akzeptiert.
+            <br /> PI Kennzahlen können selbst benannt werden.
           </>
         }
         backgroundColor="#dbf1ff"
