@@ -49,7 +49,11 @@ export function TableMQRow(props: {
         </Form.Item>
         <span>{props.step}</span>
         <Form.Item>
-          <Input name="description" disabled={props.isKpiRow} defaultValue={props.defaultValueName} />
+          <Input
+            name="description"
+            disabled={active ? props.isKpiRow : !active}
+            defaultValue={props.defaultValueName}
+          />
         </Form.Item>
         <Form.Item>
           <InputNumber
@@ -65,13 +69,15 @@ export function TableMQRow(props: {
         <Form.Item>
           <Input
             name="target_value"
-            disabled={props.isKpiRow}
+            disabled={active ? props.isKpiRow : !active}
             defaultValue={props.defaultValueTarget}
             key={props.tableID + "_" + props.perspective + "_" + props.gridRow + "_targetValue"}
           />
         </Form.Item>
         <Form.Item>
-          <span>{fulfilment}</span>
+          <div key={props.tableID + "_fulfilment_" + props.gridRow} style={{ color: active ? "#000" : "#ccc" }}>
+            {fulfilment}
+          </div>
         </Form.Item>
       </div>
     </Form>

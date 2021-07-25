@@ -358,8 +358,8 @@ export function Table(props: {
                 radar: {
                   size: 140,
                   polygons: {
-                    strokeColors: "#333",
-                    connectorColors: "#333"
+                    strokeColors: "#9D9F9E",
+                    connectorColors: "#9D9F9E"
                   }
                 }
               },
@@ -459,8 +459,8 @@ export function Table(props: {
                 radar: {
                   size: 140,
                   polygons: {
-                    strokeColors: "#333",
-                    connectorColors: "#333"
+                    strokeColors: "#9D9F9E",
+                    connectorColors: "#9D9F9E"
                   }
                 }
               },

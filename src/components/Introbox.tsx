@@ -23,11 +23,11 @@ const Introbox = () => {
           </div>
           <div className="row">
             <p style={{ marginTop: "3rem" }}>
-              Hier ist ein Infotext zum Reifegradmodell.
+              Mit diesem Tool ist es möglich den unternehmenseigenen Reifegrad der Instandhaltung zu berechnen.
               <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam rerum itaque, maiores ut nesciunt
-              perferendis at dolorem laudantium nostrum reprehenderit, harum amet corrupti sequi ab enim quae autem illo
-              alias.
+              Es werden vier Faktoren: Datenqualität D<sub>Q</sub>, Informationsqualität I<sub>Q</sub>, Wissensqualität
+              K<sub>Q</sub> und Instandhaltungsqualität K<sub>Q</sub> zur Berechnung herangezogen. <br />
+              Visuell unterstützt werden die Ergebnisse mit interaktiven Diagrammen.
             </p>
           </div>
         </div>

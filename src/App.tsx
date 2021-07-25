@@ -24,7 +24,8 @@ function App() {
         description={
           <>
             Bitte geben Sie die Datenqualitätsindikatoren gemäß Ihrer Auswertung ein.
-            <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
+            <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert. <br /> Quellen können
+            selbst benannt werden.
           </>
         }
         backgroundColor="#e6f5ff"
@@ -58,7 +59,8 @@ function App() {
         description={
           <>
             Bitte geben Sie die Informationsqualitätsindikatoren gemäß Ihrer Auswertung ein.
-            <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
+            <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert. <br /> Quellen können
+            selbst benannt werden.
           </>
         }
         backgroundColor="#dbf1ff"
@@ -91,7 +93,8 @@ function App() {
         description={
           <>
             Bitte geben Sie die Wissensqualitätsindikatoren gemäß Ihrer Auswertung ein.
-            <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
+            <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert. <br /> Quellen können
+            selbst benannt werden.
           </>
         }
         backgroundColor="#e6f5ff"
@@ -122,7 +125,8 @@ function App() {
         description={
           <>
             Bitte geben Sie die Instandhaltungsqualitätsindikatoren gemäß Ihrer Auswertung ein.
-            <br /> Es werden Zahlen mit zwei Nachkommastellen zwischen Null und Eins akzeptiert.
+            <br /> PI Kennzahlen können selbst benannt werden. Für Prozentangaben werden ganze Zahlen zwischen Null und
+            100 akzeptiert.
           </>
         }
         backgroundColor="#dbf1ff"
