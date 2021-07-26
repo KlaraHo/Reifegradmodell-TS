@@ -58,6 +58,19 @@ export function TableMQ(props: {
             piRowCount={3}
           />
 
+          <TableMQPerspective
+            perspective={"Prozessperspektive"}
+            tableID={props.tableID}
+            kpiRowCount={3}
+            defaultValueName={[
+              "Ratio Instandhaltungsaufträge ungeplant",
+              "Erfüllungsgrad ungeplanter Instandhaltungsaufträge",
+              "Erfüllungsgrad geplanter Instandhaltungsaufträge"
+            ]}
+            defaultValueTarget={[10, 75, 90]}
+            piRowCount={3}
+          />
+
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button type="text" danger style={{ marginRight: 16 }}>
               Zurücksetzen

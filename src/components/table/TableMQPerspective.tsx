@@ -23,7 +23,6 @@ export function TableMQPerspective(props: {
             marginRight: 4
           }}
         >
-          {/* Maschinenperspektive */}
           <div
             style={{
               marginBottom: 4,
@@ -61,6 +60,7 @@ export function TableMQPerspective(props: {
           })}
 
           <div style={{ marginTop: 20 }}>Aggregation:</div>
+          <div style={{ marginTop: 20 }}>Legende Platzhalter</div>
           <Divider />
         </div>
       </Form.Provider>

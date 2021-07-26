@@ -49,11 +49,7 @@ export function TableMQRow(props: {
         </Form.Item>
         <span>{props.step}</span>
         <Form.Item name="description">
-          <Input
-            disabled={active ? props.isKpiRow : !active}
-            defaultValue={props.defaultValueName}
-            style={{ width: 400 }}
-          />
+          <Input disabled={active ? props.isKpiRow : !active} defaultValue={props.defaultValueName} />
         </Form.Item>
         <Form.Item name="actual_value">
           <InputNumber
