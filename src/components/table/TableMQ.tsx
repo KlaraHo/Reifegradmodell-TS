@@ -50,8 +50,12 @@ export function TableMQ(props: {
       <Form.Provider>
         <div style={{ marginTop: 24 }}>
           <TableMQPerspective
-            perspective={["Maschinenperspektive", "Prozessperspektive", "Kostenperspektive", "Ressourcenperspektive"]}
+            perspective={"Maschinenperspektive"}
             tableID={props.tableID}
+            kpiRowCount={2}
+            defaultValueName={["Ratio ungeplante Stillstandzeit", "Overall Equipment Effectiveness"]}
+            defaultValueTarget={[20, 85]}
+            piRowCount={3}
           />
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>

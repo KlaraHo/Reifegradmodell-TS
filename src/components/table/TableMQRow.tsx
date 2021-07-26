@@ -2,7 +2,7 @@ import { Form, Checkbox, Input, InputNumber } from "antd";
 import React from "react";
 
 export function TableMQRow(props: {
-  gridRow: string;
+  row: number;
   isKpiRow?: boolean;
   step: string;
   defaultValueName?: string;
@@ -17,16 +17,16 @@ export function TableMQRow(props: {
   return (
     <Form
       form={form}
-      name={props.tableID + "_" + props.perspective + "_" + props.gridRow}
-      style={{ gridRow: `${props.gridRow}`, gridColumn: 2 }}
+      name={props.tableID + "_" + props.perspective + "_" + props.row}
+      style={{ gridRow: `${props.row}`, gridColumn: 2 }}
       onValuesChange={(_, values) => {
         // if (values.active) {
-          let actualValue = form.getFieldValue("actual_value");
-          let targetValue = form.getFieldValue("target_value");
+        let actualValue = form.getFieldValue("actual_value");
+        let targetValue = form.getFieldValue("target_value");
 
-          console.log(actualValue);
+        console.log(actualValue);
 
-          setFulfilment((actualValue / targetValue) * 100);
+        setFulfilment((actualValue / targetValue) * 100);
         // }
       }}
     >
@@ -58,7 +58,7 @@ export function TableMQRow(props: {
         <Form.Item name="actual_value">
           <InputNumber
             disabled={!active}
-            key={props.tableID + "_" + props.perspective + "_" + props.gridRow + "_actualValue"}
+            key={props.tableID + "_" + props.perspective + "_" + props.row + "_actualValue"}
             size="small"
             min="0"
             max="100"
@@ -69,11 +69,11 @@ export function TableMQRow(props: {
           <Input
             disabled={active ? props.isKpiRow : !active}
             defaultValue={props.defaultValueTarget}
-            key={props.tableID + "_" + props.perspective + "_" + props.gridRow + "_targetValue"}
+            key={props.tableID + "_" + props.perspective + "_" + props.row + "_targetValue"}
           />
         </Form.Item>
         <Form.Item>
-          <div key={props.tableID + "_fulfilment_" + props.gridRow} style={{ color: active ? "#000" : "#ccc" }}>
+          <div key={props.tableID + "_fulfilment_" + props.row} style={{ color: active ? "#000" : "#ccc" }}>
             {fulfilment.toFixed(0)}
           </div>
         </Form.Item>
