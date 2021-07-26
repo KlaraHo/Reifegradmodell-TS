@@ -20,14 +20,14 @@ export function TableMQRow(props: {
       name={props.tableID + "_" + props.perspective + "_" + props.gridRow}
       style={{ gridRow: `${props.gridRow}`, gridColumn: 2 }}
       onValuesChange={(_, values) => {
-        if (values.active) {
+        // if (values.active) {
           let actualValue = form.getFieldValue("actual_value");
           let targetValue = form.getFieldValue("target_value");
 
           console.log(actualValue);
 
           setFulfilment((actualValue / targetValue) * 100);
-        }
+        // }
       }}
     >
       <div
@@ -38,7 +38,7 @@ export function TableMQRow(props: {
           columnGap: 16
         }}
       >
-        <Form.Item>
+        <Form.Item name="active">
           <Checkbox
             style={{ marginTop: 4 }}
             checked={active}
@@ -48,17 +48,15 @@ export function TableMQRow(props: {
           />
         </Form.Item>
         <span>{props.step}</span>
-        <Form.Item>
+        <Form.Item name="description">
           <Input
-            name="description"
             disabled={active ? props.isKpiRow : !active}
             defaultValue={props.defaultValueName}
             style={{ width: 400 }}
           />
         </Form.Item>
-        <Form.Item>
+        <Form.Item name="actual_value">
           <InputNumber
-            name="actual_value"
             disabled={!active}
             key={props.tableID + "_" + props.perspective + "_" + props.gridRow + "_actualValue"}
             size="small"
@@ -67,9 +65,8 @@ export function TableMQRow(props: {
             step="1"
           />
         </Form.Item>
-        <Form.Item>
+        <Form.Item name="target_value">
           <Input
-            name="target_value"
             disabled={active ? props.isKpiRow : !active}
             defaultValue={props.defaultValueTarget}
             key={props.tableID + "_" + props.perspective + "_" + props.gridRow + "_targetValue"}
@@ -77,7 +74,7 @@ export function TableMQRow(props: {
         </Form.Item>
         <Form.Item>
           <div key={props.tableID + "_fulfilment_" + props.gridRow} style={{ color: active ? "#000" : "#ccc" }}>
-            {fulfilment}
+            {fulfilment.toFixed(0)}
           </div>
         </Form.Item>
       </div>

@@ -1,4 +1,4 @@
-import { Checkbox, Form, Input, InputNumber, PopoverProps } from "antd";
+import { Checkbox, Form, Input, InputNumber } from "antd";
 import React from "react";
 import { ITableColumn } from "./Table";
 

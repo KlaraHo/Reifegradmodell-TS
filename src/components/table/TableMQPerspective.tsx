@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Form, Card } from "antd";
+import { Divider, Form } from "antd";
 import { TableMQRow } from "./TableMQRow";
 
 export function TableMQPerspective(props: { perspective: string[]; tableID: string }) {
