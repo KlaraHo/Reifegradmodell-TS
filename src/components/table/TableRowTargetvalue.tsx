@@ -45,6 +45,7 @@ export function TableRowTargetvalue(props: {
       {props.columns.map((column, index) => {
         return (
           <Form.Item
+            key={index}
             name={props.tableID + "_targetValue_" + column.name}
             rules={[{ required: false, type: "regexp", message: "TODO" }]}
           >

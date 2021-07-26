@@ -83,6 +83,7 @@ export function TableRow(props: {
       {props.columns.map((column, index) => {
         return (
           <Form.Item
+            key={index}
             name={column.name}
             rules={[{ required: false, message: "Zahl zwischen 0 & 1 mit 2 Dezimalstellen" }]}
           >

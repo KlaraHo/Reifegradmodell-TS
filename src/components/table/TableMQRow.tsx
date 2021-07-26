@@ -34,8 +34,8 @@ export function TableMQRow(props: {
       initialValues={{
         active: true,
         description: props.defaultValueName,
-        actual_value: 0,
-        target_value: props.defaultValueTarget || 0
+        actual_value: "",
+        target_value: props.defaultValueTarget || ""
       }}
     >
       <div
@@ -58,7 +58,7 @@ export function TableMQRow(props: {
         <span>{props.step}</span>
         <Form.Item name="description">
           <Input
-          // disabled={active ? props.isKpiRow : !active}
+          disabled={active ? props.isKpiRow : !active}
           />
         </Form.Item>
         <Form.Item name="actual_value">
@@ -73,7 +73,7 @@ export function TableMQRow(props: {
         </Form.Item>
         <Form.Item name="target_value">
           <InputNumber
-            // disabled={active ? props.isKpiRow : !active}
+            disabled={active ? props.isKpiRow : !active}
             key={props.tableID + "_" + props.perspective + "_" + props.row + "_targetValue"}
           />
         </Form.Item>

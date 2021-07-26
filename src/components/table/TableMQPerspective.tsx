@@ -1,8 +1,6 @@
-import React from "react";
 import { Divider, Form } from "antd";
+import React from "react";
 import { TableMQRow } from "./TableMQRow";
-import SubMenu from "antd/lib/menu/SubMenu";
-import { setSourceMapRange } from "typescript";
 
 export function TableMQPerspective(props: {
   perspective: string;
@@ -18,26 +16,26 @@ export function TableMQPerspective(props: {
     <>
       <Form.Provider
         onFormChange={(name, info) => {
-          console.log(name, info);
-
           let total = 0;
           let totalWeights = 0;
 
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           for (const [_formName, form] of Object.entries(info.forms)) {
             if (form.getFieldValue("active")) {
-              const actualValue = form.getFieldValue("actual_value") || 0;
-              const targetValue = form.getFieldValue("target_value") || 0;
+              if (Number.isFinite(form.getFieldValue("actual_value"))) {
+                const actualValue = form.getFieldValue("actual_value") || 0;
+                const targetValue = form.getFieldValue("target_value");
 
-              console.log(
-                "values",
-                actualValue,
-                targetValue,
-                form.getFieldValue("actual_value"),
-                form.getFieldValue("target_value")
-              );
+                // console.log(
+                //   "values",
+                //   actualValue,
+                //   targetValue,
+                //   form.getFieldValue("actual_value"),
+                //   form.getFieldValue("target_value")
+                // );
 
-              if (Number.isFinite(actualValue)) {
-                let qi = targetValue === 0 ? 1 : ((actualValue / targetValue) as number);
+                let qi =
+                  !Number.isFinite(targetValue) || targetValue === 0 ? 1 : ((actualValue / targetValue) as number);
 
                 if (qi <= 0.5) {
                   total += qi * 1.3;
@@ -49,8 +47,6 @@ export function TableMQPerspective(props: {
               }
             }
           }
-
-          console.log("total", total, totalWeights);
 
           if (totalWeights) {
             setSum(total / totalWeights);
@@ -80,6 +76,7 @@ export function TableMQPerspective(props: {
           {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
             return (
               <TableMQRow
+                key={row}
                 row={row}
                 isKpiRow={true}
                 step="KPI"
@@ -91,9 +88,10 @@ export function TableMQPerspective(props: {
             );
           })}
 
-          {Array.from({ length: props.piRowCount }, (x, i) => i).map((row) => {
+          {Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
             return (
               <TableMQRow
+                key={row}
                 row={row}
                 isKpiRow={false}
                 step="PI"
@@ -103,7 +101,7 @@ export function TableMQPerspective(props: {
             );
           })}
 
-          <div style={{ marginTop: 20 }}>Aggregation: {sum * 100} % </div>
+          <div style={{ marginTop: 20 }}>Aggregation: {(sum * 100).toFixed(0)} % </div>
           <div style={{ marginTop: 20 }}>Legende Platzhalter</div>
           <Divider />
         </div>

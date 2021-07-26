@@ -248,6 +248,7 @@ export function Table(props: {
         {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
           return (
             <TableRow
+              key={row}
               columns={props.columns}
               row={row}
               sourceInputPlaceholder={props.sourceInputPlaceholder}
