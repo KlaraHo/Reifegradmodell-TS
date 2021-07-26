@@ -20,10 +20,10 @@ export function TableMQRow(props: {
       name={props.tableID + "_" + props.perspective + "_" + props.row}
       style={{ gridRow: `${props.row}`, gridColumn: 2 }}
       onValuesChange={(_, values) => {
-        let actualValue = form.getFieldValue("actual_value");
+        let actualValue = form.getFieldValue("actual_value") || 0;
         let targetValue = form.getFieldValue("target_value") || 0;
 
-        console.log(actualValue, targetValue);
+        console.log("rowValues", actualValue, targetValue);
 
         if (targetValue === 0) {
           setFulfilment(100);
@@ -34,7 +34,8 @@ export function TableMQRow(props: {
       initialValues={{
         active: true,
         description: props.defaultValueName,
-        target_value: props.defaultValueTarget
+        actual_value: 0,
+        target_value: props.defaultValueTarget || 0
       }}
     >
       <div
@@ -45,7 +46,7 @@ export function TableMQRow(props: {
           columnGap: 16
         }}
       >
-        <Form.Item name="active">
+        <Form.Item name="active" valuePropName="checked">
           <Checkbox
             style={{ marginTop: 4 }}
             checked={active}
@@ -56,7 +57,9 @@ export function TableMQRow(props: {
         </Form.Item>
         <span>{props.step}</span>
         <Form.Item name="description">
-          <Input disabled={active ? props.isKpiRow : !active} />
+          <Input
+          // disabled={active ? props.isKpiRow : !active}
+          />
         </Form.Item>
         <Form.Item name="actual_value">
           <InputNumber
@@ -70,7 +73,7 @@ export function TableMQRow(props: {
         </Form.Item>
         <Form.Item name="target_value">
           <InputNumber
-            disabled={active ? props.isKpiRow : !active}
+            // disabled={active ? props.isKpiRow : !active}
             key={props.tableID + "_" + props.perspective + "_" + props.row + "_targetValue"}
           />
         </Form.Item>

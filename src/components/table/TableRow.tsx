@@ -67,7 +67,7 @@ export function TableRow(props: {
         <Input style={{ marginTop: 6 }} />
       </Form.Item>
 
-      <Form.Item name="active" rules={[{ required: false }]} valuePropName="checked">
+      <Form.Item name="active" valuePropName="checked">
         <Checkbox
           style={{ marginTop: 6 }}
           checked={active}
