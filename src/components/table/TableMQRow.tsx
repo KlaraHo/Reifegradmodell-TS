@@ -70,7 +70,7 @@ export function TableMQRow(props: {
         </Form.Item>
         <Form.Item>
           <div key={props.tableID + "_fulfilment_" + props.row} style={{ color: active ? "#000" : "#ccc" }}>
-            {fulfilment.toFixed(0)}
+            {fulfilment.toFixed(0)} %
           </div>
         </Form.Item>
       </div>
