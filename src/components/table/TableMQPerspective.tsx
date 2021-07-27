@@ -1,6 +1,6 @@
 import { Divider, Form } from "antd";
+import { truncate } from "fs";
 import React, { Props } from "react";
-import { ShorthandPropertyAssignment } from "typescript";
 import { TableMQRow } from "./TableMQRow";
 
 export interface tableLegend {
@@ -16,8 +16,11 @@ export function TableMQPerspective(props: {
   defaultValueTarget: number[];
   piRowCount: number;
   tableLegend: tableLegend[];
+  // onPerspectiveChange(value: number): void;
 }) {
   const [sum, setSum] = React.useState<number>(0);
+  const [sumKpi, setSumKpi] = React.useState<number>(0);
+  const [sumPi, setSumPi] = React.useState<number>(0);
 
   return (
     <>
@@ -26,38 +29,67 @@ export function TableMQPerspective(props: {
           let total = 0;
           let totalWeights = 0;
 
+          let totalKpi = 0;
+          let totalWeightsKpi = 0;
+
+          let totalPi = 0;
+          let totalWeightsPi = 0;
+
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           for (const [_formName, form] of Object.entries(info.forms)) {
             if (form.getFieldValue("active")) {
               if (Number.isFinite(form.getFieldValue("actual_value"))) {
-                const actualValue = form.getFieldValue("actual_value") || 0;
-                const targetValue = form.getFieldValue("target_value");
+                // hier muss noch die richtige Bedingung rein
+                if (props.kpiRowCount <= props.kpiRowCount) {
+                  const actualValue = form.getFieldValue("actual_value") || 0;
+                  const targetValue = form.getFieldValue("target_value");
 
-                // console.log(
-                //   "values",
-                //   actualValue,
-                //   targetValue,
-                //   form.getFieldValue("actual_value"),
-                //   form.getFieldValue("target_value")
-                // );
+                  let qi =
+                    !Number.isFinite(targetValue) || targetValue === 0 ? 1 : ((actualValue / targetValue) as number);
 
-                let qi =
-                  !Number.isFinite(targetValue) || targetValue === 0 ? 1 : ((actualValue / targetValue) as number);
+                  if (qi <= 0.5) {
+                    totalKpi += qi * 1.3;
+                    totalWeightsKpi += 1.3;
+                  } else {
+                    totalKpi += qi;
+                    totalWeightsKpi += 1;
+                  }
 
-                if (qi <= 0.5) {
-                  total += qi * 1.3;
-                  totalWeights += 1.3;
-                } else {
-                  total += qi;
-                  totalWeights += 1;
+                  console.log("KPI", totalKpi, totalWeightsKpi);
+
+                  if (totalWeightsKpi) {
+                    setSumKpi(totalKpi / totalWeightsKpi);
+                  }
+                }
+                // hier muss noch die richtige Bedingung rein
+                else if (props.kpiRowCount > props.kpiRowCount) {
+                  const actualValue = form.getFieldValue("actual_value") || 0;
+                  const targetValue = form.getFieldValue("target_value");
+
+                  let qi =
+                    !Number.isFinite(targetValue) || targetValue === 0 ? 1 : ((actualValue / targetValue) as number);
+
+                  if (qi <= 0.5) {
+                    totalPi += qi * 1.3;
+                    totalWeightsPi += 1.3;
+                  } else {
+                    totalPi += qi;
+                    totalWeightsPi += 1;
+                  }
+
+                  if (totalWeightsPi) {
+                    setSumPi(totalPi / totalWeightsPi);
+                  }
                 }
               }
             }
           }
 
-          if (totalWeights) {
-            setSum(total / totalWeights);
-          }
+          // if (totalWeightsKpi || totalWeightsPi) {
+          setSum(sumKpi * 0.66 + sumPi * 0.33);
+          // }
+
+          // props.onPerspectiveChange(sum)
         }}
       >
         <div
