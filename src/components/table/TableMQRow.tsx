@@ -3,7 +3,7 @@ import React from "react";
 
 export function TableMQRow(props: {
   row: number;
-  isKpiRow?: boolean;
+  isKpiRow: boolean;
   step: string;
   defaultValueName?: string;
   defaultValueTarget?: number;
@@ -27,8 +27,10 @@ export function TableMQRow(props: {
 
         if (targetValue === 0) {
           setFulfilment(100);
-        } else {
+        } else if (actualValue <= targetValue) {
           setFulfilment((actualValue / targetValue) * 100);
+        } else if (targetValue < actualValue) {
+          setFulfilment((targetValue / actualValue) * 100);
         }
       }}
       initialValues={{
@@ -57,9 +59,7 @@ export function TableMQRow(props: {
         </Form.Item>
         <span>{props.step}</span>
         <Form.Item name="description">
-          <Input
-          disabled={active ? props.isKpiRow : !active}
-          />
+          <Input disabled={active ? props.isKpiRow : !active} />
         </Form.Item>
         <Form.Item name="actual_value">
           <InputNumber
