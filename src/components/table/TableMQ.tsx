@@ -12,7 +12,21 @@ export function TableMQ(props: {
   resultInitials: string;
   maturityWeight: number;
   tableID: string;
+  // sum: number;
 }) {
+  // let sums :number[] = [];
+  // sums.push(props.sum);
+
+  // Calculate Metric: MQ
+  // const calculateMetric = () => {
+  //   let totalMetric = 0;
+
+  //   sums.forEach((sum, index) => {
+  //     const weightedSum =
+  //   })
+
+  // }
+
   return (
     <div
       style={{
@@ -75,7 +89,6 @@ export function TableMQ(props: {
               { shortcut: "EGiha,gep", name: "Erfüllungsgrad geplanter Instandhaltungsaufträge" }
             ]}
           />
-
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button type="text" danger style={{ marginRight: 16 }}>
