@@ -36,16 +36,18 @@ export function TableMQPerspective(props: {
           let totalWeightsPi = 0;
 
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
           for (const [_formName, form] of Object.entries(info.forms)) {
             if (form.getFieldValue("active")) {
               if (Number.isFinite(form.getFieldValue("actual_value"))) {
-                // hier muss noch die richtige Bedingung rein
-                if (props.kpiRowCount <= props.kpiRowCount) {
-                  const actualValue = form.getFieldValue("actual_value") || 0;
-                  const targetValue = form.getFieldValue("target_value");
+                if (form.getFieldValue("step") === "KPI") {
+                  const actualValueKPI = form.getFieldValue("actual_value") || 0;
+                  const targetValueKPI = form.getFieldValue("target_value");
 
                   let qi =
-                    !Number.isFinite(targetValue) || targetValue === 0 ? 1 : ((actualValue / targetValue) as number);
+                    !Number.isFinite(targetValueKPI) || targetValueKPI === 0
+                      ? 1
+                      : ((actualValueKPI / targetValueKPI) as number);
 
                   if (qi <= 0.5) {
                     totalKpi += qi * 1.3;
@@ -60,14 +62,14 @@ export function TableMQPerspective(props: {
                   if (totalWeightsKpi) {
                     setSumKpi(totalKpi / totalWeightsKpi);
                   }
-                }
-                // hier muss noch die richtige Bedingung rein
-                else if (props.kpiRowCount > props.kpiRowCount) {
-                  const actualValue = form.getFieldValue("actual_value") || 0;
-                  const targetValue = form.getFieldValue("target_value");
+                } else if (form.getFieldValue("step") === "PI") {
+                  const actualValuePI = form.getFieldValue("actual_value") || 0;
+                  const targetValuePI = form.getFieldValue("target_value");
 
                   let qi =
-                    !Number.isFinite(targetValue) || targetValue === 0 ? 1 : ((actualValue / targetValue) as number);
+                    !Number.isFinite(targetValuePI) || targetValuePI === 0
+                      ? 1
+                      : ((actualValuePI / targetValuePI) as number);
 
                   if (qi <= 0.5) {
                     totalPi += qi * 1.3;
@@ -76,6 +78,7 @@ export function TableMQPerspective(props: {
                     totalPi += qi;
                     totalWeightsPi += 1;
                   }
+                  console.log("PI", totalPi, totalWeightsPi);
 
                   if (totalWeightsPi) {
                     setSumPi(totalPi / totalWeightsPi);
@@ -85,9 +88,7 @@ export function TableMQPerspective(props: {
             }
           }
 
-          // if (totalWeightsKpi || totalWeightsPi) {
           setSum(sumKpi * 0.66 + sumPi * 0.33);
-          // }
 
           // props.onPerspectiveChange(sum)
         }}
