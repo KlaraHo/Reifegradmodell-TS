@@ -199,7 +199,6 @@ export function Table(props: {
                 }
               }
             });
-
             setSums(sums);
 
             // Calculate Row Aggregation for Chart

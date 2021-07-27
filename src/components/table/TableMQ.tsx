@@ -53,23 +53,29 @@ export function TableMQ(props: {
             perspective={"Maschinenperspektive"}
             tableID={props.tableID}
             kpiRowCount={2}
-            defaultValueName={["Ratio ungeplante Stillstandzeit", "Overall Equipment Effectiveness"]}
+            defaultValueName={["Rss,ugep", "OEE"]}
             defaultValueTarget={[20, 85]}
             piRowCount={3}
+            tableLegend={[
+              { shortcut: "Rss,ugep", name: "Ratio ungeplante Stillstandzeit" },
+              { shortcut: "OEE", name: "Overall Equipment Effectiveness" }
+            ]}
           />
 
           <TableMQPerspective
             perspective={"Prozessperspektive"}
             tableID={props.tableID}
             kpiRowCount={3}
-            defaultValueName={[
-              "Ratio Instandhaltungsaufträge ungeplant",
-              "Erfüllungsgrad ungeplanter Instandhaltungsaufträge",
-              "Erfüllungsgrad geplanter Instandhaltungsaufträge"
-            ]}
+            defaultValueName={["Riha,ugep", "EGiha,ugep", "EGiha,gep"]}
             defaultValueTarget={[10, 75, 90]}
             piRowCount={3}
+            tableLegend={[
+              { shortcut: "Riha,ugep", name: "Ratio Instandhaltungsaufträge ungeplant" },
+              { shortcut: "EGiha,ugep", name: "Erfüllungsgrad ungeplanter Instandhaltungsaufträge" },
+              { shortcut: "EGiha,gep", name: "Erfüllungsgrad geplanter Instandhaltungsaufträge" }
+            ]}
           />
+
 
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button type="text" danger style={{ marginRight: 16 }}>

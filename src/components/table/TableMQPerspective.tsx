@@ -1,6 +1,12 @@
 import { Divider, Form } from "antd";
-import React from "react";
+import React, { Props } from "react";
+import { ShorthandPropertyAssignment } from "typescript";
 import { TableMQRow } from "./TableMQRow";
+
+export interface tableLegend {
+  shortcut: string;
+  name: string;
+}
 
 export function TableMQPerspective(props: {
   perspective: string;
@@ -9,6 +15,7 @@ export function TableMQPerspective(props: {
   defaultValueName: string[];
   defaultValueTarget: number[];
   piRowCount: number;
+  tableLegend: tableLegend[];
 }) {
   const [sum, setSum] = React.useState<number>(0);
 
@@ -102,7 +109,18 @@ export function TableMQPerspective(props: {
           })}
 
           <div style={{ marginTop: 20 }}>Aggregation: {(sum * 100).toFixed(0)} % </div>
-          <div style={{ marginTop: 20 }}>Legende Platzhalter</div>
+          <div style={{ textAlign: "center", marginTop: 4 }}>
+            {props.tableLegend.map((term, index) => {
+              return (
+                <span
+                  style={{ fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }}
+                  key={index}
+                >
+                  {term.shortcut + "..." + term.name + ", "}
+                </span>
+              );
+            })}
+          </div>
           <Divider />
         </div>
       </Form.Provider>

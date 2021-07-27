@@ -45,6 +45,10 @@ button hover: #004d80
   color: #ff4d4f !important;
 }
 
+.ant-input-number-input {
+height: 22px !important;
+}
+
 /* === GLOBAL === */
 
 html {
