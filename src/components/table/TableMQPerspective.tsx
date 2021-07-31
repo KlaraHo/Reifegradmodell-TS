@@ -1,6 +1,6 @@
 import { Divider, Form } from "antd";
-import { truncate } from "fs";
 import React, { Props } from "react";
+import Chart from "react-apexcharts";
 import { TableMQRow } from "./TableMQRow";
 
 export interface tableLegend {
@@ -15,12 +15,25 @@ export function TableMQPerspective(props: {
   defaultValueName: string[];
   defaultValueTarget: number[];
   piRowCount: number;
+  defaultValuePIName: string;
   tableLegend: tableLegend[];
   // onPerspectiveChange(value: number): void;
 }) {
+  const initialMQRowDescriptions: string[] = [];
+  for (let i = 0; i < props.kpiRowCount + props.piRowCount; i++) {
+    initialMQRowDescriptions.push(`${props.defaultValueName} ${i + 1}`);
+  }
+
+  const initialFulfilment: number[] = [];
+  for (let i = 0; i < props.kpiRowCount + props.piRowCount; i++) {
+    initialFulfilment.push(0);
+  }
+
   const [sum, setSum] = React.useState<number>(0);
   const [sumKpi, setSumKpi] = React.useState<number>(0);
   const [sumPi, setSumPi] = React.useState<number>(0);
+  const [MQRowDescriptions, setMQRowDescriptions] = React.useState<string[]>(initialMQRowDescriptions);
+  const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
 
   return (
     <>
@@ -36,7 +49,6 @@ export function TableMQPerspective(props: {
           let totalWeightsPi = 0;
 
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
           for (const [_formName, form] of Object.entries(info.forms)) {
             if (form.getFieldValue("active")) {
               if (Number.isFinite(form.getFieldValue("actual_value"))) {
@@ -85,10 +97,14 @@ export function TableMQPerspective(props: {
                   }
                 }
               }
+
+              const newMQRowDescriptions = [];
+              newMQRowDescriptions.push(form.getFieldValue("description"));
             }
           }
 
           setSum(sumKpi * 0.66 + sumPi * 0.33);
+          // setMQRowDescriptions(newMQRowDescriptions);
 
           // props.onPerspectiveChange(sum)
         }}
@@ -153,6 +169,82 @@ export function TableMQPerspective(props: {
                 </span>
               );
             })}
+          </div>
+          <div style={{ marginTop: 24 }}>
+            <Chart
+              // Perspective Chart
+              options={{
+                chart: {
+                  id: "basic-bar"
+                },
+                xaxis: {
+                  categories: MQRowDescriptions,
+                  labels: {
+                    show: true,
+                    style: {
+                      colors: ["#000", "#000", "#000", "#000", "#000", "#000"],
+                      fontSize: "12px"
+                    }
+                  }
+                },
+                yaxis: {
+                  forceNiceScale: true,
+                  min: 0,
+                  max: 1,
+                  labels: {
+                    maxWidth: 1,
+                    style: {
+                      colors: ["#000"]
+                    },
+                    formatter: function (val, index) {
+                      return val.toFixed(2);
+                    }
+                  }
+                },
+                legend: {
+                  showForSingleSeries: true,
+                  markers: {
+                    fillColors: ["#FFE000"]
+                  }
+                },
+                stroke: {
+                  show: true,
+                  colors: ["#FFE000"]
+                },
+                fill: {
+                  colors: ["#FFE000"],
+                  opacity: 0.1
+                },
+                markers: {
+                  size: 4,
+                  colors: ["#FFE000"],
+                  hover: {
+                    size: 6
+                  }
+                },
+                plotOptions: {
+                  radar: {
+                    size: 140,
+                    polygons: {
+                      strokeColors: "#9D9F9E",
+                      connectorColors: "#9D9F9E"
+                    }
+                  }
+                },
+                title: {
+                  text: `${props.perspective} Diagramm`
+                }
+              }}
+              series={[
+                {
+                  name: `KPI & PI Quellen`,
+                  data: fulfilment
+                }
+              ]}
+              type="radar"
+              width="700"
+              // key={reset + "b"}
+            />
           </div>
           <Divider />
         </div>

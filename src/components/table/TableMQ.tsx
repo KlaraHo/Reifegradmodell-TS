@@ -70,6 +70,7 @@ export function TableMQ(props: {
             defaultValueName={["Rss,ugep", "OEE"]}
             defaultValueTarget={[20, 85]}
             piRowCount={3}
+            defaultValuePIName={"PI Name"}
             tableLegend={[
               { shortcut: "Rss,ugep", name: "Ratio ungeplante Stillstandzeit" },
               { shortcut: "OEE", name: "Overall Equipment Effectiveness" }
@@ -83,6 +84,7 @@ export function TableMQ(props: {
             defaultValueName={["Riha,ugep", "EGiha,ugep", "EGiha,gep"]}
             defaultValueTarget={[10, 75, 90]}
             piRowCount={3}
+            defaultValuePIName={"PI Name"}
             tableLegend={[
               { shortcut: "Riha,ugep", name: "Ratio Instandhaltungsaufträge ungeplant" },
               { shortcut: "EGiha,ugep", name: "Erfüllungsgrad ungeplanter Instandhaltungsaufträge" },

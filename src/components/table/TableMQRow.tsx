@@ -9,10 +9,13 @@ export function TableMQRow(props: {
   defaultValueTarget?: number;
   tableID: string;
   perspective: string;
+  onActiveChange?(active: boolean): void;
 }) {
   const [form] = Form.useForm();
   const [active, setActive] = React.useState<boolean>(true);
   const [fulfilment, setFulfilment] = React.useState<number>(0);
+
+  let categoriesPerspectiveChart = []
 
   return (
     <Form
@@ -38,7 +41,7 @@ export function TableMQRow(props: {
         step: props.step,
         description: props.defaultValueName,
         actual_value: "",
-        target_value: props.defaultValueTarget || ""
+        target_value: props.defaultValueTarget || "",
       }}
     >
       <div
@@ -55,6 +58,9 @@ export function TableMQRow(props: {
             checked={active}
             onChange={(event) => {
               setActive(event.target.checked);
+              if (props.onActiveChange) {
+                props.onActiveChange(event.target.checked);
+              }
             }}
           />
         </Form.Item>
@@ -82,7 +88,7 @@ export function TableMQRow(props: {
             key={props.tableID + "_" + props.perspective + "_" + props.row + "_targetValue"}
           />
         </Form.Item>
-        <Form.Item>
+        <Form.Item name="fulfilment">
           <div key={props.tableID + "_fulfilment_" + props.row} style={{ color: active ? "#000" : "#ccc" }}>
             {fulfilment.toFixed(0)} %
           </div>
