@@ -69,7 +69,7 @@ export function TableMQPerspective(props: {
                     totalWeightsKpi += 1;
                   }
 
-                  console.log("KPI", totalKpi, totalWeightsKpi);
+                  console.log("KPI", totalKpi, "Weights KPI", totalWeightsKpi);
 
                   if (totalWeightsKpi) {
                     setSumKpi(totalKpi / totalWeightsKpi);
@@ -98,8 +98,13 @@ export function TableMQPerspective(props: {
                 }
               }
 
-              const newMQRowDescriptions = [];
-              newMQRowDescriptions.push(form.getFieldValue("description"));
+              const newFulfilment: number[] = [];
+              newFulfilment.push(form.getFieldValue("fulfilment"));
+              console.log("Fulfilment", newFulfilment);
+              setFulfilment(newFulfilment);
+
+              // const newMQRowDescriptions = []; extra for schleife für desciption jeder row?
+              // newMQRowDescriptions.push(form.getFieldValue("description"));
             }
           }
 
