@@ -67,7 +67,7 @@ export function TableMQ(props: {
             perspective={"Maschinenperspektive"}
             tableID={props.tableID}
             kpiRowCount={2}
-            defaultValueName={["Rss,ugep", "OEE"]}
+            defaultValueName={["Rss,ugep", "OEE", "PI Name 1", "PI Name 2", "PI Name 3"]}
             defaultValueTarget={[20, 85]}
             piRowCount={3}
             defaultValuePIName={"PI Name"}
@@ -77,11 +77,11 @@ export function TableMQ(props: {
             ]}
           />
 
-          <TableMQPerspective
+          {/* <TableMQPerspective
             perspective={"Prozessperspektive"}
             tableID={props.tableID}
             kpiRowCount={3}
-            defaultValueName={["Riha,ugep", "EGiha,ugep", "EGiha,gep"]}
+            defaultValueName={["Riha,ugep", "EGiha,ugep", "EGiha,gep", "PI Name 1", "PI Name 2", "PI Name 3"]}
             defaultValueTarget={[10, 75, 90]}
             piRowCount={3}
             defaultValuePIName={"PI Name"}
@@ -89,14 +89,10 @@ export function TableMQ(props: {
               { shortcut: "Riha,ugep", name: "Ratio Instandhaltungsaufträge ungeplant" },
               { shortcut: "EGiha,ugep", name: "Erfüllungsgrad ungeplanter Instandhaltungsaufträge" },
               { shortcut: "EGiha,gep", name: "Erfüllungsgrad geplanter Instandhaltungsaufträge" }
-            ]}
-          />
+            ]} */}
+          {/* /> */}
 
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button type="text" danger style={{ marginRight: 16 }}>
-              Zurücksetzen
-            </Button>
-          </div>
+
         </div>
       </Form.Provider>
 

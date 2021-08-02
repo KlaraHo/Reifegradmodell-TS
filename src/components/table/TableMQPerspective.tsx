@@ -1,7 +1,7 @@
-import { Divider, Form } from "antd";
+import { Divider, Form, Button } from "antd";
 import React, { Props } from "react";
 import Chart from "react-apexcharts";
-import { TableMQRow } from "./TableMQRow";
+import { calculateFulfilment, TableMQRow } from "./TableMQRow";
 
 export interface tableLegend {
   shortcut: string;
@@ -21,7 +21,7 @@ export function TableMQPerspective(props: {
 }) {
   const initialMQRowDescriptions: string[] = [];
   for (let i = 0; i < props.kpiRowCount + props.piRowCount; i++) {
-    initialMQRowDescriptions.push(`${props.defaultValueName} ${i + 1}`);
+    initialMQRowDescriptions.push(props.defaultValueName[i]);
   }
 
   const initialFulfilment: number[] = [];
@@ -37,7 +37,6 @@ export function TableMQPerspective(props: {
     <>
       <Form.Provider
         onFormChange={(name, info) => {
-
           let totalKpi = 0;
           let totalWeightsKpi = 0;
           let sumKpi = 0;
@@ -46,19 +45,25 @@ export function TableMQPerspective(props: {
           let totalWeightsPi = 0;
           let sumPi = 0;
 
+          const newMQRowDescriptions = [];
+          const newFulfilment: number[] = [];
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           for (const [_formName, form] of Object.entries(info.forms)) {
             if (form.getFieldValue("active")) {
+              const actualValue = form.getFieldValue("actual_value") || 0;
+              const targetValue = form.getFieldValue("target_value");
               if (Number.isFinite(form.getFieldValue("actual_value"))) {
+                let qi = 1;
+                if (!Number.isFinite(targetValue) || targetValue === 0) {
+                  qi = 1;
+                } else if (actualValue > targetValue) {
+                  qi = targetValue / actualValue;
+                } else if (actualValue <= targetValue) {
+                  qi = actualValue / targetValue;
+                } else {
+                  console.error("Something went wrong in aggregation calculation!");
+                }
                 if (form.getFieldValue("step") === "KPI") {
-                  const actualValueKPI = form.getFieldValue("actual_value") || 0;
-                  const targetValueKPI = form.getFieldValue("target_value");
-
-                  let qi =
-                    !Number.isFinite(targetValueKPI) || targetValueKPI === 0
-                      ? 1
-                      : ((actualValueKPI / targetValueKPI) as number);
-
                   if (qi <= 0.5) {
                     totalKpi += qi * 1.3;
                     totalWeightsKpi += 1.3;
@@ -67,20 +72,12 @@ export function TableMQPerspective(props: {
                     totalWeightsKpi += 1;
                   }
 
-                  console.log("KPI", totalKpi, "Weights KPI", totalWeightsKpi);
+                  // console.log("KPI", totalKpi, "Weights KPI", totalWeightsKpi);
 
                   if (totalWeightsKpi) {
-                    sumKpi = (totalKpi / totalWeightsKpi);
+                    sumKpi = totalKpi / totalWeightsKpi;
                   }
                 } else if (form.getFieldValue("step") === "PI") {
-                  const actualValuePI = form.getFieldValue("actual_value") || 0;
-                  const targetValuePI = form.getFieldValue("target_value");
-
-                  let qi =
-                    !Number.isFinite(targetValuePI) || targetValuePI === 0
-                      ? 1
-                      : ((actualValuePI / targetValuePI) as number);
-
                   if (qi <= 0.5) {
                     totalPi += qi * 1.3;
                     totalWeightsPi += 1.3;
@@ -88,27 +85,27 @@ export function TableMQPerspective(props: {
                     totalPi += qi;
                     totalWeightsPi += 1;
                   }
-                  console.log("PI", totalPi, totalWeightsPi);
+                  // console.log("PI", totalPi, totalWeightsPi);
 
                   if (totalWeightsPi) {
-                    sumPi = (totalPi / totalWeightsPi);
+                    sumPi = totalPi / totalWeightsPi;
                   }
                 }
               }
+              newFulfilment.push(calculateFulfilment(actualValue || 0, targetValue || 0));
 
-              const newFulfilment: number[] = [];
-              newFulfilment.push(form.getFieldValue("fulfilment"));
-              console.log("Fulfilment", newFulfilment);
+              // console.log("Fulfilment", newFulfilment);
+              // console.log("Hi", form.getFieldsValue());
               setFulfilment(newFulfilment);
 
-              const newMQRowDescriptions = [];
               newMQRowDescriptions.push(form.getFieldValue("description"));
             }
           }
+          console.log("sumKPI & PI", sumKpi, sumPi);
 
           setSum(sumKpi * 0.66 + sumPi * 0.33);
           setMQRowDescriptions(newMQRowDescriptions);
-
+          console.log("desc", newMQRowDescriptions);
           // props.onPerspectiveChange(sum)
         }}
       >
@@ -154,6 +151,7 @@ export function TableMQPerspective(props: {
                 row={row}
                 isKpiRow={false}
                 step="PI"
+                defaultValueName={props.defaultValueName[row]}
                 tableID={props.tableID}
                 perspective={props.perspective}
               />
@@ -172,6 +170,11 @@ export function TableMQPerspective(props: {
                 </span>
               );
             })}
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
+              Zurücksetzen
+            </Button>
           </div>
           <div style={{ marginTop: 24 }}>
             <Chart
@@ -193,7 +196,7 @@ export function TableMQPerspective(props: {
                 yaxis: {
                   forceNiceScale: true,
                   min: 0,
-                  max: 1,
+                  max: 100,
                   labels: {
                     maxWidth: 1,
                     style: {
