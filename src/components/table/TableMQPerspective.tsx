@@ -30,8 +30,6 @@ export function TableMQPerspective(props: {
   }
 
   const [sum, setSum] = React.useState<number>(0);
-  const [sumKpi, setSumKpi] = React.useState<number>(0);
-  const [sumPi, setSumPi] = React.useState<number>(0);
   const [MQRowDescriptions, setMQRowDescriptions] = React.useState<string[]>(initialMQRowDescriptions);
   const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
 
@@ -39,14 +37,14 @@ export function TableMQPerspective(props: {
     <>
       <Form.Provider
         onFormChange={(name, info) => {
-          let total = 0;
-          let totalWeights = 0;
 
           let totalKpi = 0;
           let totalWeightsKpi = 0;
+          let sumKpi = 0;
 
           let totalPi = 0;
           let totalWeightsPi = 0;
+          let sumPi = 0;
 
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           for (const [_formName, form] of Object.entries(info.forms)) {
@@ -72,7 +70,7 @@ export function TableMQPerspective(props: {
                   console.log("KPI", totalKpi, "Weights KPI", totalWeightsKpi);
 
                   if (totalWeightsKpi) {
-                    setSumKpi(totalKpi / totalWeightsKpi);
+                    sumKpi = (totalKpi / totalWeightsKpi);
                   }
                 } else if (form.getFieldValue("step") === "PI") {
                   const actualValuePI = form.getFieldValue("actual_value") || 0;
@@ -93,7 +91,7 @@ export function TableMQPerspective(props: {
                   console.log("PI", totalPi, totalWeightsPi);
 
                   if (totalWeightsPi) {
-                    setSumPi(totalPi / totalWeightsPi);
+                    sumPi = (totalPi / totalWeightsPi);
                   }
                 }
               }
@@ -103,13 +101,13 @@ export function TableMQPerspective(props: {
               console.log("Fulfilment", newFulfilment);
               setFulfilment(newFulfilment);
 
-              // const newMQRowDescriptions = []; extra for schleife für desciption jeder row?
-              // newMQRowDescriptions.push(form.getFieldValue("description"));
+              const newMQRowDescriptions = [];
+              newMQRowDescriptions.push(form.getFieldValue("description"));
             }
           }
 
           setSum(sumKpi * 0.66 + sumPi * 0.33);
-          // setMQRowDescriptions(newMQRowDescriptions);
+          setMQRowDescriptions(newMQRowDescriptions);
 
           // props.onPerspectiveChange(sum)
         }}
