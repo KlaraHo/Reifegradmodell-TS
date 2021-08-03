@@ -46,8 +46,14 @@ button hover: #004d80
 }
 
 .ant-input-number-input {
-height: 22px !important;
+  height: 22px !important;
 }
+
+/* === APEX CHART-STYLING === */
+
+/* #apexchartperspectivexchart {
+  margin: auto !important;
+} */
 
 /* === GLOBAL === */
 

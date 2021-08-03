@@ -17,7 +17,7 @@ export function TableMQPerspective(props: {
   piRowCount: number;
   defaultValuePIName: string;
   tableLegend: tableLegend[];
-  // onPerspectiveChange(value: number): void;
+  // onMQPerspectiveChange(value: number): void;
 }) {
   const initialMQRowDescriptions: string[] = [];
   for (let i = 0; i < props.kpiRowCount + props.piRowCount; i++) {
@@ -32,6 +32,13 @@ export function TableMQPerspective(props: {
   const [sum, setSum] = React.useState<number>(0);
   const [MQRowDescriptions, setMQRowDescriptions] = React.useState<string[]>(initialMQRowDescriptions);
   const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
+
+// calculate Metric MQ
+  const calculateMetric = () => {
+    let totalMetric = 0;
+
+
+  }
 
   return (
     <>
@@ -96,12 +103,10 @@ export function TableMQPerspective(props: {
               newMQRowDescriptions.push(form.getFieldValue("description"));
             }
           }
-          console.log("sumKPI & PI", sumKpi, sumPi);
 
           setSum(sumKpi * 0.66 + sumPi * 0.33);
           setMQRowDescriptions(newMQRowDescriptions);
-          console.log("desc", newMQRowDescriptions);
-          // props.onPerspectiveChange(sum)
+
         }}
       >
         <div
@@ -171,12 +176,12 @@ export function TableMQPerspective(props: {
               Zurücksetzen
             </Button>
           </div>
-          <div style={{ marginTop: 24 }}>
+          <div style={{ marginTop: 24}}>
             <Chart
               // Perspective Chart
               options={{
                 chart: {
-                  id: "basic-bar"
+                  id: "perspective-chart"
                 },
                 xaxis: {
                   categories: MQRowDescriptions,

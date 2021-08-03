@@ -12,20 +12,8 @@ export function TableMQ(props: {
   resultInitials: string;
   maturityWeight: number;
   tableID: string;
-  // sum: number;
+
 }) {
-  // let sums :number[] = [];
-  // sums.push(props.sum);
-
-  // Calculate Metric: MQ
-  // const calculateMetric = () => {
-  //   let totalMetric = 0;
-
-  //   sums.forEach((sum, index) => {
-  //     const weightedSum =
-  //   })
-
-  // }
 
   return (
     <div
