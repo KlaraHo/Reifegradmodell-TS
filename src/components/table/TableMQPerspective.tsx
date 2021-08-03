@@ -72,8 +72,6 @@ export function TableMQPerspective(props: {
                     totalWeightsKpi += 1;
                   }
 
-                  // console.log("KPI", totalKpi, "Weights KPI", totalWeightsKpi);
-
                   if (totalWeightsKpi) {
                     sumKpi = totalKpi / totalWeightsKpi;
                   }
@@ -85,7 +83,6 @@ export function TableMQPerspective(props: {
                     totalPi += qi;
                     totalWeightsPi += 1;
                   }
-                  // console.log("PI", totalPi, totalWeightsPi);
 
                   if (totalWeightsPi) {
                     sumPi = totalPi / totalWeightsPi;
@@ -94,8 +91,6 @@ export function TableMQPerspective(props: {
               }
               newFulfilment.push(calculateFulfilment(actualValue || 0, targetValue || 0));
 
-              // console.log("Fulfilment", newFulfilment);
-              // console.log("Hi", form.getFieldsValue());
               setFulfilment(newFulfilment);
 
               newMQRowDescriptions.push(form.getFieldValue("description"));
@@ -243,7 +238,7 @@ export function TableMQPerspective(props: {
               }}
               series={[
                 {
-                  name: `KPI & PI Quellen`,
+                  name: `Erfüllungsgrad, [%]`,
                   data: fulfilment
                 }
               ]}
