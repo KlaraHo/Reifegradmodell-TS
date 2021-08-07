@@ -17,11 +17,11 @@ export function TableMQPerspective(props: {
   piRowCount: number;
   defaultValuePIName: string;
   tableLegend: tableLegend[];
-  // onMQPerspectiveChange(value: number): void;
+  onAggregationChange(value: number): void;
 }) {
-  const initialMQRowDescriptions: string[] = [];
+  const initialMqRowDescriptions: string[] = [];
   for (let i = 0; i < props.kpiRowCount + props.piRowCount; i++) {
-    initialMQRowDescriptions.push(props.defaultValueName[i]);
+    initialMqRowDescriptions.push(props.defaultValueName[i]);
   }
 
   const initialFulfilment: number[] = [];
@@ -29,16 +29,14 @@ export function TableMQPerspective(props: {
     initialFulfilment.push(0);
   }
 
-  const [sum, setSum] = React.useState<number>(0);
-  const [MQRowDescriptions, setMQRowDescriptions] = React.useState<string[]>(initialMQRowDescriptions);
+  const [aggregationSum, setAggregationSum] = React.useState<number>(0);
+  const [mqRowDescriptions, setMqRowDescriptions] = React.useState<string[]>(initialMqRowDescriptions);
   const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
 
-// calculate Metric MQ
+  // calculate Metric MQ
   const calculateMetric = () => {
     let totalMetric = 0;
-
-
-  }
+  };
 
   return (
     <>
@@ -52,7 +50,7 @@ export function TableMQPerspective(props: {
           let totalWeightsPi = 0;
           let sumPi = 0;
 
-          const newMQRowDescriptions = [];
+          const newMqRowDescriptions = [];
           const newFulfilment: number[] = [];
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           for (const [_formName, form] of Object.entries(info.forms)) {
@@ -100,83 +98,77 @@ export function TableMQPerspective(props: {
 
               setFulfilment(newFulfilment);
 
-              newMQRowDescriptions.push(form.getFieldValue("description"));
+              newMqRowDescriptions.push(form.getFieldValue("description"));
             }
           }
 
-          setSum(sumKpi * 0.66 + sumPi * 0.33);
-          setMQRowDescriptions(newMQRowDescriptions);
+          setAggregationSum(sumKpi * 0.66 + sumPi * 0.33);
+          setMqRowDescriptions(newMqRowDescriptions);
 
+          props.onAggregationChange(aggregationSum);
         }}
       >
-        <div
-          style={{
-            gridTemplateColumns: "repeat (20%, 1fr, 20%)",
-            justifyContent: "center",
-            rowGap: 4,
-            marginBottom: 24,
-            marginLeft: 4,
-            marginRight: 4
-          }}
-        >
-          <div
-            style={{
-              marginBottom: 4,
-              fontWeight: "bold",
-              textDecoration: "underline"
-            }}
-          >
-            {props.perspective}
-          </div>
+        <div>
+          <span>
+            <div
+              style={{
+                marginBottom: 4,
+                fontWeight: "bold",
+                textDecoration: "underline"
+              }}
+            >
+              {props.perspective}
+            </div>
 
-          {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
-            return (
-              <TableMQRow
-                key={row}
-                row={row}
-                isKpiRow={true}
-                step="KPI"
-                defaultValueName={props.defaultValueName[i]}
-                defaultValueTarget={props.defaultValueTarget[i]}
-                tableID={props.tableID}
-                perspective={props.perspective}
-              />
-            );
-          })}
-
-          {Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
-            return (
-              <TableMQRow
-                key={row}
-                row={row}
-                isKpiRow={false}
-                step="PI"
-                defaultValueName={props.defaultValueName[row]}
-                tableID={props.tableID}
-                perspective={props.perspective}
-              />
-            );
-          })}
-
-          <div style={{ marginTop: 20 }}>Aggregation: {(sum * 100).toFixed(0)} % </div>
-          <div style={{ textAlign: "center", marginTop: 4 }}>
-            {props.tableLegend.map((term, index) => {
+            {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
               return (
-                <span
-                  style={{ fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }}
-                  key={index}
-                >
-                  {term.shortcut + "..." + term.name + ", "}
-                </span>
+                <TableMQRow
+                  key={row}
+                  row={row}
+                  isKpiRow={true}
+                  step="KPI"
+                  defaultValueName={props.defaultValueName[i]}
+                  defaultValueTarget={props.defaultValueTarget[i]}
+                  tableID={props.tableID}
+                  perspective={props.perspective}
+                />
               );
             })}
-          </div>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
-              Zurücksetzen
-            </Button>
-          </div>
-          <div style={{ marginTop: 24}}>
+
+            {Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
+              return (
+                <TableMQRow
+                  key={row}
+                  row={row}
+                  isKpiRow={false}
+                  step="PI"
+                  defaultValueName={props.defaultValueName[row]}
+                  tableID={props.tableID}
+                  perspective={props.perspective}
+                />
+              );
+            })}
+
+            <div style={{ marginTop: 20 }}>Aggregation: {aggregationSum.toFixed(2)} </div>
+            <div style={{ textAlign: "center", marginTop: 4 }}>
+              {props.tableLegend.map((term, index) => {
+                return (
+                  <span
+                    style={{ fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }}
+                    key={index}
+                  >
+                    {term.shortcut + "..." + term.name + ", "}
+                  </span>
+                );
+              })}
+            </div>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
+                Zurücksetzen
+              </Button>
+            </div>
+          </span>
+          <span style={{ marginTop: 24 }}>
             <Chart
               // Perspective Chart
               options={{
@@ -184,7 +176,7 @@ export function TableMQPerspective(props: {
                   id: "perspective-chart"
                 },
                 xaxis: {
-                  categories: MQRowDescriptions,
+                  categories: mqRowDescriptions,
                   labels: {
                     show: true,
                     style: {
@@ -251,7 +243,7 @@ export function TableMQPerspective(props: {
               width="700"
               // key={reset + "b"}
             />
-          </div>
+          </span>
           <Divider />
         </div>
       </Form.Provider>
