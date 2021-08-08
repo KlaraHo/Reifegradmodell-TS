@@ -22,11 +22,20 @@ export function TableMQRow(props: {
   defaultValueTarget?: number;
   tableID: string;
   perspective: string;
+  reset: number;
   onActiveChange?(active: boolean): void;
 }) {
   const [form] = Form.useForm();
   const [active, setActive] = React.useState<boolean>(true);
   const [fulfilment, setFulfilment] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    if (form) {
+      form.resetFields();
+    }
+    setFulfilment(0);
+    setActive(true);
+  }, [form, props.reset]);
 
   let categoriesPerspectiveChart = [];
 

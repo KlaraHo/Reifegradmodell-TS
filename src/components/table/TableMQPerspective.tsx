@@ -1,7 +1,8 @@
-import { Divider, Form, Button } from "antd";
-import React, { Props } from "react";
+import { Divider, Form, Button, Popconfirm, message } from "antd";
+import React from "react";
 import Chart from "react-apexcharts";
 import { calculateFulfilment, TableMQRow } from "./TableMQRow";
+import { WarningOutlined } from "@ant-design/icons";
 
 export interface tableLegend {
   shortcut: string;
@@ -32,11 +33,7 @@ export function TableMQPerspective(props: {
   const [aggregationSum, setAggregationSum] = React.useState<number>(0);
   const [mqRowDescriptions, setMqRowDescriptions] = React.useState<string[]>(initialMqRowDescriptions);
   const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
-
-  // calculate Metric MQ
-  const calculateMetric = () => {
-    let totalMetric = 0;
-  };
+  const [reset, setReset] = React.useState<number>(0);
 
   return (
     <>
@@ -131,6 +128,7 @@ export function TableMQPerspective(props: {
                   defaultValueTarget={props.defaultValueTarget[i]}
                   tableID={props.tableID}
                   perspective={props.perspective}
+                  reset={reset}
                 />
               );
             })}
@@ -145,6 +143,7 @@ export function TableMQPerspective(props: {
                   defaultValueName={props.defaultValueName[row]}
                   tableID={props.tableID}
                   perspective={props.perspective}
+                  reset={reset}
                 />
               );
             })}
@@ -163,9 +162,23 @@ export function TableMQPerspective(props: {
               })}
             </div>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
-                Zurücksetzen
-              </Button>
+              <Popconfirm
+                icon={<WarningOutlined style={{ color: "red" }} />}
+                title="Wollen Sie die Werte dieses Abschnitts wirklich zurücksetzen?"
+                okText="OK"
+                cancelText="Abbrechen"
+                onConfirm={() => {
+                  setAggregationSum(0);
+                  setMqRowDescriptions(initialMqRowDescriptions);
+                  setFulfilment(initialFulfilment);
+                  setReset(reset + 1);
+                  message.success("Daten wurden erfolgreich zurückgesetzt!");
+                }}
+              >
+                <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
+                  Zurücksetzen
+                </Button>
+              </Popconfirm>
             </div>
           </span>
           <span style={{ marginTop: 24 }}>
@@ -241,7 +254,7 @@ export function TableMQPerspective(props: {
               ]}
               type="radar"
               width="700"
-              // key={reset + "b"}
+              key={reset + "b"}
             />
           </span>
           <Divider />

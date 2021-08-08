@@ -102,7 +102,7 @@ export function TableMQ(props: {
             }}
           />
 
-          <TableMQPerspective
+          {/* <TableMQPerspective
             perspective={"Prozessperspektive"}
             tableID={props.tableID}
             kpiRowCount={3}
@@ -147,7 +147,7 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective4(value);
             }}
-          />
+          /> */}
         </div>
       </Form.Provider>
 
