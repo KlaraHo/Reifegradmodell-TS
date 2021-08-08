@@ -53,28 +53,6 @@ export function TableMQ(props: {
       <p>{props.description}</p>
       <CSV />
 
-      {/* <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${props.columns.length}, 1fr)`,
-          justifyItems: "center",
-          columnGap: 16,
-          marginTop: 40,
-          width: "70%"
-        }}
-      >
-        {props.columns.map((column, index) => {
-          return (
-            <span
-              style={{ textDecoration: "underline", fontWeight: "bold", marginLeft: 5, marginRight: 5 }}
-              key={index}
-            >
-              {column}
-            </span>
-          );
-        })}
-      </div> */}
-
       <Form.Provider
         onFormChange={(name, info) => {
           let mqMetric =
@@ -103,7 +81,7 @@ export function TableMQ(props: {
             }}
           />
 
-          {/* <TableMQPerspective
+          <TableMQPerspective
             perspective={"Prozessperspektive"}
             tableID={props.tableID}
             columns={props.columns}
@@ -151,7 +129,7 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective4(value);
             }}
-          /> */}
+          />
         </div>
       </Form.Provider>
 
