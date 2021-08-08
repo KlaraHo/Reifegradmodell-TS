@@ -106,6 +106,7 @@ export function TableMQ(props: {
           {/* <TableMQPerspective
             perspective={"Prozessperspektive"}
             tableID={props.tableID}
+            columns={props.columns}
             kpiRowCount={3}
             defaultValueName={["Riha,ugep", "EGiha,ugep", "EGiha,gep", "PI Name 1", "PI Name 2", "PI Name 3"]}
             defaultValueTarget={[10, 75, 90]}
@@ -123,6 +124,7 @@ export function TableMQ(props: {
           <TableMQPerspective
             perspective={"Kostenperspektive"}
             tableID={props.tableID}
+            columns={props.columns}
             kpiRowCount={2}
             defaultValueName={["Rihk,ugep", "Rihk,personal", "PI Name 1", "PI Name 2", "PI Name 3"]}
             defaultValueTarget={[15, 10]}
@@ -139,6 +141,7 @@ export function TableMQ(props: {
           <TableMQPerspective
             perspective={"Ressourcenperspektive"}
             tableID={props.tableID}
+            columns={props.columns}
             kpiRowCount={1}
             defaultValueName={["PS,ugep", "PI Name 1", "PI Name 2", "PI Name 3"]}
             defaultValueTarget={[15]}
