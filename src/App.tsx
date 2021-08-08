@@ -135,7 +135,9 @@ function App() {
         resultInitials="MQ"
         maturityWeight={0.13}
         tableID="mq"
-        // hier noch Funktion für weightedMQ einfügen
+        onQualityLevelChange={(value) => {
+          setWeightedMetricMQ(value);
+        }}
       />
 
       <Result maturityLevel={weightedMetricDQ + weightedMetricIQ + weightedMetricKQ + weightedMetricMQ} />

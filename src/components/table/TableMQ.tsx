@@ -2,6 +2,8 @@ import { Button, Form, Card } from "antd";
 import React, { Props } from "react";
 import { CSV } from "../CSV";
 import { TableMQPerspective } from "./TableMQPerspective";
+import { WarningOutlined, StarFilled } from "@ant-design/icons";
+import { VoidExpression } from "typescript";
 
 export function TableMQ(props: {
   title: string;
@@ -12,12 +14,32 @@ export function TableMQ(props: {
   resultInitials: string;
   maturityWeight: number;
   tableID: string;
+  onQualityLevelChange(value: number): void;
 }) {
   const [aggregationPerspective1, setAggregationPerspective1] = React.useState<number>(0);
   const [aggregationPerspective2, setAggregationPerspective2] = React.useState<number>(0);
   const [aggregationPerspective3, setAggregationPerspective3] = React.useState<number>(0);
   const [aggregationPerspective4, setAggregationPerspective4] = React.useState<number>(0);
   const [mqMetric, setMqMetric] = React.useState<number>(0);
+
+  const colorIcon = () => {
+    let mqMetric = 0;
+    let iconColor = "#FFFFFF";
+
+    mqMetric =
+      (aggregationPerspective1 + aggregationPerspective2 + aggregationPerspective3 + aggregationPerspective4) / 4;
+    if (mqMetric <= 0.5) {
+      return (iconColor = "#FF0000");
+    } else if (0.51 < mqMetric && mqMetric <= 0.66) {
+      return (iconColor = "#ff8e03");
+    } else if (0.67 < mqMetric && mqMetric <= 0.82) {
+      return (iconColor = "#FFE000");
+    } else if (0.83 < mqMetric && mqMetric <= 1.03) {
+      return (iconColor = "#4EEE94");
+    } else {
+      return iconColor;
+    }
+  };
 
   return (
     <div
@@ -58,6 +80,8 @@ export function TableMQ(props: {
           let mqMetric =
             (aggregationPerspective1 + aggregationPerspective2 + aggregationPerspective3 + aggregationPerspective4) / 4;
           setMqMetric(mqMetric);
+
+          props.onQualityLevelChange(mqMetric * props.maturityWeight);
         }}
       >
         <div style={{ marginTop: 24 }}>
@@ -130,6 +154,9 @@ export function TableMQ(props: {
       <Card style={{ width: 300, margin: "auto" }} title={props.resultTitle}>
         <span style={{ margin: 0 }}>
           {props.resultInitials} = {mqMetric.toFixed(2)}
+        </span>
+        <span style={{ marginLeft: 8 }}>
+          <StarFilled style={{ color: colorIcon() }} />
         </span>
       </Card>
     </div>

@@ -188,7 +188,7 @@ export function TableMQPerspective(props: {
                 yaxis: {
                   forceNiceScale: true,
                   min: 0,
-                  max: 100,
+                  max: 95,
                   labels: {
                     maxWidth: 1,
                     style: {
