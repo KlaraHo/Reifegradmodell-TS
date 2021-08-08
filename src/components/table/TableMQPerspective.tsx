@@ -55,9 +55,9 @@ export function TableMQPerspective(props: {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           for (const [_formName, form] of Object.entries(info.forms)) {
             if (form.getFieldValue("active")) {
-              const actualValue = form.getFieldValue("actual_value") || 0;
-              const targetValue = form.getFieldValue("target_value");
-              if (Number.isFinite(form.getFieldValue("actual_value"))) {
+              const actualValue = form.getFieldValue("actualValue") || 0;
+              const targetValue = form.getFieldValue("targetValue");
+              if (Number.isFinite(form.getFieldValue("actualValue"))) {
                 let qi = 1;
                 if (!Number.isFinite(targetValue) || targetValue === 0) {
                   qi = 1;

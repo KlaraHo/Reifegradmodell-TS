@@ -36,8 +36,8 @@ export function TableMQRow(props: {
       name={props.tableID + "_" + props.perspective + "_" + props.row}
       style={{ gridRow: `${props.row}`, gridColumn: 2 }}
       onValuesChange={(_, values) => {
-        let actualValue: number = form.getFieldValue("actual_value") || 0;
-        let targetValue: number = form.getFieldValue("target_value") || 0;
+        let actualValue: number = form.getFieldValue("actualValue") || 0;
+        let targetValue: number = form.getFieldValue("targetValue") || 0;
 
         // console.log("rowValues", actualValue, targetValue);
 
@@ -47,8 +47,8 @@ export function TableMQRow(props: {
         active: true,
         step: props.step,
         description: props.defaultValueName,
-        actual_value: "",
-        target_value: props.defaultValueTarget || ""
+        actualValue: "",
+        targetValue: props.defaultValueTarget || ""
       }}
     >
       <div
@@ -80,7 +80,7 @@ export function TableMQRow(props: {
         <Form.Item name="description">
           <Input disabled={active ? props.isKpiRow : !active} />
         </Form.Item>
-        <Form.Item name="actual_value">
+        <Form.Item name="actualValue">
           <InputNumber
             disabled={!active}
             key={props.tableID + "_" + props.perspective + "_" + props.row + "_actualValue"}
@@ -90,7 +90,7 @@ export function TableMQRow(props: {
             step="1"
           />
         </Form.Item>
-        <Form.Item name="target_value">
+        <Form.Item name="targetValue">
           <InputNumber
             disabled={active ? props.isKpiRow : !active}
             key={props.tableID + "_" + props.perspective + "_" + props.row + "_targetValue"}
