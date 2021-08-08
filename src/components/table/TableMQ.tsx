@@ -1,9 +1,8 @@
-import { Button, Form, Card } from "antd";
-import React, { Props } from "react";
+import { Form, Card } from "antd";
+import React from "react";
 import { CSV } from "../CSV";
 import { TableMQPerspective } from "./TableMQPerspective";
-import { WarningOutlined, StarFilled } from "@ant-design/icons";
-import { VoidExpression } from "typescript";
+import { StarFilled } from "@ant-design/icons";
 
 export function TableMQ(props: {
   title: string;
@@ -54,13 +53,14 @@ export function TableMQ(props: {
       <p>{props.description}</p>
       <CSV />
 
-      <div
+      {/* <div
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${props.columns.length}, 1fr)`,
           justifyItems: "center",
           columnGap: 16,
-          marginTop: 40
+          marginTop: 40,
+          width: "70%"
         }}
       >
         {props.columns.map((column, index) => {
@@ -73,7 +73,7 @@ export function TableMQ(props: {
             </span>
           );
         })}
-      </div>
+      </div> */}
 
       <Form.Provider
         onFormChange={(name, info) => {
@@ -88,6 +88,7 @@ export function TableMQ(props: {
           <TableMQPerspective
             perspective={"Maschinenperspektive"}
             tableID={props.tableID}
+            columns={props.columns}
             kpiRowCount={2}
             defaultValueName={["Rss,ugep", "OEE", "PI Name 1", "PI Name 2", "PI Name 3"]}
             defaultValueTarget={[20, 85]}

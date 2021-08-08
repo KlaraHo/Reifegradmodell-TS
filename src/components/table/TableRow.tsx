@@ -102,7 +102,6 @@ export function TableRow(props: {
       <div key={props.tableID + "_"} style={{ height: "24px", marginTop: 4, color: active ? "#000" : "#ccc" }}>
         {sum.toFixed(2)}
       </div>
-      {/* unique key for aggregation should be defined here */}
     </Form>
   );
 }

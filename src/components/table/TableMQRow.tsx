@@ -82,8 +82,10 @@ export function TableMQRow(props: {
         </Form.Item>
 
         <Form.Item name="step">
-          <Input disabled style={{ display: "none" }} />
-          <div>{props.step}</div>
+          <div>
+            <Input disabled style={{ display: "none" }} />
+            <div>{props.step}</div>
+          </div>
         </Form.Item>
 
         <Form.Item name="description">

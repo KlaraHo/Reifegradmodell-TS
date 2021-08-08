@@ -18,6 +18,7 @@ export function TableMQPerspective(props: {
   piRowCount: number;
   defaultValuePIName: string;
   tableLegend: tableLegend[];
+  columns: string[];
   onAggregationChange(value: number): void;
 }) {
   const initialMqRowDescriptions: string[] = [];
@@ -106,82 +107,112 @@ export function TableMQPerspective(props: {
         }}
       >
         <div>
-          <span>
+          <div
+            style={{
+              marginBottom: 4,
+              fontWeight: "bold",
+              textDecoration: "underline"
+            }}
+          >
+            {props.perspective}
+          </div>
+
+          
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "70% auto"
+            }}
+          >
             <div
-              style={{
-                marginBottom: 4,
-                fontWeight: "bold",
-                textDecoration: "underline"
-              }}
-            >
-              {props.perspective}
-            </div>
 
-            {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
+            ><div
+            style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(${props.columns.length}, 1fr)`,
+              justifyItems: "center",
+              columnGap: 16,
+              marginTop: 40,
+              marginBottom: 24
+    
+            }}
+          >
+            {props.columns.map((column, index) => {
               return (
-                <TableMQRow
-                  key={row}
-                  row={row}
-                  isKpiRow={true}
-                  step="KPI"
-                  defaultValueName={props.defaultValueName[i]}
-                  defaultValueTarget={props.defaultValueTarget[i]}
-                  tableID={props.tableID}
-                  perspective={props.perspective}
-                  reset={reset}
-                />
+                <span
+                  style={{  fontWeight: "bold", marginLeft: 5, marginRight: 5 }}
+                  key={index}
+                >
+                  {column}
+                </span>
               );
             })}
-
-            {Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
-              return (
-                <TableMQRow
-                  key={row}
-                  row={row}
-                  isKpiRow={false}
-                  step="PI"
-                  defaultValueName={props.defaultValueName[row]}
-                  tableID={props.tableID}
-                  perspective={props.perspective}
-                  reset={reset}
-                />
-              );
-            })}
-
-            <div style={{ marginTop: 20 }}>Aggregation: {aggregationSum.toFixed(2)} </div>
-            <div style={{ textAlign: "center", marginTop: 4 }}>
-              {props.tableLegend.map((term, index) => {
+          </div>
+              {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
                 return (
-                  <span
-                    style={{ fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }}
-                    key={index}
-                  >
-                    {term.shortcut + "..." + term.name + ", "}
-                  </span>
+                  <TableMQRow
+                    key={row}
+                    row={row}
+                    isKpiRow={true}
+                    step="KPI"
+                    defaultValueName={props.defaultValueName[i]}
+                    defaultValueTarget={props.defaultValueTarget[i]}
+                    tableID={props.tableID}
+                    perspective={props.perspective}
+                    reset={reset}
+                  />
                 );
               })}
+
+              {Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
+                return (
+                  <TableMQRow
+                    key={row}
+                    row={row}
+                    isKpiRow={false}
+                    step="PI"
+                    defaultValueName={props.defaultValueName[row]}
+                    tableID={props.tableID}
+                    perspective={props.perspective}
+                    reset={reset}
+                  />
+                );
+              })}
+              <div style={{ marginTop: 20 }}>Aggregation: {aggregationSum.toFixed(2)} </div>
+              <div style={{ textAlign: "center", marginTop: 4 }}>
+                {props.tableLegend.map((term, index) => {
+                  return (
+                    <span
+                      style={{ fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", width: " 100%" }}
+                      key={index}
+                    >
+                      {term.shortcut + "..." + term.name + ", "}
+                    </span>
+                  );
+                })}
+              </div>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <Popconfirm
+                  icon={<WarningOutlined style={{ color: "red" }} />}
+                  title="Wollen Sie die Werte dieser Perspektive wirklich zurücksetzen?"
+                  okText="OK"
+                  cancelText="Abbrechen"
+                  onConfirm={() => {
+                    setAggregationSum(0);
+                    setMqRowDescriptions(initialMqRowDescriptions);
+                    setFulfilment(initialFulfilment);
+                    setReset(reset + 1);
+                    message.success("Daten wurden erfolgreich zurückgesetzt!");
+                  }}
+                >
+                  <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
+                    Zurücksetzen
+                  </Button>
+                </Popconfirm>
+              </div>
             </div>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Popconfirm
-                icon={<WarningOutlined style={{ color: "red" }} />}
-                title="Wollen Sie die Werte dieses Abschnitts wirklich zurücksetzen?"
-                okText="OK"
-                cancelText="Abbrechen"
-                onConfirm={() => {
-                  setAggregationSum(0);
-                  setMqRowDescriptions(initialMqRowDescriptions);
-                  setFulfilment(initialFulfilment);
-                  setReset(reset + 1);
-                  message.success("Daten wurden erfolgreich zurückgesetzt!");
-                }}
-              >
-                <Button type="text" danger style={{ marginRight: 16, marginTop: 24 }}>
-                  Zurücksetzen
-                </Button>
-              </Popconfirm>
-            </div>
-          </span>
-          <span style={{ marginTop: 24 }}>
+   
             <Chart
               // Perspective Chart
               options={{
@@ -243,7 +274,12 @@ export function TableMQPerspective(props: {
                   }
                 },
                 title: {
-                  text: `${props.perspective} Diagramm`
+                  text: `${props.perspective} Diagramm`,
+                  align: "center",
+
+                  style: {
+                    fontSize: "14px"
+                  }
                 }
               }}
               series={[
@@ -254,11 +290,13 @@ export function TableMQPerspective(props: {
               ]}
               type="radar"
               width="700"
+              height="400"
               key={reset + "b"}
             />
-          </span>
-          <Divider />
+          </div>
         </div>
+
+        <Divider />
       </Form.Provider>
     </>
   );

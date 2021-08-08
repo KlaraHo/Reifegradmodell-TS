@@ -49,7 +49,6 @@ export function TableRowTargetvalue(props: {
             name={props.tableID + "_targetValue_" + column.name}
             rules={[{ required: false, type: "regexp", message: "TODO" }]}
           >
-            {/* oder hier trotzdem column.name für name? */}
             <InputNumber key={props.tableID + "_" + index} size="small" min="0" max="1" step="0.01" precision={2} />
           </Form.Item>
         );
