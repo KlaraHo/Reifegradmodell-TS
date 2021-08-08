@@ -20,6 +20,7 @@ export function TableMQPerspective(props: {
   tableLegend: tableLegend[];
   columns: string[];
   onAggregationChange(value: number): void;
+  onReset(value: number): void;
 }) {
   const initialMqRowDescriptions: string[] = [];
   for (let i = 0; i < props.kpiRowCount + props.piRowCount; i++) {
@@ -203,6 +204,7 @@ export function TableMQPerspective(props: {
                     setMqRowDescriptions(initialMqRowDescriptions);
                     setFulfilment(initialFulfilment);
                     setReset(reset + 1);
+                    props.onReset(reset + 1)
                     message.success("Daten wurden erfolgreich zurückgesetzt!");
                   }}
                 >

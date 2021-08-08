@@ -43,7 +43,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Datenqualität:"
         resultInitials="DQ"
-        rowsCount={5}
+        rowsCount={15}
         tableID="dq"
         tableLegend={[]}
         maturityWeight={0.36}
@@ -77,7 +77,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Informationsqualität:"
         resultInitials="IQ"
-        rowsCount={5}
+        rowsCount={15}
         tableID="iq"
         tableLegend={[]}
         maturityWeight={0.23}
@@ -106,7 +106,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Wissensqualität:"
         resultInitials="KQ"
-        rowsCount={4}
+        rowsCount={15}
         tableID="kq"
         tableLegend={[
           { shortcut: "BnKQ,k", name: "Bildungsniveau eines Mitarbeiters" },

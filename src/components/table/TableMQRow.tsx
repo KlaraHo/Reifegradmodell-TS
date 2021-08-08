@@ -37,7 +37,7 @@ export function TableMQRow(props: {
     setActive(true);
   }, [form, props.reset]);
 
-  let categoriesPerspectiveChart = [];
+  // let categoriesPerspectiveChart = [];
 
   return (
     <Form
