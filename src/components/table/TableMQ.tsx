@@ -87,7 +87,7 @@ export function TableMQ(props: {
             }}
           />
 
-          {/* <TableMQPerspective
+          <TableMQPerspective
             perspective={"Prozessperspektive"}
             tableID={props.tableID}
             columns={props.columns}
@@ -103,6 +103,9 @@ export function TableMQ(props: {
             ]}
             onAggregationChange={(value) => {
               setAggregationPerspective2(value);
+            }}
+            onReset={(value) => {
+              setMqMetric(0)
             }}
           />
           <TableMQPerspective
@@ -121,6 +124,9 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective3(value);
             }}
+            onReset={(value) => {
+              setMqMetric(0)
+            }}
           />
           <TableMQPerspective
             perspective={"Ressourcenperspektive"}
@@ -135,7 +141,10 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective4(value);
             }}
-          /> */}
+            onReset={(value) => {
+              setMqMetric(0)
+            }}
+          />
         </div>
       </Form.Provider>
 
