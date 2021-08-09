@@ -25,6 +25,10 @@ export function TableMQ(props: {
     setMqMetric(calculateMqMetric());
   }, [aggregationPerspective1, aggregationPerspective2, aggregationPerspective3, aggregationPerspective4]);
 
+  React.useEffect(() => {
+    props.onQualityLevelChange(mqMetric * props.maturityWeight);
+  }, [mqMetric]);
+
   const calculateMqMetric = () => {
     let mqMetric = 0;
     mqMetric =
@@ -87,9 +91,6 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective1(value);
             }}
-            // onReset={() =>{
-            //   onQualityChange(0);
-            // } }
           />
 
           <TableMQPerspective
