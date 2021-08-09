@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/Reifegradmodell-TS/static/css/main.5d50e8a2.chunk.css",
-    "main.js": "/Reifegradmodell-TS/static/js/main.5befe729.chunk.js",
-    "main.js.map": "/Reifegradmodell-TS/static/js/main.5befe729.chunk.js.map",
-    "runtime-main.js": "/Reifegradmodell-TS/static/js/runtime-main.9c1f6b97.js",
-    "runtime-main.js.map": "/Reifegradmodell-TS/static/js/runtime-main.9c1f6b97.js.map",
-    "static/css/2.97a13557.chunk.css": "/Reifegradmodell-TS/static/css/2.97a13557.chunk.css",
-    "static/js/2.67729a94.chunk.js": "/Reifegradmodell-TS/static/js/2.67729a94.chunk.js",
-    "static/js/2.67729a94.chunk.js.map": "/Reifegradmodell-TS/static/js/2.67729a94.chunk.js.map",
+    "main.js": "/Reifegradmodell-TS/static/js/main.b55acda8.chunk.js",
+    "main.js.map": "/Reifegradmodell-TS/static/js/main.b55acda8.chunk.js.map",
+    "runtime-main.js": "/Reifegradmodell-TS/static/js/runtime-main.d837887f.js",
+    "runtime-main.js.map": "/Reifegradmodell-TS/static/js/runtime-main.d837887f.js.map",
+    "static/css/2.8c5372c1.chunk.css": "/Reifegradmodell-TS/static/css/2.8c5372c1.chunk.css",
+    "static/js/2.1dc394ff.chunk.js": "/Reifegradmodell-TS/static/js/2.1dc394ff.chunk.js",
+    "static/js/2.1dc394ff.chunk.js.map": "/Reifegradmodell-TS/static/js/2.1dc394ff.chunk.js.map",
     "index.html": "/Reifegradmodell-TS/index.html",
-    "static/css/2.97a13557.chunk.css.map": "/Reifegradmodell-TS/static/css/2.97a13557.chunk.css.map",
+    "static/css/2.8c5372c1.chunk.css.map": "/Reifegradmodell-TS/static/css/2.8c5372c1.chunk.css.map",
     "static/css/main.5d50e8a2.chunk.css.map": "/Reifegradmodell-TS/static/css/main.5d50e8a2.chunk.css.map",
-    "static/js/2.67729a94.chunk.js.LICENSE.txt": "/Reifegradmodell-TS/static/js/2.67729a94.chunk.js.LICENSE.txt",
+    "static/js/2.1dc394ff.chunk.js.LICENSE.txt": "/Reifegradmodell-TS/static/js/2.1dc394ff.chunk.js.LICENSE.txt",
     "static/media/TU-Wien-Logo.8d33c646.png": "/Reifegradmodell-TS/static/media/TU-Wien-Logo.8d33c646.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.9c1f6b97.js",
-    "static/css/2.97a13557.chunk.css",
-    "static/js/2.67729a94.chunk.js",
+    "static/js/runtime-main.d837887f.js",
+    "static/css/2.8c5372c1.chunk.css",
+    "static/js/2.1dc394ff.chunk.js",
     "static/css/main.5d50e8a2.chunk.css",
-    "static/js/main.5befe729.chunk.js"
+    "static/js/main.b55acda8.chunk.js"
   ]
 }
