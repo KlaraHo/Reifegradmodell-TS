@@ -20,7 +20,6 @@ export function TableMQPerspective(props: {
   tableLegend: tableLegend[];
   columns: string[];
   onAggregationChange(value: number): void;
-  onReset(value: number): void;
 }) {
   const initialMqRowDescriptions: string[] = [];
   for (let i = 0; i < props.kpiRowCount + props.piRowCount; i++) {
@@ -101,10 +100,11 @@ export function TableMQPerspective(props: {
             }
           }
 
-          setAggregationSum(sumKpi * 0.66 + sumPi * 0.33);
+          const newSum = sumKpi * 0.66 + sumPi * 0.33;
+          setAggregationSum(newSum);
           setMqRowDescriptions(newMqRowDescriptions);
 
-          props.onAggregationChange(aggregationSum);
+          props.onAggregationChange(newSum);
         }}
       >
         <div>
@@ -118,38 +118,31 @@ export function TableMQPerspective(props: {
             {props.perspective}
           </div>
 
-          
-
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "70% auto"
             }}
           >
-            <div
-
-            ><div
-            style={{
-              display: "grid",
-              gridTemplateColumns: `repeat(${props.columns.length}, 1fr)`,
-              justifyItems: "center",
-              columnGap: 16,
-              marginTop: 40,
-              marginBottom: 24
-    
-            }}
-          >
-            {props.columns.map((column, index) => {
-              return (
-                <span
-                  style={{  fontWeight: "bold", marginLeft: 5, marginRight: 5 }}
-                  key={index}
-                >
-                  {column}
-                </span>
-              );
-            })}
-          </div>
+            <div>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: `repeat(${props.columns.length}, 1fr)`,
+                  justifyItems: "center",
+                  columnGap: 16,
+                  marginTop: 40,
+                  marginBottom: 24
+                }}
+              >
+                {props.columns.map((column, index) => {
+                  return (
+                    <span style={{ fontWeight: "bold", marginLeft: 5, marginRight: 5 }} key={index}>
+                      {column}
+                    </span>
+                  );
+                })}
+              </div>
               {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
                 return (
                   <TableMQRow
@@ -204,7 +197,8 @@ export function TableMQPerspective(props: {
                     setMqRowDescriptions(initialMqRowDescriptions);
                     setFulfilment(initialFulfilment);
                     setReset(reset + 1);
-                    props.onReset(reset + 1)
+    
+                    props.onAggregationChange(0);
                     message.success("Daten wurden erfolgreich zurückgesetzt!");
                   }}
                 >
@@ -214,7 +208,7 @@ export function TableMQPerspective(props: {
                 </Popconfirm>
               </div>
             </div>
-   
+
             <Chart
               // Perspective Chart
               options={{

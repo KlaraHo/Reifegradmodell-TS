@@ -21,6 +21,18 @@ export function TableMQ(props: {
   const [aggregationPerspective4, setAggregationPerspective4] = React.useState<number>(0);
   const [mqMetric, setMqMetric] = React.useState<number>(0);
 
+  React.useEffect(() => {
+    setMqMetric(calculateMqMetric());
+  }, [aggregationPerspective1, aggregationPerspective2, aggregationPerspective3, aggregationPerspective4]);
+
+  const calculateMqMetric = () => {
+    let mqMetric = 0;
+    mqMetric =
+      (aggregationPerspective1 + aggregationPerspective2 + aggregationPerspective3 + aggregationPerspective4) / 4;
+    console.log("aggr", aggregationPerspective1, aggregationPerspective2);
+    return mqMetric;
+  };
+
   const colorIcon = () => {
     let mqMetric = 0;
     let iconColor = "#FFFFFF";
@@ -55,14 +67,7 @@ export function TableMQ(props: {
 
       <Form.Provider
         onFormChange={(name, info) => {
-          let mqMetric =
-            (aggregationPerspective1 + aggregationPerspective2 + aggregationPerspective3 + aggregationPerspective4) / 4;
-          setMqMetric(mqMetric);
-
-
-
           props.onQualityLevelChange(mqMetric * props.maturityWeight);
-
         }}
       >
         <div style={{ marginTop: 24 }}>
@@ -82,9 +87,9 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective1(value);
             }}
-            onReset={(value) => {
-              setMqMetric(0)
-            }}
+            // onReset={() =>{
+            //   onQualityChange(0);
+            // } }
           />
 
           <TableMQPerspective
@@ -104,11 +109,8 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective2(value);
             }}
-            onReset={(value) => {
-              setMqMetric(0)
-            }}
           />
-          <TableMQPerspective
+          {/* <TableMQPerspective
             perspective={"Kostenperspektive"}
             tableID={props.tableID}
             columns={props.columns}
@@ -125,7 +127,7 @@ export function TableMQ(props: {
               setAggregationPerspective3(value);
             }}
             onReset={(value) => {
-              setMqMetric(0)
+              setMqMetric(calculateMqMetric());
             }}
           />
           <TableMQPerspective
@@ -142,9 +144,9 @@ export function TableMQ(props: {
               setAggregationPerspective4(value);
             }}
             onReset={(value) => {
-              setMqMetric(0)
+              setMqMetric(calculateMqMetric());
             }}
-          />
+          /> */}
         </div>
       </Form.Provider>
 

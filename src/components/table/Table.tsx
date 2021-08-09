@@ -281,6 +281,7 @@ export function Table(props: {
               setRowSums(initialSumsRows);
               setTargetValues([]);
               setRowDescription(initialRowDescriptions);
+              props.onQualityLevelChange(0);
               setReset(reset + 1);
               message.success("Daten wurden erfolgreich zurückgesetzt!");
             }}
