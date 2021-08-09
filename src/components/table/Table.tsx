@@ -52,6 +52,7 @@ export function Table(props: {
   const [rowDescriptions, setRowDescription] = React.useState<string[]>(initialRowDescriptions);
   const [reset, setReset] = React.useState<number>(0);
   const [targetValues, setTargetValues] = React.useState<number[]>([]);
+  const [initialValues, setInitialValues] = React.useState<{ description: string; values: number[] }[]>([]);
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
@@ -92,10 +93,30 @@ export function Table(props: {
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
 
+  const forms = Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
+    return (
+      <TableRow
+        key={row}
+        columns={props.columns}
+        row={row}
+        sourceInputPlaceholder={props.sourceInputPlaceholder}
+        tableID={props.tableID}
+        reset={reset}
+        initialValues={initialValues[row]}
+      />
+    );
+  });
+
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
-      <p>{props.description}</p>
+      <p
+        onClick={() => {
+          setInitialValues([{ description: "x", values: [1, 1, 1] }]);
+        }}
+      >
+        {props.description}
+      </p>
       <CSV />
       <div
         style={{
@@ -244,18 +265,7 @@ export function Table(props: {
           props.onQualityLevelChange(calculateMetric() * props.maturityWeight);
         }}
       >
-        {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
-          return (
-            <TableRow
-              key={row}
-              columns={props.columns}
-              row={row}
-              sourceInputPlaceholder={props.sourceInputPlaceholder}
-              tableID={props.tableID}
-              reset={reset}
-            />
-          );
-        })}
+        {forms}
 
         <Divider />
 
