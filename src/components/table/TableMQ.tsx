@@ -23,11 +23,13 @@ export function TableMQ(props: {
 
   React.useEffect(() => {
     setMqMetric(calculateMqMetric());
-  }, [aggregationPerspective1, aggregationPerspective2, aggregationPerspective3, aggregationPerspective4]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [aggregationPerspective1, aggregationPerspective2, aggregationPerspective3, aggregationPerspective4]);
 
   React.useEffect(() => {
     props.onQualityLevelChange(mqMetric * props.maturityWeight);
-  }, [mqMetric]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mqMetric, props.maturityWeight]);
 
   const calculateMqMetric = () => {
     let mqMetric = 0;

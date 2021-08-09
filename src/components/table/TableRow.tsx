@@ -64,7 +64,7 @@ export function TableRow(props: {
       form.submit();
     }
     setActive(true);
-  }, [props.initialValues]);
+  }, [props.initialValues, form, props.columns]);
 
   return (
     <Form
@@ -82,9 +82,7 @@ export function TableRow(props: {
       }}
       initialValues={{
         active: true,
-        description: props.initialValues
-          ? props.initialValues.description
-          : `${props.sourceInputPlaceholder} ${props.row + 1}`
+        description: `${props.sourceInputPlaceholder} ${props.row + 1}`
       }}
     >
       <Form.Item name="description">
