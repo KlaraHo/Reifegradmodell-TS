@@ -3,9 +3,8 @@ import React from "react";
 import { TableRow } from "./TableRow";
 import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
-import { CSV } from "../CSV";
 import Chart from "react-apexcharts";
-import { WarningOutlined, StarFilled } from "@ant-design/icons";
+import { WarningOutlined, StarFilled, DownloadOutlined, UploadOutlined } from "@ant-design/icons";
 
 export interface ITableColumn {
   name: string;
@@ -117,7 +116,11 @@ export function Table(props: {
       >
         {props.description}
       </p>
-      <CSV />
+      <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
+        <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
+        <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
+        <Button type="primary" icon={<UploadOutlined />} size={"large"} />
+      </div>
       <div
         style={{
           marginTop: 40,

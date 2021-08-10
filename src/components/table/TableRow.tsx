@@ -50,21 +50,21 @@ export function TableRow(props: {
     }
   }
 
-  React.useEffect(() => {
-    if (form) {
-      form.resetFields();
-      const defaultValues: any = {};
-      props.columns.forEach((column, index) => {
-        defaultValues[column.name] = props.initialValues?.values[index];
-      });
+  // React.useEffect(() => {
+  //   if (form) {
+  //     form.resetFields();
+  //     const defaultValues: any = {};
+  //     props.columns.forEach((column, index) => {
+  //       defaultValues[column.name] = props.initialValues?.values[index];
+  //     });
 
-      form.setFieldsValue(defaultValues);
-      form.validateFields();
-      // handleFieldValuesChange(form.getFieldsValue());
-      form.submit();
-    }
-    setActive(true);
-  }, [props.initialValues, form, props.columns]);
+  //     form.setFieldsValue(defaultValues);
+  //     form.validateFields();
+  //     // handleFieldValuesChange(form.getFieldsValue());
+  //     form.submit();
+  //   }
+  //   setActive(true);
+  // }, [props.initialValues, form, props.columns]);
 
   return (
     <Form
