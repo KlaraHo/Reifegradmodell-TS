@@ -3,8 +3,13 @@ import React from "react";
 import { TableRow } from "./TableRow";
 import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
+import { CSV } from "../CSV";
 import Chart from "react-apexcharts";
+<<<<<<< HEAD
 import { WarningOutlined, StarFilled, DownloadOutlined, UploadOutlined, InboxOutlined } from "@ant-design/icons";
+=======
+import { WarningOutlined, StarFilled } from "@ant-design/icons";
+>>>>>>> parent of 3d0253d (install papaparse, delete csv component, comment out upload stuff)
 
 export interface ITableColumn {
   name: string;
@@ -113,6 +118,7 @@ export function Table(props: {
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
+<<<<<<< HEAD
       <p>{props.description}</p>
 
       <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
@@ -145,6 +151,16 @@ export function Table(props: {
         />
       </div>
 
+=======
+      <p
+        onClick={() => {
+          setInitialValues([{ description: "x", values: [1, 1, 1] }]);
+        }}
+      >
+        {props.description}
+      </p>
+      <CSV />
+>>>>>>> parent of 3d0253d (install papaparse, delete csv component, comment out upload stuff)
       <div
         style={{
           marginTop: 40,
