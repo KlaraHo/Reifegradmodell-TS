@@ -8,6 +8,7 @@ export function TableRow(props: {
   tableID: string;
   sourceInputPlaceholder: string;
   reset: number;
+  initialValues?: { description: string; values: number[] };
   onActiveChange?(active: boolean): void;
 }) {
   const [form] = Form.useForm();
@@ -22,8 +23,6 @@ export function TableRow(props: {
     setActive(true);
   }, [form, props.reset]);
 
-<<<<<<< HEAD
-=======
   function handleFieldValuesChange(values: any) {
     console.error("onValuesChange");
     let total = 0;
@@ -67,7 +66,6 @@ export function TableRow(props: {
     setActive(true);
   }, [props.initialValues, form, props.columns]);
 
->>>>>>> parent of 3d0253d (install papaparse, delete csv component, comment out upload stuff)
   return (
     <Form
       form={form}
@@ -80,29 +78,7 @@ export function TableRow(props: {
         rowGap: 16
       }}
       onValuesChange={(_, values) => {
-        let total = 0;
-        let totalWeights = 0;
-
-        if (values.active) {
-          // eslint-disable-next-line
-          for (const [_key, value] of Object.entries(values)) {
-            if (Number.isFinite(value)) {
-              let qi = value as number;
-
-              if (qi <= 0.5) {
-                total += qi * 1.3;
-                totalWeights += 1.3;
-              } else {
-                total += qi;
-                totalWeights += 1;
-              }
-            }
-          }
-
-          if (totalWeights) {
-            setSum(total / totalWeights);
-          }
-        }
+        handleFieldValuesChange(values);
       }}
       initialValues={{
         active: true,

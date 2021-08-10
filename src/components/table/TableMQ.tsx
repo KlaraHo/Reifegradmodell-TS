@@ -1,7 +1,7 @@
-import { Form, Card } from "antd";
+import { Form, Card, Button } from "antd";
 import React from "react";
 import { TableMQPerspective } from "./TableMQPerspective";
-import { StarFilled } from "@ant-design/icons";
+import { StarFilled, DownloadOutlined, UploadOutlined } from "@ant-design/icons";
 
 export function TableMQ(props: {
   title: string;
@@ -22,11 +22,13 @@ export function TableMQ(props: {
 
   React.useEffect(() => {
     setMqMetric(calculateMqMetric());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [aggregationPerspective1, aggregationPerspective2, aggregationPerspective3, aggregationPerspective4]);
 
   React.useEffect(() => {
     props.onQualityLevelChange(mqMetric * props.maturityWeight);
-  }, [mqMetric, props]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mqMetric, props.maturityWeight]);
 
   const calculateMqMetric = () => {
     let mqMetric = 0;
@@ -65,16 +67,12 @@ export function TableMQ(props: {
     >
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
       <p>{props.description}</p>
-<<<<<<< HEAD
 
       <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
         <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
         <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
         <Button type="primary" icon={<UploadOutlined />} size={"large"} />
       </div>
-=======
-      <CSV />
->>>>>>> parent of 3d0253d (install papaparse, delete csv component, comment out upload stuff)
 
       <Form.Provider
         onFormChange={(name, info) => {
