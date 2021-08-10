@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Reifegradmodell-TS/static/css/main.5d50e8a2.chunk.css",
-    "main.js": "/Reifegradmodell-TS/static/js/main.fefa61e9.chunk.js",
-    "main.js.map": "/Reifegradmodell-TS/static/js/main.fefa61e9.chunk.js.map",
+    "main.js": "/Reifegradmodell-TS/static/js/main.e8ec891d.chunk.js",
+    "main.js.map": "/Reifegradmodell-TS/static/js/main.e8ec891d.chunk.js.map",
     "runtime-main.js": "/Reifegradmodell-TS/static/js/runtime-main.d837887f.js",
     "runtime-main.js.map": "/Reifegradmodell-TS/static/js/runtime-main.d837887f.js.map",
     "static/css/2.8c5372c1.chunk.css": "/Reifegradmodell-TS/static/css/2.8c5372c1.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.8c5372c1.chunk.css",
     "static/js/2.a9d639f8.chunk.js",
     "static/css/main.5d50e8a2.chunk.css",
-    "static/js/main.fefa61e9.chunk.js"
+    "static/js/main.e8ec891d.chunk.js"
   ]
 }
