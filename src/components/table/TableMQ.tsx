@@ -1,6 +1,5 @@
 import { Form, Card, Button } from "antd";
 import React from "react";
-import { CSV } from "../CSV";
 import { TableMQPerspective } from "./TableMQPerspective";
 import { StarFilled, DownloadOutlined, UploadOutlined } from "@ant-design/icons";
 
@@ -23,19 +22,16 @@ export function TableMQ(props: {
 
   React.useEffect(() => {
     setMqMetric(calculateMqMetric());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [aggregationPerspective1, aggregationPerspective2, aggregationPerspective3, aggregationPerspective4]);
+  }, [aggregationPerspective1, aggregationPerspective2, aggregationPerspective3, aggregationPerspective4]);
 
   React.useEffect(() => {
     props.onQualityLevelChange(mqMetric * props.maturityWeight);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mqMetric, props.maturityWeight]);
+  }, [mqMetric, props]);
 
   const calculateMqMetric = () => {
     let mqMetric = 0;
     mqMetric =
       (aggregationPerspective1 + aggregationPerspective2 + aggregationPerspective3 + aggregationPerspective4) / 4;
-    console.log("aggr", aggregationPerspective1, aggregationPerspective2);
     return mqMetric;
   };
 
@@ -69,6 +65,7 @@ export function TableMQ(props: {
     >
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
       <p>{props.description}</p>
+
       <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
         <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
         <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
@@ -98,7 +95,6 @@ export function TableMQ(props: {
               setAggregationPerspective1(value);
             }}
           />
-
           <TableMQPerspective
             perspective={"Prozessperspektive"}
             tableID={props.tableID}
@@ -117,7 +113,7 @@ export function TableMQ(props: {
               setAggregationPerspective2(value);
             }}
           />
-          {/* <TableMQPerspective
+          <TableMQPerspective
             perspective={"Kostenperspektive"}
             tableID={props.tableID}
             columns={props.columns}
@@ -133,9 +129,6 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective3(value);
             }}
-            onReset={(value) => {
-              setMqMetric(calculateMqMetric());
-            }}
           />
           <TableMQPerspective
             perspective={"Ressourcenperspektive"}
@@ -150,10 +143,7 @@ export function TableMQ(props: {
             onAggregationChange={(value) => {
               setAggregationPerspective4(value);
             }}
-            onReset={(value) => {
-              setMqMetric(calculateMqMetric());
-            }}
-          /> */}
+          />
         </div>
       </Form.Provider>
 

@@ -8,7 +8,6 @@ export function TableRow(props: {
   tableID: string;
   sourceInputPlaceholder: string;
   reset: number;
-  initialValues?: { description: string; values: number[] };
   onActiveChange?(active: boolean): void;
 }) {
   const [form] = Form.useForm();
@@ -23,49 +22,6 @@ export function TableRow(props: {
     setActive(true);
   }, [form, props.reset]);
 
-  function handleFieldValuesChange(values: any) {
-    console.error("onValuesChange");
-    let total = 0;
-    let totalWeights = 0;
-
-    if (values.active) {
-      // eslint-disable-next-line
-      for (const [_key, value] of Object.entries(values)) {
-        if (Number.isFinite(value)) {
-          let qi = value as number;
-
-          if (qi <= 0.5) {
-            total += qi * 1.3;
-            totalWeights += 1.3;
-          } else {
-            total += qi;
-            totalWeights += 1;
-          }
-        }
-      }
-
-      if (totalWeights) {
-        setSum(total / totalWeights);
-      }
-    }
-  }
-
-  // React.useEffect(() => {
-  //   if (form) {
-  //     form.resetFields();
-  //     const defaultValues: any = {};
-  //     props.columns.forEach((column, index) => {
-  //       defaultValues[column.name] = props.initialValues?.values[index];
-  //     });
-
-  //     form.setFieldsValue(defaultValues);
-  //     form.validateFields();
-  //     // handleFieldValuesChange(form.getFieldsValue());
-  //     form.submit();
-  //   }
-  //   setActive(true);
-  // }, [props.initialValues, form, props.columns]);
-
   return (
     <Form
       form={form}
@@ -78,7 +34,29 @@ export function TableRow(props: {
         rowGap: 16
       }}
       onValuesChange={(_, values) => {
-        handleFieldValuesChange(values);
+        let total = 0;
+        let totalWeights = 0;
+
+        if (values.active) {
+          // eslint-disable-next-line
+          for (const [_key, value] of Object.entries(values)) {
+            if (Number.isFinite(value)) {
+              let qi = value as number;
+
+              if (qi <= 0.5) {
+                total += qi * 1.3;
+                totalWeights += 1.3;
+              } else {
+                total += qi;
+                totalWeights += 1;
+              }
+            }
+          }
+
+          if (totalWeights) {
+            setSum(total / totalWeights);
+          }
+        }
       }}
       initialValues={{
         active: true,

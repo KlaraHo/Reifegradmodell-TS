@@ -1,10 +1,10 @@
-import { Button, Form, Divider, Card, Popconfirm, message } from "antd";
+import { Button, Form, Divider, Card, Popconfirm, message, Modal, Upload } from "antd";
 import React from "react";
 import { TableRow } from "./TableRow";
 import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import Chart from "react-apexcharts";
-import { WarningOutlined, StarFilled, DownloadOutlined, UploadOutlined } from "@ant-design/icons";
+import { WarningOutlined, StarFilled, DownloadOutlined, UploadOutlined, InboxOutlined } from "@ant-design/icons";
 
 export interface ITableColumn {
   name: string;
@@ -51,7 +51,7 @@ export function Table(props: {
   const [rowDescriptions, setRowDescription] = React.useState<string[]>(initialRowDescriptions);
   const [reset, setReset] = React.useState<number>(0);
   const [targetValues, setTargetValues] = React.useState<number[]>([]);
-  const [initialValues, setInitialValues] = React.useState<{ description: string; values: number[] }[]>([]);
+  const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
@@ -89,38 +89,62 @@ export function Table(props: {
     }
   };
 
+  // Upload Modal
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+
+
+
+
+
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
-
-  const forms = Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
-    return (
-      <TableRow
-        key={row}
-        columns={props.columns}
-        row={row}
-        sourceInputPlaceholder={props.sourceInputPlaceholder}
-        tableID={props.tableID}
-        reset={reset}
-        initialValues={initialValues[row]}
-      />
-    );
-  });
 
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
-      <p
-        onClick={() => {
-          setInitialValues([{ description: "x", values: [1, 1, 1] }]);
-        }}
-      >
-        {props.description}
-      </p>
+      <p>{props.description}</p>
+
       <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
         <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
-        <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
-        <Button type="primary" icon={<UploadOutlined />} size={"large"} />
+        <Button
+          onClick={showModal}
+          type="primary"
+          icon={<UploadOutlined />}
+          size={"large"}
+          style={{ marginRight: 16 }}
+        />
+        <Modal
+          title="Upload"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          // okButtonProps={{ disabled: true }}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
+        <Button
+          onClick={() => {
+            console.log("hi");
+          }}
+          type="primary"
+          icon={<DownloadOutlined />}
+          size={"large"}
+        />
       </div>
+
       <div
         style={{
           marginTop: 40,
@@ -268,7 +292,18 @@ export function Table(props: {
           props.onQualityLevelChange(calculateMetric() * props.maturityWeight);
         }}
       >
-        {forms}
+        {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
+          return (
+            <TableRow
+              key={row}
+              columns={props.columns}
+              row={row}
+              sourceInputPlaceholder={props.sourceInputPlaceholder}
+              tableID={props.tableID}
+              reset={reset}
+            />
+          );
+        })}
 
         <Divider />
 
