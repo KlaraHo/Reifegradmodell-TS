@@ -18,11 +18,11 @@ const Introbox = () => {
           </div>
 
           <div className="row">
-            <h1 style={{ fontSize: "4rem", textTransform: "uppercase" }}>Reifegradmodell</h1>
-            <h2 style={{ marginTop: "1rem" }}>der Instandhaltung</h2>
+            <h1 style={{ fontSize: "4rem", textTransform: "uppercase", marginBottom: 0 }}>Reifegradmodell</h1>
+            <h2 style={{ marginTop: 8 }}>der Instandhaltung</h2>
           </div>
           <div className="row">
-            <p style={{ marginTop: "3rem" }}>
+            <p style={{ marginTop: 24 }}>
               Mit diesem Tool ist es möglich den unternehmenseigenen Reifegrad der Instandhaltung zu berechnen.
               <br />
               Es werden vier Faktoren: Datenqualität D<sub>Q</sub>, Informationsqualität I<sub>Q</sub>, Wissensqualität

@@ -35,7 +35,6 @@ export function TableMQPerspective(props: {
   const [mqRowDescriptions, setMqRowDescriptions] = React.useState<string[]>(initialMqRowDescriptions);
   const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
   const [reset, setReset] = React.useState<number>(0);
-  
 
   return (
     <>
@@ -109,6 +108,12 @@ export function TableMQPerspective(props: {
         }}
       >
         <div>
+          <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
+            <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
+            <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
+            <Button type="primary" icon={<UploadOutlined />} size={"large"} />
+          </div>
+
           <div
             style={{
               marginBottom: 4,
@@ -118,12 +123,6 @@ export function TableMQPerspective(props: {
           >
             {props.perspective}
           </div>
-
-          <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
-        <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
-        <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
-        <Button type="primary" icon={<UploadOutlined />} size={"large"} />
-      </div>
 
           <div
             style={{
@@ -204,7 +203,7 @@ export function TableMQPerspective(props: {
                     setMqRowDescriptions(initialMqRowDescriptions);
                     setFulfilment(initialFulfilment);
                     setReset(reset + 1);
-    
+
                     props.onAggregationChange(0);
                     message.success("Daten wurden erfolgreich zurückgesetzt!");
                   }}
