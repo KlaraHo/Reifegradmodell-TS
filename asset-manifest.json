@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/Reifegradmodell-TS/static/css/main.5d50e8a2.chunk.css",
-    "main.js": "/Reifegradmodell-TS/static/js/main.7f93b2dd.chunk.js",
-    "main.js.map": "/Reifegradmodell-TS/static/js/main.7f93b2dd.chunk.js.map",
+    "main.js": "/Reifegradmodell-TS/static/js/main.8c534d75.chunk.js",
+    "main.js.map": "/Reifegradmodell-TS/static/js/main.8c534d75.chunk.js.map",
     "runtime-main.js": "/Reifegradmodell-TS/static/js/runtime-main.d837887f.js",
     "runtime-main.js.map": "/Reifegradmodell-TS/static/js/runtime-main.d837887f.js.map",
     "static/css/2.8c5372c1.chunk.css": "/Reifegradmodell-TS/static/css/2.8c5372c1.chunk.css",
-    "static/js/2.1dc394ff.chunk.js": "/Reifegradmodell-TS/static/js/2.1dc394ff.chunk.js",
-    "static/js/2.1dc394ff.chunk.js.map": "/Reifegradmodell-TS/static/js/2.1dc394ff.chunk.js.map",
+    "static/js/2.a9d639f8.chunk.js": "/Reifegradmodell-TS/static/js/2.a9d639f8.chunk.js",
+    "static/js/2.a9d639f8.chunk.js.map": "/Reifegradmodell-TS/static/js/2.a9d639f8.chunk.js.map",
     "index.html": "/Reifegradmodell-TS/index.html",
     "static/css/2.8c5372c1.chunk.css.map": "/Reifegradmodell-TS/static/css/2.8c5372c1.chunk.css.map",
     "static/css/main.5d50e8a2.chunk.css.map": "/Reifegradmodell-TS/static/css/main.5d50e8a2.chunk.css.map",
-    "static/js/2.1dc394ff.chunk.js.LICENSE.txt": "/Reifegradmodell-TS/static/js/2.1dc394ff.chunk.js.LICENSE.txt",
+    "static/js/2.a9d639f8.chunk.js.LICENSE.txt": "/Reifegradmodell-TS/static/js/2.a9d639f8.chunk.js.LICENSE.txt",
     "static/media/TU-Wien-Logo.8d33c646.png": "/Reifegradmodell-TS/static/media/TU-Wien-Logo.8d33c646.png"
   },
   "entrypoints": [
     "static/js/runtime-main.d837887f.js",
     "static/css/2.8c5372c1.chunk.css",
-    "static/js/2.1dc394ff.chunk.js",
+    "static/js/2.a9d639f8.chunk.js",
     "static/css/main.5d50e8a2.chunk.css",
-    "static/js/main.7f93b2dd.chunk.js"
+    "static/js/main.8c534d75.chunk.js"
   ]
 }
