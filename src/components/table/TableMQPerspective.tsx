@@ -2,7 +2,7 @@ import { Divider, Form, Button, Popconfirm, message } from "antd";
 import React from "react";
 import Chart from "react-apexcharts";
 import { calculateFulfilment, TableMQRow } from "./TableMQRow";
-import { WarningOutlined } from "@ant-design/icons";
+import { WarningOutlined, DownloadOutlined, UploadOutlined } from "@ant-design/icons";
 
 export interface tableLegend {
   shortcut: string;
@@ -35,6 +35,7 @@ export function TableMQPerspective(props: {
   const [mqRowDescriptions, setMqRowDescriptions] = React.useState<string[]>(initialMqRowDescriptions);
   const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
   const [reset, setReset] = React.useState<number>(0);
+  
 
   return (
     <>
@@ -117,6 +118,12 @@ export function TableMQPerspective(props: {
           >
             {props.perspective}
           </div>
+
+          <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
+        <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
+        <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
+        <Button type="primary" icon={<UploadOutlined />} size={"large"} />
+      </div>
 
           <div
             style={{
