@@ -1,7 +1,7 @@
-import { Form, Card, Button, Modal, Upload } from "antd";
+import { Form, Card } from "antd";
 import React from "react";
 import { TableMQPerspective } from "./TableMQPerspective";
-import { StarFilled, DownloadOutlined, UploadOutlined } from "@ant-design/icons";
+import { StarFilled } from "@ant-design/icons";
 
 export function TableMQ(props: {
   title: string;
@@ -19,7 +19,6 @@ export function TableMQ(props: {
   const [aggregationPerspective3, setAggregationPerspective3] = React.useState<number>(0);
   const [aggregationPerspective4, setAggregationPerspective4] = React.useState<number>(0);
   const [mqMetric, setMqMetric] = React.useState<number>(0);
-
 
   React.useEffect(() => {
     setMqMetric(calculateMqMetric());
@@ -57,8 +56,6 @@ export function TableMQ(props: {
     }
   };
 
-
-
   return (
     <div
       style={{
@@ -70,9 +67,6 @@ export function TableMQ(props: {
     >
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
       <p>{props.description}</p>
-
-
-
 
       <Form.Provider
         onFormChange={(name, info) => {
