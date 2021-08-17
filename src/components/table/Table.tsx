@@ -54,6 +54,7 @@ export function Table(props: {
   const [reset, setReset] = React.useState<number>(0);
   const [targetValues, setTargetValues] = React.useState<number[]>([]);
   const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
+  const [csvFileRowsCount, setCsvFileRowsCount] = React.useState<number>(0);
 
   // const [initialValues, setInitialValues] = React.useState<{ description: string; values: number[] }[]>([]);
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
@@ -106,6 +107,8 @@ export function Table(props: {
       Papa.parse(csvFile.originFileObj, {
         complete: function (results) {
           console.log("Finished:", results.data);
+          // Hier If rein, leere Zeilen ignorieren
+          setCsvFileRowsCount(results.data.length - 1);
         }
       });
     }
@@ -139,6 +142,7 @@ export function Table(props: {
   //   );
   // });
 
+  console.log("Rows", props.rowsCount, csvFileRowsCount);
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
@@ -346,7 +350,10 @@ export function Table(props: {
           props.onQualityLevelChange(calculateMetric() * props.maturityWeight);
         }}
       >
-        {Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
+        {Array.from(
+          { length: props.rowsCount > csvFileRowsCount ? props.rowsCount : csvFileRowsCount },
+          (x, i) => i
+        ).map((row) => {
           return (
             <TableRow
               key={row}
