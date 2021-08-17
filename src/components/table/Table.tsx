@@ -5,6 +5,8 @@ import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import Chart from "react-apexcharts";
 import { WarningOutlined, StarFilled, DownloadOutlined, UploadOutlined, InboxOutlined } from "@ant-design/icons";
+import { UploadFile } from "antd/lib/upload/interface";
+import Papa from "papaparse";
 
 export interface ITableColumn {
   name: string;
@@ -51,6 +53,7 @@ export function Table(props: {
   const [rowDescriptions, setRowDescription] = React.useState<string[]>(initialRowDescriptions);
   const [reset, setReset] = React.useState<number>(0);
   const [targetValues, setTargetValues] = React.useState<number[]>([]);
+  const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
 
   // const [initialValues, setInitialValues] = React.useState<{ description: string; values: number[] }[]>([]);
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
@@ -98,11 +101,21 @@ export function Table(props: {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    // Hier Code für Daten einlesen ?
+
+    if (csvFile && csvFile.originFileObj) {
+      Papa.parse(csvFile.originFileObj, {
+        complete: function (results) {
+          console.log("Finished:", results.data);
+        }
+      });
+    }
+
+    setCsvFile(null);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    setCsvFile(null);
   };
 
   const { Dragger } = Upload;
@@ -164,6 +177,7 @@ export function Table(props: {
               console.log(info.fileList);
               if (info.fileList.length > 0) {
                 const file = info.fileList[0];
+                setCsvFile(file);
               }
             }}
           >
