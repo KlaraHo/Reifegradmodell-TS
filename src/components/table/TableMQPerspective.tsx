@@ -1,8 +1,8 @@
-import { Divider, Form, Button, Popconfirm, message } from "antd";
+import { Divider, Form, Button, Popconfirm, message, Modal, Upload } from "antd";
 import React from "react";
 import Chart from "react-apexcharts";
 import { calculateFulfilment, TableMQRow } from "./TableMQRow";
-import { WarningOutlined, DownloadOutlined, UploadOutlined } from "@ant-design/icons";
+import { WarningOutlined, DownloadOutlined, UploadOutlined, InboxOutlined } from "@ant-design/icons";
 
 export interface tableLegend {
   shortcut: string;
@@ -35,6 +35,22 @@ export function TableMQPerspective(props: {
   const [mqRowDescriptions, setMqRowDescriptions] = React.useState<string[]>(initialMqRowDescriptions);
   const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
   const [reset, setReset] = React.useState<number>(0);
+  const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
+
+  // Upload Modal
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const { Dragger } = Upload;
 
   return (
     <>
@@ -110,8 +126,39 @@ export function TableMQPerspective(props: {
         <div>
           <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
             <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
-            <Button type="primary" icon={<DownloadOutlined />} size={"large"} style={{ marginRight: 16 }} />
-            <Button type="primary" icon={<UploadOutlined />} size={"large"} />
+            <Button
+              onClick={showModal}
+              type="primary"
+              icon={<UploadOutlined />}
+              size={"large"}
+              style={{ marginRight: 16 }}
+            />
+            <Modal
+              title="Upload"
+              visible={isModalVisible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+              // okButtonProps={{ disabled: true }}
+            >
+              <Dragger {...props}>
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                <p className="ant-upload-hint">
+                  Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+                </p>
+              </Dragger>
+            </Modal>
+
+            <Button
+              onClick={() => {
+                console.log("hi");
+              }}
+              type="primary"
+              icon={<DownloadOutlined />}
+              size={"large"}
+            />
           </div>
 
           <div

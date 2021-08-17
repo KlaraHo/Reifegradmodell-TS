@@ -98,6 +98,7 @@ export function Table(props: {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    // Hier Code für Daten einlesen ?
   };
 
   const handleCancel = () => {
@@ -107,26 +108,33 @@ export function Table(props: {
   const { Dragger } = Upload;
 
   // UPLOAD STUFF
-
-  // const props:any => {
-  //   name: 'file',
-  //   multiple: false,
-  //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-  //   onChange(info) {
-  //     const { status } = info.file;
-  //     if (status !== 'uploading') {
-  //       console.log(info.file, info.fileList);
-  //     }
-  //     if (status === 'done') {
-  //       message.success(`${info.file.name} file uploaded successfully.`);
-  //     } else if (status === 'error') {
-  //       message.error(`${info.file.name} file upload failed.`);
-  //     }
-  //   },
-  //   onDrop(e) {
-  //     console.log('Dropped files', e.dataTransfer.files);
-  //   },
-  // };
+  const Uploader = () => {
+    const props = {
+      beforeUpload: (file: any) => {
+        if (file.type !== "csv") {
+          message.error(`${file.name} ist kein .csv`);
+        }
+        return file.type === "csv" ? true : Upload.LIST_IGNORE;
+      },
+      name: "file",
+      multiple: false,
+      action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+      onChange(info: any) {
+        const { status } = info.file;
+        if (status !== "uploading") {
+          console.log(info.file, info.fileList);
+        }
+        if (status === "done") {
+          message.success(`${info.file.name} Datei wurde erfolgreich hochgeladen.`);
+        } else if (status === "error") {
+          message.error(`${info.file.name} Datei Upload fehlgeschlagen.`);
+        }
+      },
+      onDrop(e: any) {
+        console.log("Dropped files", e.dataTransfer.files);
+      }
+    };
+  };
 
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
@@ -168,7 +176,7 @@ export function Table(props: {
           style={{ marginRight: 16 }}
         />
         <Modal
-          title="Upload"
+          title=".csv Upload"
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
@@ -178,10 +186,8 @@ export function Table(props: {
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
-            <p className="ant-upload-hint">
-              Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
-            </p>
+            <p className="ant-upload-text">Fügen Sie Dateien per Klick oder Drag and Drop hinzu.</p>
+            <p className="ant-upload-hint">Es sind nur .csv Dateien erlaubt.</p>
           </Dragger>
         </Modal>
 
