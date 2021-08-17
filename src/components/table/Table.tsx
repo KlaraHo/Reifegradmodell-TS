@@ -107,35 +107,6 @@ export function Table(props: {
 
   const { Dragger } = Upload;
 
-  // UPLOAD STUFF
-  const Uploader = () => {
-    const props = {
-      beforeUpload: (file: any) => {
-        if (file.type !== "csv") {
-          message.error(`${file.name} ist kein .csv`);
-        }
-        return file.type === "csv" ? true : Upload.LIST_IGNORE;
-      },
-      name: "file",
-      multiple: false,
-      action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-      onChange(info: any) {
-        const { status } = info.file;
-        if (status !== "uploading") {
-          console.log(info.file, info.fileList);
-        }
-        if (status === "done") {
-          message.success(`${info.file.name} Datei wurde erfolgreich hochgeladen.`);
-        } else if (status === "error") {
-          message.error(`${info.file.name} Datei Upload fehlgeschlagen.`);
-        }
-      },
-      onDrop(e: any) {
-        console.log("Dropped files", e.dataTransfer.files);
-      }
-    };
-  };
-
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
 
@@ -180,9 +151,22 @@ export function Table(props: {
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
+          destroyOnClose
           // okButtonProps={{ disabled: true }}
         >
-          <Dragger {...props}>
+          <Dragger
+            accept=".csv"
+            beforeUpload={() => false}
+            multiple={false}
+            maxCount={1}
+            name="file"
+            onChange={(info) => {
+              console.log(info.fileList);
+              if (info.fileList.length > 0) {
+                const file = info.fileList[0];
+              }
+            }}
+          >
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
