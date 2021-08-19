@@ -107,6 +107,22 @@ export function Table(props: {
       Papa.parse(csvFile.originFileObj, {
         complete: function (results) {
           console.log("Finished:", results.data);
+
+          let csvDataForTable: any = [];
+
+          results.data.forEach((item) => {
+            console.log(item);
+
+            csvDataForTable.push(item);
+
+            console.log("csvTable", csvDataForTable);
+
+            // ignore empty rows
+            // if (item.length <= 1) {
+            //   delete results.data.item;
+            // }
+          });
+
           // Hier If rein, leere Zeilen ignorieren
           setCsvFileRowsCount(results.data.length - 1);
         }
