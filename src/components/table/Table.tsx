@@ -110,20 +110,18 @@ export function Table(props: {
 
           let csvDataForTable: any = [];
 
-          results.data.forEach((item) => {
-            console.log(item);
+          results.data.forEach((e, index) => {
+            console.log(e);
 
-            csvDataForTable.push(item);
+            if (index === 0) {
+              console.log("Heading");
+            } else if (index > 0) {
+              csvDataForTable.push(e);
+            }
 
             console.log("csvTable", csvDataForTable);
-
-            // ignore empty rows
-            // if (item.length <= 1) {
-            //   delete results.data.item;
-            // }
           });
 
-          // Hier If rein, leere Zeilen ignorieren
           setCsvFileRowsCount(results.data.length - 1);
         }
       });
