@@ -18,6 +18,11 @@ export interface tableLegend {
   name: string;
 }
 
+export interface csvDataForTable {
+  description: string;
+  values: number;
+}
+
 export function Table(props: {
   title: string;
   sourceTitle: string;
@@ -108,21 +113,22 @@ export function Table(props: {
         complete: function (results) {
           console.log("Finished:", results.data);
 
-          let csvDataForTable: any = [];
+          let csvDataForTable: any = []; // How to show here what format/type this should have?
 
           results.data.forEach((e, index) => {
             console.log(e);
 
-            if (index === 0) {
-              console.log("Heading");
-            } else if (index > 0) {
-              csvDataForTable.push(e);
+            if (index === 0 || e.length > 1) {
+              // why e unknown? where should I check the type? :(
+              console.log("Heading or empty row!");
+            } else if (index > 0 && e.length === props.columns.length + 1) {
+              csvDataForTable.description.push(e[0]);
+              csvDataForTable.values.push(parseFloat(e[index + 1]));
             }
 
+            setCsvFileRowsCount(csvDataForTable.length);
             console.log("csvTable", csvDataForTable);
           });
-
-          setCsvFileRowsCount(results.data.length - 1);
         }
       });
     }
@@ -156,7 +162,6 @@ export function Table(props: {
   //   );
   // });
 
-  console.log("Rows", props.rowsCount, csvFileRowsCount);
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
