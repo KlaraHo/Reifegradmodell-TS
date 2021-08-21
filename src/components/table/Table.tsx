@@ -18,6 +18,7 @@ export interface tableLegend {
   name: string;
 }
 
+// define here the format?
 export interface csvDataForTable {
   description: string;
   values: number;
@@ -58,11 +59,10 @@ export function Table(props: {
   const [rowDescriptions, setRowDescription] = React.useState<string[]>(initialRowDescriptions);
   const [reset, setReset] = React.useState<number>(0);
   const [targetValues, setTargetValues] = React.useState<number[]>([]);
+  const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
   const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
   const [csvFileRowsCount, setCsvFileRowsCount] = React.useState<number>(0);
-
   // const [initialValues, setInitialValues] = React.useState<{ description: string; values: number[] }[]>([]);
-  const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
@@ -118,13 +118,13 @@ export function Table(props: {
           results.data.forEach((e, index) => {
             console.log(e);
 
-            if (index === 0 || e.length > 1) {
-              // why e unknown? where should I check the type? :(
-              console.log("Heading or empty row!");
-            } else if (index > 0 && e.length === props.columns.length + 1) {
-              csvDataForTable.description.push(e[0]);
-              csvDataForTable.values.push(parseFloat(e[index + 1]));
-            }
+            // if (index === 0 || e.length > 1) {
+            //   // why e unknown? where should I check the type? :(
+            //   console.log("Heading or empty row!");
+            // } else if (index > 0 && e.length === props.columns.length + 1) {
+            //   csvDataForTable.description.push(e[0]);
+            //   csvDataForTable.values.push(parseFloat(e[index + 1]));
+            // }
 
             setCsvFileRowsCount(csvDataForTable.length);
             console.log("csvTable", csvDataForTable);
@@ -183,7 +183,7 @@ export function Table(props: {
           style={{ marginRight: 16 }}
         />
         <Modal
-          title=".csv Upload"
+          title={".csv Upload - " + props.title}
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}

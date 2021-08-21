@@ -96,9 +96,6 @@ export function TableMQRow(props: {
             disabled={!active}
             key={props.tableID + "_" + props.perspective + "_" + props.row + "_actualValue"}
             size="small"
-            min="0"
-            max="100"
-            step="1"
           />
         </Form.Item>
         <Form.Item name="targetValue">

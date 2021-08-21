@@ -3,6 +3,8 @@ import React from "react";
 import Chart from "react-apexcharts";
 import { calculateFulfilment, TableMQRow } from "./TableMQRow";
 import { WarningOutlined, DownloadOutlined, UploadOutlined, InboxOutlined } from "@ant-design/icons";
+import { UploadFile } from "antd/lib/upload/interface";
+import Papa from "papaparse";
 
 export interface tableLegend {
   shortcut: string;
@@ -36,6 +38,8 @@ export function TableMQPerspective(props: {
   const [fulfilment, setFulfilment] = React.useState<number[]>(initialFulfilment);
   const [reset, setReset] = React.useState<number>(0);
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
+  const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
+  const [csvFileRowsCount, setCsvFileRowsCount] = React.useState<number>(0);
 
   // Upload Modal
   const showModal = () => {
@@ -44,10 +48,38 @@ export function TableMQPerspective(props: {
 
   const handleOk = () => {
     setIsModalVisible(false);
+
+    if (csvFile && csvFile.originFileObj) {
+      Papa.parse(csvFile.originFileObj, {
+        complete: function (results) {
+          console.log("Finished:", results.data);
+
+          let csvDataForTable: any = []; // How to show here what format/type this should have?
+
+          results.data.forEach((e, index) => {
+            console.log(e);
+
+            // if (index === 0 || e.length > 1) {
+            //   // why e unknown? where should I check the type? :(
+            //   console.log("Heading or empty row!");
+            // } else if (index > 0 && e.length === props.columns.length + 1) {
+            //   csvDataForTable.description.push(e[0]);
+            //   csvDataForTable.values.push(parseFloat(e[index + 1]));
+            // }
+
+            // setCsvFileRowsCount(csvDataForTable.length); hier nicht machen?!
+            console.log("csvTable", csvDataForTable);
+          });
+        }
+      });
+    }
+
+    setCsvFile(null);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    setCsvFile(null);
   };
 
   const { Dragger } = Upload;
@@ -134,20 +166,32 @@ export function TableMQPerspective(props: {
               style={{ marginRight: 16 }}
             />
             <Modal
-              title="Upload"
+              title={".csv Upload - " + props.perspective}
               visible={isModalVisible}
               onOk={handleOk}
               onCancel={handleCancel}
+              destroyOnClose
               // okButtonProps={{ disabled: true }}
             >
-              <Dragger {...props}>
+              <Dragger
+                accept=".csv"
+                beforeUpload={() => false}
+                multiple={false}
+                maxCount={1}
+                name="file"
+                onChange={(info) => {
+                  console.log(info.fileList);
+                  if (info.fileList.length > 0) {
+                    const file = info.fileList[0];
+                    setCsvFile(file);
+                  }
+                }}
+              >
                 <p className="ant-upload-drag-icon">
                   <InboxOutlined />
                 </p>
-                <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                <p className="ant-upload-hint">
-                  Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
-                </p>
+                <p className="ant-upload-text">Fügen Sie Dateien per Klick oder Drag and Drop hinzu.</p>
+                <p className="ant-upload-hint">Es sind nur .csv Dateien erlaubt. </p>
               </Dragger>
             </Modal>
 
