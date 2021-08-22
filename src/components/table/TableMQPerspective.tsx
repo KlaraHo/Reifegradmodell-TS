@@ -67,7 +67,7 @@ export function TableMQPerspective(props: {
             //   csvDataForTable.values.push(parseFloat(e[index + 1]));
             // }
 
-            // setCsvFileRowsCount(csvDataForTable.length); hier nicht machen?!
+            // setCsvFileRowsCount(csvDataForTable.length); bei Perspektiven nicht machen?!
             console.log("csvTable", csvDataForTable);
           });
         }

@@ -118,13 +118,24 @@ export function Table(props: {
           results.data.forEach((e, index) => {
             console.log(e);
 
-            // if (index === 0 || e.length > 1) {
-            //   // why e unknown? where should I check the type? :(
-            //   console.log("Heading or empty row!");
-            // } else if (index > 0 && e.length === props.columns.length + 1) {
-            //   csvDataForTable.description.push(e[0]);
-            //   csvDataForTable.values.push(parseFloat(e[index + 1]));
-            // }
+            if (index === 0 || e.length > 1) {
+              // why e unknown? where should I check the type? :(
+              console.log("Heading or empty row!");
+            } else if (index > 0 && e.length === props.columns.length + 1) {
+              for (let i = 0; i < 1; i++) {
+                csvDataForTable.push({
+                  description: i
+                });
+              }
+              for (let j = 0; 0 < j < e.length; j++) {
+                csvDataForTable.push({
+                  values: j
+                });
+              }
+
+              // csvDataForTable.description.push(e[0]);
+              // csvDataForTable.values.push(parseFloat(e[index + 1]));
+            }
 
             setCsvFileRowsCount(csvDataForTable.length);
             console.log("csvTable", csvDataForTable);
