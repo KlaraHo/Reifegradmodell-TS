@@ -141,6 +141,23 @@ export function Table(props: {
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
 
+  const forms = Array.from(
+    { length: props.rowsCount > csvFileRowsCount ? props.rowsCount : csvFileRowsCount },
+    (x, i) => i
+  ).map((row) => {
+    return (
+      <TableRow
+        key={row}
+        columns={props.columns}
+        row={row}
+        sourceInputPlaceholder={props.sourceInputPlaceholder}
+        tableID={props.tableID}
+        reset={reset}
+        initialValues={initialValues[row]}
+      />
+    );
+  });
+
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
@@ -348,7 +365,7 @@ export function Table(props: {
           props.onQualityLevelChange(calculateMetric() * props.maturityWeight);
         }}
       >
-        {Array.from(
+        {/* {Array.from(
           { length: props.rowsCount > csvFileRowsCount ? props.rowsCount : csvFileRowsCount },
           (x, i) => i
         ).map((row) => {
@@ -363,8 +380,8 @@ export function Table(props: {
               initialValues={initialValues[row]}
             />
           );
-        })}
-        {/* {forms} */}
+        })} */}
+        {forms}
 
         <Divider />
 
