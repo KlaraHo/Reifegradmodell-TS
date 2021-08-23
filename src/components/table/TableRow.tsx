@@ -2,13 +2,18 @@ import { Checkbox, Form, Input, InputNumber } from "antd";
 import React from "react";
 import { ITableColumn } from "./Table";
 
+export interface ITableRowInitialValues {
+  description: string;
+  values: number[];
+}
+
 export function TableRow(props: {
   columns: ITableColumn[];
   row: number;
   tableID: string;
   sourceInputPlaceholder: string;
   reset: number;
-  // initialValues?: { description: string; values: number[] };
+  initialValues?: ITableRowInitialValues;
   onActiveChange?(active: boolean): void;
 }) {
   const [form] = Form.useForm();

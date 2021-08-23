@@ -1,6 +1,6 @@
 import { Button, Form, Divider, Card, Popconfirm, message, Modal, Upload } from "antd";
 import React from "react";
-import { TableRow } from "./TableRow";
+import { ITableRowInitialValues, TableRow } from "./TableRow";
 import { TableRowTargetvalue } from "./TableRowTargetvalue";
 import { TableRowAggregation } from "./TableRowAggregation";
 import Chart from "react-apexcharts";
@@ -16,12 +16,6 @@ export interface ITableColumn {
 export interface tableLegend {
   shortcut: string;
   name: string;
-}
-
-// define here the format?
-export interface csvDataForTable {
-  description: string;
-  values: number;
 }
 
 export function Table(props: {
@@ -62,7 +56,7 @@ export function Table(props: {
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
   const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
   const [csvFileRowsCount, setCsvFileRowsCount] = React.useState<number>(0);
-  // const [initialValues, setInitialValues] = React.useState<{ description: string; values: number[] }[]>([]);
+  const [initialValues, setInitialValues] = React.useState<ITableRowInitialValues[]>([]);
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
@@ -109,37 +103,27 @@ export function Table(props: {
     setIsModalVisible(false);
 
     if (csvFile && csvFile.originFileObj) {
-      Papa.parse(csvFile.originFileObj, {
+      Papa.parse<string[]>(csvFile.originFileObj, {
         complete: function (results) {
           console.log("Finished:", results.data);
 
-          let csvDataForTable: any = []; // How to show here what format/type this should have?
+          let csvDataForTable: ITableRowInitialValues[] = [];
 
           results.data.forEach((e, index) => {
-            console.log(e);
-
-            if (index === 0 || e.length > 1) {
-              // why e unknown? where should I check the type? :(
+            if (index === 0 || e.length < 2) {
               console.log("Heading or empty row!");
-            } else if (index > 0 && e.length === props.columns.length + 1) {
-              for (let i = 0; i < 1; i++) {
-                csvDataForTable.push({
-                  description: i
-                });
-              }
-              for (let j = 0; 0 < j < e.length; j++) {
-                csvDataForTable.push({
-                  values: j
-                });
-              }
+            } else if (index > 0 && e.length <= props.columns.length + 1) {
+              const newItem: ITableRowInitialValues = { description: e[0], values: [] };
 
-              // csvDataForTable.description.push(e[0]);
-              // csvDataForTable.values.push(parseFloat(e[index + 1]));
+              for (let j = 1; j < e.length; j++) {
+                newItem.values.push(parseFloat(e[j]));
+              }
+              csvDataForTable.push(newItem);
             }
-
-            setCsvFileRowsCount(csvDataForTable.length);
-            console.log("csvTable", csvDataForTable);
           });
+
+          setCsvFileRowsCount(csvDataForTable.length);
+          setInitialValues(csvDataForTable);
         }
       });
     }
@@ -157,29 +141,13 @@ export function Table(props: {
   // Metric Chart Categories
   let categoriesMetricChart = props.columns.map((a) => a.name);
 
-  // CWERNI
-
-  // const forms = Array.from({ length: props.rowsCount }, (x, i) => i).map((row) => {
-  //   return (
-  //     <TableRow
-  //       key={row}
-  //       columns={props.columns}
-  //       row={row}
-  //       sourceInputPlaceholder={props.sourceInputPlaceholder}
-  //       tableID={props.tableID}
-  //       reset={reset}
-  //       initialValues={initialValues[row]}
-  //     />
-  //   );
-  // });
-
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
       <p
-      // onClick={() => {
-      //   setInitialValues([{ description: "x", values: [1, 1, 1] }]);
-      // }}
+        onClick={() => {
+          setInitialValues([{ description: "x", values: [1, 1, 1] }]);
+        }}
       >
         {props.description}
       </p>
@@ -392,6 +360,7 @@ export function Table(props: {
               sourceInputPlaceholder={props.sourceInputPlaceholder}
               tableID={props.tableID}
               reset={reset}
+              initialValues={initialValues[row]}
             />
           );
         })}
