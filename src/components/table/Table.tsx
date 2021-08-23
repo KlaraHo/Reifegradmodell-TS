@@ -161,13 +161,7 @@ export function Table(props: {
   return (
     <div style={{ textAlign: "center", background: props.backgroundColor, padding: 40, marginTop: 40 }}>
       <h1 style={{ textTransform: "uppercase" }}>{props.title}</h1>
-      <p
-        onClick={() => {
-          setInitialValues([{ description: "x", values: [1, 1, 1] }]);
-        }}
-      >
-        {props.description}
-      </p>
+      <p>{props.description}</p>
 
       <div style={{ justifyContent: "flex-end", display: "flex", marginTop: 16 }}>
         <span style={{ textAlign: "center", marginRight: 20, marginTop: 10 }}>.csv</span>
