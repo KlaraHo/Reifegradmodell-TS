@@ -91,6 +91,39 @@ export function TableMQPerspective(props: {
 
   const { Dragger } = Upload;
 
+  const forms_KPI = Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
+    return (
+      <TableMQRow
+        key={row}
+        row={row}
+        isKpiRow={true}
+        step="KPI"
+        defaultValueName={props.defaultValueName[i]}
+        defaultValueTarget={props.defaultValueTarget[i]}
+        tableID={props.tableID}
+        perspective={props.perspective}
+        reset={reset}
+        initialValues={initialValues[row]}
+      />
+    );
+  });
+
+  const forms_PI = Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
+    return (
+      <TableMQRow
+        key={row}
+        row={row}
+        isKpiRow={false}
+        step="PI"
+        defaultValueName={props.defaultValueName[row]}
+        tableID={props.tableID}
+        perspective={props.perspective}
+        reset={reset}
+        initialValues={initialValues[row]}
+      />
+    );
+  });
+
   return (
     <>
       <Form.Provider
@@ -247,7 +280,7 @@ export function TableMQPerspective(props: {
                   );
                 })}
               </div>
-              {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
+              {/* {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
                 return (
                   <TableMQRow
                     key={row}
@@ -276,7 +309,11 @@ export function TableMQPerspective(props: {
                     reset={reset}
                   />
                 );
-              })}
+              })} */}
+
+              {forms_KPI}
+              {forms_PI}
+
               <div style={{ marginTop: 20 }}>Aggregation: {aggregationSum.toFixed(2)} </div>
               <div style={{ textAlign: "center", marginTop: 4 }}>
                 {props.tableLegend.map((term, index) => {

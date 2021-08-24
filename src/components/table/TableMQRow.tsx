@@ -43,6 +43,21 @@ export function TableMQRow(props: {
     setActive(true);
   }, [form, props.reset]);
 
+  React.useEffect(() => {
+    if (form) {
+      form.resetFields();
+      const defaultValues: any = {};
+      // props.columns.forEach((column, index) => {
+      //   defaultValues[column.name] = props.initialValues?.values[index];
+      // });
+      form.setFieldsValue(defaultValues);
+      // form.validateFields();
+      // handleFieldValuesChange(form.getFieldsValue());
+      form.submit();
+    }
+    setActive(true);
+  }, [props.initialValues, form]);
+
   return (
     <Form
       form={form}
