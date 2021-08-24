@@ -116,7 +116,12 @@ export function Table(props: {
               const newItem: ITableRowInitialValues = { description: e[0], values: [] };
 
               for (let j = 1; j < e.length; j++) {
-                newItem.values.push(parseFloat(e[j]));
+                if (e[j] === "") {
+                  newItem.values.push(0); //undefined statt 0 funkt hier nicht, weil die values numbers sein müssen
+                  // wenn sie als undefined markiert sind, dann gibts noch mehr Fehler
+                } else {
+                  newItem.values.push(parseFloat(e[j]));
+                }
               }
               csvDataForTable.push(newItem);
             }
