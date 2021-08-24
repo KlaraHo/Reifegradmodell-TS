@@ -1,6 +1,11 @@
 import { Form, Checkbox, Input, InputNumber } from "antd";
 import React from "react";
 
+export interface ITableRowInitialValues {
+  description: string;
+  values: number[];
+}
+
 export function calculateFulfilment(actualValue: number, targetValue: number): number {
   if (targetValue === 0) {
     return 0;
@@ -23,6 +28,7 @@ export function TableMQRow(props: {
   tableID: string;
   perspective: string;
   reset: number;
+  initialValues?: ITableRowInitialValues;
   onActiveChange?(active: boolean): void;
 }) {
   const [form] = Form.useForm();
@@ -36,8 +42,6 @@ export function TableMQRow(props: {
     setFulfilment(0);
     setActive(true);
   }, [form, props.reset]);
-
-  // let categoriesPerspectiveChart = [];
 
   return (
     <Form
