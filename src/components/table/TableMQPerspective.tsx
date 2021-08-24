@@ -1,7 +1,7 @@
 import { Divider, Form, Button, Popconfirm, message, Modal, Upload } from "antd";
 import React from "react";
 import Chart from "react-apexcharts";
-import { calculateFulfilment, TableMQRow } from "./TableMQRow";
+import { calculateFulfilment, TableMQRow, ITableRowInitialValues } from "./TableMQRow";
 import { WarningOutlined, DownloadOutlined, UploadOutlined, InboxOutlined } from "@ant-design/icons";
 import { UploadFile } from "antd/lib/upload/interface";
 import Papa from "papaparse";
@@ -40,6 +40,7 @@ export function TableMQPerspective(props: {
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
   const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
   const [csvFileRowsCount, setCsvFileRowsCount] = React.useState<number>(0);
+  const [initialValues, setInitialValues] = React.useState<ITableRowInitialValues[]>([]);
 
   // Upload Modal
   const showModal = () => {
@@ -50,26 +51,27 @@ export function TableMQPerspective(props: {
     setIsModalVisible(false);
 
     if (csvFile && csvFile.originFileObj) {
-      Papa.parse(csvFile.originFileObj, {
+      Papa.parse<string[]>(csvFile.originFileObj, {
         complete: function (results) {
           console.log("Finished:", results.data);
 
-          let csvDataForTable: any = []; // How to show here what format/type this should have?
+          let csvDataForTable: ITableRowInitialValues[] = [];
 
           results.data.forEach((e, index) => {
-            console.log(e);
+            if (index === 0 || e.length < 2) {
+              console.log("Heading or empty row!");
+            } else if (index > 0 && e.length <= props.columns.length - 3) {
+              const newItem: ITableRowInitialValues = { description: e[0], values: [] };
 
-            // if (index === 0 || e.length > 1) {
-            //   // why e unknown? where should I check the type? :(
-            //   console.log("Heading or empty row!");
-            // } else if (index > 0 && e.length === props.columns.length + 1) {
-            //   csvDataForTable.description.push(e[0]);
-            //   csvDataForTable.values.push(parseFloat(e[index + 1]));
-            // }
-
-            // setCsvFileRowsCount(csvDataForTable.length); bei Perspektiven nicht machen?!
-            console.log("csvTable", csvDataForTable);
+              for (let j = 1; j < e.length; j++) {
+                newItem.values.push(parseFloat(e[j]));
+              }
+              csvDataForTable.push(newItem);
+            }
           });
+
+          setCsvFileRowsCount(csvDataForTable.length);
+          setInitialValues(csvDataForTable);
         }
       });
     }
