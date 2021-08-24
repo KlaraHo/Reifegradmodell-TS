@@ -141,6 +141,29 @@ export function Table(props: {
     setCsvFile(null);
   };
 
+  // Download csv
+
+  const csvDownload = () => {
+    console.log("hi");
+
+    const data = [
+      ["row1", "1"],
+      ["row2", "2"]
+    ];
+
+    const fields = ["heading1", "heading2"];
+
+    // create csv and unparse stuff
+    const blob = new Blob([Papa.unparse({ data, fields })]);
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "CSV Export File";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   const { Dragger } = Upload;
 
   // Metric Chart Categories
@@ -207,14 +230,7 @@ export function Table(props: {
           </Dragger>
         </Modal>
 
-        <Button
-          onClick={() => {
-            console.log("hi");
-          }}
-          type="primary"
-          icon={<DownloadOutlined />}
-          size={"large"}
-        />
+        <Button onClick={csvDownload} type="primary" icon={<DownloadOutlined />} size={"large"} />
       </div>
 
       <div
