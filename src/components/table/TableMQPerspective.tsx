@@ -61,7 +61,7 @@ export function TableMQPerspective(props: {
             if (index === 0 || e.length < 2) {
               console.log("Heading or empty row!");
             } else if (index > 0 && e.length <= props.columns.length - 3) {
-              const newItem: ITableRowInitialValues = { description: e[0], values: [] }; 
+              const newItem: ITableRowInitialValues = { description: e[0], values: [] };
               //umbauen auf description, actualValue und targetValue?!
 
               for (let j = 1; j < e.length; j++) {
@@ -88,6 +88,29 @@ export function TableMQPerspective(props: {
   const handleCancel = () => {
     setIsModalVisible(false);
     setCsvFile(null);
+  };
+
+  // Download csv
+
+  const csvDownload = () => {
+    console.log("hi");
+
+    const data = [
+      ["row1", "1"],
+      ["row2", "2"]
+    ];
+
+    const fields = ["heading1", "heading2"];
+
+    // create csv and unparse stuff
+    const blob = new Blob([Papa.unparse({ data, fields })]);
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "CSV Export File";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   const { Dragger } = Upload;
@@ -212,7 +235,6 @@ export function TableMQPerspective(props: {
               onOk={handleOk}
               onCancel={handleCancel}
               destroyOnClose
-              // okButtonProps={{ disabled: true }}
             >
               <Dragger
                 accept=".csv"
@@ -236,14 +258,7 @@ export function TableMQPerspective(props: {
               </Dragger>
             </Modal>
 
-            <Button
-              onClick={() => {
-                console.log("hi");
-              }}
-              type="primary"
-              icon={<DownloadOutlined />}
-              size={"large"}
-            />
+            <Button onClick={csvDownload} type="primary" icon={<DownloadOutlined />} size={"large"} />
           </div>
 
           <div

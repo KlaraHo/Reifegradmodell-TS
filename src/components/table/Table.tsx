@@ -206,7 +206,6 @@ export function Table(props: {
           onOk={handleOk}
           onCancel={handleCancel}
           destroyOnClose
-          // okButtonProps={{ disabled: true }}
         >
           <Dragger
             accept=".csv"
