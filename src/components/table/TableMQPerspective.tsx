@@ -132,7 +132,15 @@ export function TableMQPerspective(props: {
     );
   });
 
-  const forms_PI = Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
+  const forms_PI = Array.from(
+    {
+      length:
+        props.piRowCount > csvFileRowsCount - props.kpiRowCount
+          ? props.piRowCount
+          : csvFileRowsCount - props.kpiRowCount
+    },
+    (x, i) => props.kpiRowCount + i
+  ).map((row) => {
     return (
       <TableMQRow
         key={row}
