@@ -66,8 +66,7 @@ export function TableMQPerspective(props: {
 
               for (let j = 1; j < e.length; j++) {
                 if (e[j] === "") {
-                  newItem.values.push(0); //undefined statt 0 funkt hier nicht, weil die values numbers sein müssen
-                  // wenn sie als undefined markiert sind, dann gibts noch mehr Fehler
+                  newItem.values.push(undefined);
                 } else {
                   newItem.values.push(parseFloat(e[j]));
                 }

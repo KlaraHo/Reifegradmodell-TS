@@ -4,7 +4,7 @@ import { ITableColumn } from "./Table";
 
 export interface ITableRowInitialValues {
   description: string;
-  values: number[];
+  values: (number | undefined)[];
 }
 
 export function TableRow(props: {

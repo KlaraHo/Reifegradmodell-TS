@@ -3,7 +3,7 @@ import React from "react";
 
 export interface ITableRowInitialValues {
   description: string;
-  values: number[];
+  values: (number | undefined)[];
 }
 
 export function calculateFulfilment(actualValue: number, targetValue: number): number {
@@ -45,14 +45,23 @@ export function TableMQRow(props: {
 
   React.useEffect(() => {
     if (form) {
-      form.resetFields();
-      const defaultValues: any = {};
-      // defaultValues.push(props.initialValues); // ??? no
+      if (props.initialValues) {
+        form.resetFields();
 
-      form.setFieldsValue(defaultValues);
-      // form.validateFields();
-      // handleFieldValuesChange(form.getFieldsValue()); // das hier wird bei der MQ Row in der tableMQPerspective gehandelt
-      form.submit();
+        const actualValue = props.initialValues.values[0]!;
+        const targetValue = props.initialValues.values[1]!;
+
+        form.setFieldsValue({
+          description: props.initialValues.description,
+          actualValue: actualValue,
+          targetValue: targetValue,
+          active: true
+        });
+        setFulfilment(calculateFulfilment(actualValue, targetValue));
+
+        // form.validateFields();
+        form.submit();
+      }
     }
     setActive(true);
   }, [props.initialValues, form]);
@@ -67,7 +76,7 @@ export function TableMQRow(props: {
         let targetValue: number = form.getFieldValue("targetValue") || 0;
 
         // console.log("rowValues", actualValue, targetValue);
-
+        console.log("Fulfilment");
         setFulfilment(calculateFulfilment(actualValue, targetValue));
       }}
       initialValues={{
