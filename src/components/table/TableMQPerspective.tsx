@@ -92,8 +92,6 @@ export function TableMQPerspective(props: {
   // Download csv
 
   const csvDownload = () => {
-    console.log("hi");
-
     const data = [
       ["row1", "1"],
       ["row2", "2"]
@@ -106,7 +104,7 @@ export function TableMQPerspective(props: {
 
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "CSV Export File";
+    a.download = "CSV_Export_File.csv";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -154,8 +152,6 @@ export function TableMQPerspective(props: {
       />
     );
   });
-
-  console.log(fulfilment, mqRowDescriptions);
 
   return (
     <>

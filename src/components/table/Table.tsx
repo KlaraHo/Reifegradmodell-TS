@@ -141,23 +141,24 @@ export function Table(props: {
   };
 
   // Download csv
-
   const csvDownload = () => {
-    console.log("hi");
-
     const data = [
       ["row1", "1"],
       ["row2", "2"]
     ];
 
-    const fields = ["heading1", "heading2"];
+    const headings = props.columns.map((column) => {
+      return column.name;
+    });
+
+    headings.unshift(props.sourceTitle);
 
     // create csv and unparse stuff
-    const blob = new Blob([Papa.unparse({ data, fields })]);
+    const blob = new Blob([Papa.unparse({ data: data, fields: headings })]);
 
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "CSV Export File";
+    a.download = `${props.title}_CSV_Export_File.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
