@@ -23,7 +23,7 @@ export function TableMQRow(props: {
   row: number;
   isKpiRow: boolean;
   step: string;
-  defaultValueName?: string;
+  defaultValueName: string;
   defaultValueTarget?: number;
   tableID: string;
   perspective: string;
@@ -47,12 +47,11 @@ export function TableMQRow(props: {
     if (form) {
       form.resetFields();
       const defaultValues: any = {};
-      // props.columns.forEach((column, index) => {
-      //   defaultValues[column.name] = props.initialValues?.values[index];
-      // });
+      // defaultValues.push(props.initialValues); // ??? no
+
       form.setFieldsValue(defaultValues);
       // form.validateFields();
-      // handleFieldValuesChange(form.getFieldsValue());
+      // handleFieldValuesChange(form.getFieldsValue()); // das hier wird bei der MQ Row in der tableMQPerspective gehandelt
       form.submit();
     }
     setActive(true);
