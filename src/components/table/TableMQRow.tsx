@@ -1,6 +1,11 @@
 import { Form, Checkbox, Input, InputNumber } from "antd";
 import React from "react";
 
+export interface ITableRowInitialValues {
+  description: string;
+  values: (number | undefined)[];
+}
+
 export function calculateFulfilment(actualValue: number, targetValue: number): number {
   if (targetValue === 0) {
     return 0;
@@ -18,11 +23,12 @@ export function TableMQRow(props: {
   row: number;
   isKpiRow: boolean;
   step: string;
-  defaultValueName?: string;
+  defaultValueName: string;
   defaultValueTarget?: number;
   tableID: string;
   perspective: string;
   reset: number;
+  initialValues?: ITableRowInitialValues;
   onActiveChange?(active: boolean): void;
 }) {
   const [form] = Form.useForm();
@@ -37,7 +43,28 @@ export function TableMQRow(props: {
     setActive(true);
   }, [form, props.reset]);
 
-  // let categoriesPerspectiveChart = [];
+  React.useEffect(() => {
+    if (form) {
+      if (props.initialValues) {
+        form.resetFields();
+
+        const actualValue = props.initialValues.values[0]!;
+        const targetValue = props.initialValues.values[1]!;
+
+        form.setFieldsValue({
+          description: props.initialValues.description,
+          actualValue: actualValue,
+          targetValue: targetValue,
+          active: true
+        });
+        setFulfilment(calculateFulfilment(actualValue, targetValue));
+
+        // form.validateFields();
+        form.submit();
+      }
+    }
+    setActive(true);
+  }, [props.initialValues, form]);
 
   return (
     <Form
@@ -49,7 +76,7 @@ export function TableMQRow(props: {
         let targetValue: number = form.getFieldValue("targetValue") || 0;
 
         // console.log("rowValues", actualValue, targetValue);
-
+        console.log("Fulfilment");
         setFulfilment(calculateFulfilment(actualValue, targetValue));
       }}
       initialValues={{

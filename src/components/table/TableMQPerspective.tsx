@@ -1,7 +1,7 @@
 import { Divider, Form, Button, Popconfirm, message, Modal, Upload } from "antd";
 import React from "react";
 import Chart from "react-apexcharts";
-import { calculateFulfilment, TableMQRow } from "./TableMQRow";
+import { calculateFulfilment, TableMQRow, ITableRowInitialValues } from "./TableMQRow";
 import { WarningOutlined, DownloadOutlined, UploadOutlined, InboxOutlined } from "@ant-design/icons";
 import { UploadFile } from "antd/lib/upload/interface";
 import Papa from "papaparse";
@@ -40,6 +40,7 @@ export function TableMQPerspective(props: {
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
   const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
   const [csvFileRowsCount, setCsvFileRowsCount] = React.useState<number>(0);
+  const [initialValues, setInitialValues] = React.useState<ITableRowInitialValues[]>([]);
 
   // Upload Modal
   const showModal = () => {
@@ -50,26 +51,32 @@ export function TableMQPerspective(props: {
     setIsModalVisible(false);
 
     if (csvFile && csvFile.originFileObj) {
-      Papa.parse(csvFile.originFileObj, {
+      Papa.parse<string[]>(csvFile.originFileObj, {
         complete: function (results) {
           console.log("Finished:", results.data);
 
-          let csvDataForTable: any = []; // How to show here what format/type this should have?
+          let csvDataForTable: ITableRowInitialValues[] = [];
 
           results.data.forEach((e, index) => {
-            console.log(e);
+            if (index === 0 || e.length < 2) {
+              console.log("Heading or empty row!");
+            } else if (index > 0 && e.length <= props.columns.length - 3) {
+              const newItem: ITableRowInitialValues = { description: e[0], values: [] };
+              //umbauen auf description, actualValue und targetValue?!
 
-            // if (index === 0 || e.length > 1) {
-            //   // why e unknown? where should I check the type? :(
-            //   console.log("Heading or empty row!");
-            // } else if (index > 0 && e.length === props.columns.length + 1) {
-            //   csvDataForTable.description.push(e[0]);
-            //   csvDataForTable.values.push(parseFloat(e[index + 1]));
-            // }
-
-            // setCsvFileRowsCount(csvDataForTable.length); bei Perspektiven nicht machen?!
-            console.log("csvTable", csvDataForTable);
+              for (let j = 1; j < e.length; j++) {
+                if (e[j] === "") {
+                  newItem.values.push(undefined);
+                } else {
+                  newItem.values.push(parseFloat(e[j]));
+                }
+              }
+              csvDataForTable.push(newItem);
+            }
           });
+
+          setCsvFileRowsCount(csvDataForTable.length);
+          setInitialValues(csvDataForTable);
         }
       });
     }
@@ -82,7 +89,69 @@ export function TableMQPerspective(props: {
     setCsvFile(null);
   };
 
+  // Download csv
+
+  const csvDownload = () => {
+    const data = [
+      ["row1", "1"],
+      ["row2", "2"]
+    ];
+
+    const fields = ["heading1", "heading2"];
+
+    // create csv and unparse stuff
+    const blob = new Blob([Papa.unparse({ data, fields })]);
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "CSV_Export_File.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   const { Dragger } = Upload;
+
+  const forms_KPI = Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
+    return (
+      <TableMQRow
+        key={row}
+        row={row}
+        isKpiRow={true}
+        step="KPI"
+        defaultValueName={props.defaultValueName[i]}
+        defaultValueTarget={props.defaultValueTarget[i]}
+        tableID={props.tableID}
+        perspective={props.perspective}
+        reset={reset}
+        initialValues={initialValues[row]}
+      />
+    );
+  });
+
+  const forms_PI = Array.from(
+    {
+      length:
+        props.piRowCount > csvFileRowsCount - props.kpiRowCount
+          ? props.piRowCount
+          : csvFileRowsCount - props.kpiRowCount
+    },
+    (x, i) => props.kpiRowCount + i
+  ).map((row) => {
+    return (
+      <TableMQRow
+        key={row}
+        row={row}
+        isKpiRow={false}
+        step="PI"
+        defaultValueName={props.defaultValueName[row]}
+        tableID={props.tableID}
+        perspective={props.perspective}
+        reset={reset}
+        initialValues={initialValues[row]}
+      />
+    );
+  });
 
   return (
     <>
@@ -171,7 +240,6 @@ export function TableMQPerspective(props: {
               onOk={handleOk}
               onCancel={handleCancel}
               destroyOnClose
-              // okButtonProps={{ disabled: true }}
             >
               <Dragger
                 accept=".csv"
@@ -195,14 +263,7 @@ export function TableMQPerspective(props: {
               </Dragger>
             </Modal>
 
-            <Button
-              onClick={() => {
-                console.log("hi");
-              }}
-              type="primary"
-              icon={<DownloadOutlined />}
-              size={"large"}
-            />
+            <Button onClick={csvDownload} type="primary" icon={<DownloadOutlined />} size={"large"} />
           </div>
 
           <div
@@ -240,36 +301,10 @@ export function TableMQPerspective(props: {
                   );
                 })}
               </div>
-              {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
-                return (
-                  <TableMQRow
-                    key={row}
-                    row={row}
-                    isKpiRow={true}
-                    step="KPI"
-                    defaultValueName={props.defaultValueName[i]}
-                    defaultValueTarget={props.defaultValueTarget[i]}
-                    tableID={props.tableID}
-                    perspective={props.perspective}
-                    reset={reset}
-                  />
-                );
-              })}
 
-              {Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
-                return (
-                  <TableMQRow
-                    key={row}
-                    row={row}
-                    isKpiRow={false}
-                    step="PI"
-                    defaultValueName={props.defaultValueName[row]}
-                    tableID={props.tableID}
-                    perspective={props.perspective}
-                    reset={reset}
-                  />
-                );
-              })}
+              {forms_KPI}
+              {forms_PI}
+
               <div style={{ marginTop: 20 }}>Aggregation: {aggregationSum.toFixed(2)} </div>
               <div style={{ textAlign: "center", marginTop: 4 }}>
                 {props.tableLegend.map((term, index) => {
@@ -306,86 +341,88 @@ export function TableMQPerspective(props: {
               </div>
             </div>
 
-            <Chart
-              // Perspective Chart
-              options={{
-                chart: {
-                  id: "perspective-chart"
-                },
-                xaxis: {
-                  categories: mqRowDescriptions,
-                  labels: {
+            {mqRowDescriptions.length === fulfilment.length && (
+              <Chart
+                // Perspective Chart
+                options={{
+                  chart: {
+                    id: "perspective-chart"
+                  },
+                  xaxis: {
+                    categories: mqRowDescriptions,
+                    labels: {
+                      show: true,
+                      style: {
+                        colors: ["#000", "#000", "#000", "#000", "#000", "#000"],
+                        fontSize: "12px"
+                      }
+                    }
+                  },
+                  yaxis: {
+                    forceNiceScale: true,
+                    min: 0,
+                    max: 95,
+                    labels: {
+                      maxWidth: 1,
+                      style: {
+                        colors: ["#000"]
+                      },
+                      formatter: function (val, index) {
+                        return val.toFixed(2);
+                      }
+                    }
+                  },
+                  legend: {
+                    showForSingleSeries: true,
+                    markers: {
+                      fillColors: ["#FFE000"]
+                    }
+                  },
+                  stroke: {
                     show: true,
-                    style: {
-                      colors: ["#000", "#000", "#000", "#000", "#000", "#000"],
-                      fontSize: "12px"
-                    }
-                  }
-                },
-                yaxis: {
-                  forceNiceScale: true,
-                  min: 0,
-                  max: 95,
-                  labels: {
-                    maxWidth: 1,
-                    style: {
-                      colors: ["#000"]
-                    },
-                    formatter: function (val, index) {
-                      return val.toFixed(2);
-                    }
-                  }
-                },
-                legend: {
-                  showForSingleSeries: true,
+                    colors: ["#FFE000"]
+                  },
+                  fill: {
+                    colors: ["#FFE000"],
+                    opacity: 0.1
+                  },
                   markers: {
-                    fillColors: ["#FFE000"]
-                  }
-                },
-                stroke: {
-                  show: true,
-                  colors: ["#FFE000"]
-                },
-                fill: {
-                  colors: ["#FFE000"],
-                  opacity: 0.1
-                },
-                markers: {
-                  size: 4,
-                  colors: ["#FFE000"],
-                  hover: {
-                    size: 6
-                  }
-                },
-                plotOptions: {
-                  radar: {
-                    size: 140,
-                    polygons: {
-                      strokeColors: "#9D9F9E",
-                      connectorColors: "#9D9F9E"
+                    size: 4,
+                    colors: ["#FFE000"],
+                    hover: {
+                      size: 6
+                    }
+                  },
+                  plotOptions: {
+                    radar: {
+                      size: 140,
+                      polygons: {
+                        strokeColors: "#9D9F9E",
+                        connectorColors: "#9D9F9E"
+                      }
+                    }
+                  },
+                  title: {
+                    text: `${props.perspective} Diagramm`,
+                    align: "center",
+
+                    style: {
+                      fontSize: "14px"
                     }
                   }
-                },
-                title: {
-                  text: `${props.perspective} Diagramm`,
-                  align: "center",
-
-                  style: {
-                    fontSize: "14px"
+                }}
+                series={[
+                  {
+                    name: `Erfüllungsgrad, [%]`,
+                    data: fulfilment
                   }
-                }
-              }}
-              series={[
-                {
-                  name: `Erfüllungsgrad, [%]`,
-                  data: fulfilment
-                }
-              ]}
-              type="radar"
-              width="700"
-              height="400"
-              key={reset + "b"}
-            />
+                ]}
+                type="radar"
+                width="700"
+                height="400"
+                key={reset + "b"}
+              />
+            )}
           </div>
         </div>
 
