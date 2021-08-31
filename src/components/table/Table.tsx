@@ -106,8 +106,6 @@ export function Table(props: {
     if (csvFile && csvFile.originFileObj) {
       Papa.parse<string[]>(csvFile.originFileObj, {
         complete: function (results) {
-          console.log("Finished:", results.data);
-
           let csvDataForTable: ITableRowInitialValues[] = [];
 
           results.data.forEach((e, index) => {
@@ -126,7 +124,6 @@ export function Table(props: {
               csvDataForTable.push(newItem);
             }
           });
-          console.log("csvData", csvDataForTable);
           setCsvFileRowsCount(csvDataForTable.length);
           setInitialValues(csvDataForTable);
         }
@@ -153,7 +150,6 @@ export function Table(props: {
         const csvRowArray: (string | number)[] = [];
         const formValues = f.getFieldsValue();
 
-        console.log(formName, formValues);
         csvRowArray.push(formValues.description);
         props.columns.forEach((column, index) => {
           csvRowArray.push(formValues[column.name]);
@@ -161,8 +157,6 @@ export function Table(props: {
         data.push(csvRowArray);
       }
     }
-
-    console.log("currentForms", currentForms);
 
     const headings = props.columns.map((column) => {
       return column.name;
@@ -231,7 +225,6 @@ export function Table(props: {
             maxCount={1}
             name="file"
             onChange={(info) => {
-              console.log(info.fileList);
               if (info.fileList.length > 0) {
                 const file = info.fileList[0];
                 setCsvFile(file);
@@ -397,22 +390,6 @@ export function Table(props: {
           props.onQualityLevelChange(calculateMetric() * props.maturityWeight);
         }}
       >
-        {/* {Array.from(
-          { length: props.rowsCount > csvFileRowsCount ? props.rowsCount : csvFileRowsCount },
-          (x, i) => i
-        ).map((row) => {
-          return (
-            <TableRow
-              key={row}
-              columns={props.columns}
-              row={row}
-              sourceInputPlaceholder={props.sourceInputPlaceholder}
-              tableID={props.tableID}
-              reset={reset}
-              initialValues={initialValues[row]}
-            />
-          );
-        })} */}
         {forms}
 
         <Divider />

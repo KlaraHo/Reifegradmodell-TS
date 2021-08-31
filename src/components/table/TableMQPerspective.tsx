@@ -1,4 +1,4 @@
-import { Divider, Form, Button, Popconfirm, message, Modal, Upload } from "antd";
+import { Divider, Form, Button, Popconfirm, message, Modal, Upload, FormInstance } from "antd";
 import React from "react";
 import Chart from "react-apexcharts";
 import { calculateFulfilment, TableMQRow, ITableRowInitialValues } from "./TableMQRow";
@@ -41,6 +41,7 @@ export function TableMQPerspective(props: {
   const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
   const [csvFileRowsCount, setCsvFileRowsCount] = React.useState<number>(0);
   const [initialValues, setInitialValues] = React.useState<ITableRowInitialValues[]>([]);
+  const [currentForms, setCurrentForms] = React.useState<any>();
 
   // Upload Modal
   const showModal = () => {
@@ -53,8 +54,6 @@ export function TableMQPerspective(props: {
     if (csvFile && csvFile.originFileObj) {
       Papa.parse<string[]>(csvFile.originFileObj, {
         complete: function (results) {
-          console.log("Finished:", results.data);
-
           let csvDataForTable: ITableRowInitialValues[] = [];
 
           results.data.forEach((e, index) => {
@@ -92,19 +91,34 @@ export function TableMQPerspective(props: {
   // Download csv
 
   const csvDownload = () => {
-    const data = [
-      ["row1", "1"],
-      ["row2", "2"]
-    ];
+    const data: (string | number)[][] = [];
 
-    const fields = ["heading1", "heading2"];
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    for (const [formName, form] of Object.entries(currentForms)) {
+      const f: FormInstance = form as any;
+
+      const csvRowArray: (string | number)[] = [];
+      const formValues = f.getFieldsValue();
+
+      // how to only push the middle 3 fields?
+
+      csvRowArray.push(formValues.description, formValues.actualValue, formValues.targetValue);
+
+      data.push(csvRowArray);
+    }
+
+    const headings = props.columns.map((column, index) => {
+      if (index > 2) {
+        return column;
+      }
+    });
 
     // create csv and unparse stuff
-    const blob = new Blob([Papa.unparse({ data, fields })]);
+    const blob = new Blob([Papa.unparse({ data: data, fields: headings })]);
 
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "CSV_Export_File.csv";
+    a.download = `${props.perspective}_CSV_Export_File.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -157,6 +171,7 @@ export function TableMQPerspective(props: {
     <>
       <Form.Provider
         onFormChange={(name, info) => {
+          setCurrentForms(info.forms);
           let totalKpi = 0;
           let totalWeightsKpi = 0;
           let sumKpi = 0;
@@ -248,7 +263,6 @@ export function TableMQPerspective(props: {
                 maxCount={1}
                 name="file"
                 onChange={(info) => {
-                  console.log(info.fileList);
                   if (info.fileList.length > 0) {
                     const file = info.fileList[0];
                     setCsvFile(file);
