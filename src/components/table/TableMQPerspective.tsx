@@ -155,6 +155,8 @@ export function TableMQPerspective(props: {
     );
   });
 
+  console.log(fulfilment, mqRowDescriptions);
+
   return (
     <>
       <Form.Provider
@@ -303,36 +305,6 @@ export function TableMQPerspective(props: {
                   );
                 })}
               </div>
-              {/* {Array.from({ length: props.kpiRowCount }, (x, i) => i).map((row, i) => {
-                return (
-                  <TableMQRow
-                    key={row}
-                    row={row}
-                    isKpiRow={true}
-                    step="KPI"
-                    defaultValueName={props.defaultValueName[i]}
-                    defaultValueTarget={props.defaultValueTarget[i]}
-                    tableID={props.tableID}
-                    perspective={props.perspective}
-                    reset={reset}
-                  />
-                );
-              })}
-
-              {Array.from({ length: props.piRowCount }, (x, i) => props.kpiRowCount + i).map((row) => {
-                return (
-                  <TableMQRow
-                    key={row}
-                    row={row}
-                    isKpiRow={false}
-                    step="PI"
-                    defaultValueName={props.defaultValueName[row]}
-                    tableID={props.tableID}
-                    perspective={props.perspective}
-                    reset={reset}
-                  />
-                );
-              })} */}
 
               {forms_KPI}
               {forms_PI}
@@ -373,86 +345,88 @@ export function TableMQPerspective(props: {
               </div>
             </div>
 
-            <Chart
-              // Perspective Chart
-              options={{
-                chart: {
-                  id: "perspective-chart"
-                },
-                xaxis: {
-                  categories: mqRowDescriptions,
-                  labels: {
+            {mqRowDescriptions.length === fulfilment.length && (
+              <Chart
+                // Perspective Chart
+                options={{
+                  chart: {
+                    id: "perspective-chart"
+                  },
+                  xaxis: {
+                    categories: mqRowDescriptions,
+                    labels: {
+                      show: true,
+                      style: {
+                        colors: ["#000", "#000", "#000", "#000", "#000", "#000"],
+                        fontSize: "12px"
+                      }
+                    }
+                  },
+                  yaxis: {
+                    forceNiceScale: true,
+                    min: 0,
+                    max: 95,
+                    labels: {
+                      maxWidth: 1,
+                      style: {
+                        colors: ["#000"]
+                      },
+                      formatter: function (val, index) {
+                        return val.toFixed(2);
+                      }
+                    }
+                  },
+                  legend: {
+                    showForSingleSeries: true,
+                    markers: {
+                      fillColors: ["#FFE000"]
+                    }
+                  },
+                  stroke: {
                     show: true,
-                    style: {
-                      colors: ["#000", "#000", "#000", "#000", "#000", "#000"],
-                      fontSize: "12px"
-                    }
-                  }
-                },
-                yaxis: {
-                  forceNiceScale: true,
-                  min: 0,
-                  max: 95,
-                  labels: {
-                    maxWidth: 1,
-                    style: {
-                      colors: ["#000"]
-                    },
-                    formatter: function (val, index) {
-                      return val.toFixed(2);
-                    }
-                  }
-                },
-                legend: {
-                  showForSingleSeries: true,
+                    colors: ["#FFE000"]
+                  },
+                  fill: {
+                    colors: ["#FFE000"],
+                    opacity: 0.1
+                  },
                   markers: {
-                    fillColors: ["#FFE000"]
-                  }
-                },
-                stroke: {
-                  show: true,
-                  colors: ["#FFE000"]
-                },
-                fill: {
-                  colors: ["#FFE000"],
-                  opacity: 0.1
-                },
-                markers: {
-                  size: 4,
-                  colors: ["#FFE000"],
-                  hover: {
-                    size: 6
-                  }
-                },
-                plotOptions: {
-                  radar: {
-                    size: 140,
-                    polygons: {
-                      strokeColors: "#9D9F9E",
-                      connectorColors: "#9D9F9E"
+                    size: 4,
+                    colors: ["#FFE000"],
+                    hover: {
+                      size: 6
+                    }
+                  },
+                  plotOptions: {
+                    radar: {
+                      size: 140,
+                      polygons: {
+                        strokeColors: "#9D9F9E",
+                        connectorColors: "#9D9F9E"
+                      }
+                    }
+                  },
+                  title: {
+                    text: `${props.perspective} Diagramm`,
+                    align: "center",
+
+                    style: {
+                      fontSize: "14px"
                     }
                   }
-                },
-                title: {
-                  text: `${props.perspective} Diagramm`,
-                  align: "center",
-
-                  style: {
-                    fontSize: "14px"
+                }}
+                series={[
+                  {
+                    name: `Erfüllungsgrad, [%]`,
+                    data: fulfilment
                   }
-                }
-              }}
-              series={[
-                {
-                  name: `Erfüllungsgrad, [%]`,
-                  data: fulfilment
-                }
-              ]}
-              type="radar"
-              width="700"
-              height="400"
-              key={reset + "b"}
-            />
+                ]}
+                type="radar"
+                width="700"
+                height="400"
+                key={reset + "b"}
+              />
+            )}
           </div>
         </div>
 
