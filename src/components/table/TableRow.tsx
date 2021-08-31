@@ -55,12 +55,13 @@ export function TableRow(props: {
   }
 
   React.useEffect(() => {
-    if (form) {
+    if (form && props.initialValues) {
       form.resetFields();
       const defaultValues: any = {};
       props.columns.forEach((column, index) => {
         defaultValues[column.name] = props.initialValues?.values[index];
       });
+      defaultValues.description = props.initialValues?.description;
       form.setFieldsValue(defaultValues);
       // form.validateFields();
       handleFieldValuesChange(form.getFieldsValue());

@@ -1,4 +1,4 @@
-import { Button, Form, Divider, Card, Popconfirm, message, Modal, Upload } from "antd";
+import { Button, Form, Divider, Card, Popconfirm, message, Modal, Upload, FormInstance } from "antd";
 import React from "react";
 import { ITableRowInitialValues, TableRow } from "./TableRow";
 import { TableRowTargetvalue } from "./TableRowTargetvalue";
@@ -57,6 +57,7 @@ export function Table(props: {
   const [csvFile, setCsvFile] = React.useState<UploadFile | null>(null);
   const [csvFileRowsCount, setCsvFileRowsCount] = React.useState<number>(0);
   const [initialValues, setInitialValues] = React.useState<ITableRowInitialValues[]>([]);
+  const [currentForms, setCurrentForms] = React.useState<any>();
 
   // Calculate Metrics: DQ, IQ, KQ
   const calculateMetric = () => {
@@ -125,7 +126,7 @@ export function Table(props: {
               csvDataForTable.push(newItem);
             }
           });
-
+          console.log("csvData", csvDataForTable);
           setCsvFileRowsCount(csvDataForTable.length);
           setInitialValues(csvDataForTable);
         }
@@ -142,10 +143,26 @@ export function Table(props: {
 
   // Download csv
   const csvDownload = () => {
-    const data = [
-      ["row1", "1"],
-      ["row2", "2"]
-    ];
+    const data: (string | number)[][] = [];
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    for (const [formName, form] of Object.entries(currentForms)) {
+      if (formName !== "targetValues") {
+        const f: FormInstance = form as any;
+
+        const csvRowArray: (string | number)[] = [];
+        const formValues = f.getFieldsValue();
+
+        console.log(formName, formValues);
+        csvRowArray.push(formValues.description);
+        props.columns.forEach((column, index) => {
+          csvRowArray.push(formValues[column.name]);
+        });
+        data.push(csvRowArray);
+      }
+    }
+
+    console.log("currentForms", currentForms);
 
     const headings = props.columns.map((column) => {
       return column.name;
@@ -290,6 +307,7 @@ export function Table(props: {
 
       <Form.Provider
         onFormChange={(name, info) => {
+          setCurrentForms(info.forms);
           if (name === "targetValues") {
             const targetValuesForm = info.forms.targetValues;
             const targetValues: number[] = [];
