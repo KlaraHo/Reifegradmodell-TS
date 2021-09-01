@@ -154,6 +154,7 @@ export function Table(props: {
         props.columns.forEach((column, index) => {
           csvRowArray.push(formValues[column.name]);
         });
+
         data.push(csvRowArray);
       }
     }

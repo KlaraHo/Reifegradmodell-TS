@@ -68,7 +68,7 @@ export function TableRow(props: {
       form.submit();
     }
     setActive(true);
-  }, [props.initialValues, form]);
+  }, [props.initialValues, props.columns, form]);
 
   return (
     <Form
