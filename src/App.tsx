@@ -43,7 +43,7 @@ function App() {
         ]}
         resultTitle="Ergebnis Datenqualität:"
         resultInitials="DQ"
-        rowsCount={1}
+        rowsCount={15}
         tableID="dq"
         tableLegend={[]}
         maturityWeight={0.36}
