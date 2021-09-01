@@ -444,7 +444,7 @@ export function Table(props: {
             // Metric Chart
             options={{
               chart: {
-                id: "metric-chart"
+                id: props.resultInitials + "IndikatorenDiagramm"
               },
               xaxis: {
                 categories: categoriesMetricChart,
@@ -528,7 +528,7 @@ export function Table(props: {
             // Source Chart
             options={{
               chart: {
-                id: "source-chart"
+                id: props.sourceTitle + "Diagramm"
               },
               xaxis: {
                 categories: rowDescriptions,

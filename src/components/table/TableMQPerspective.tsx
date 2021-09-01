@@ -356,7 +356,7 @@ export function TableMQPerspective(props: {
                 // Perspective Chart
                 options={{
                   chart: {
-                    id: "perspective-chart"
+                    id: props.perspective + "Diagramm"
                   },
                   xaxis: {
                     categories: mqRowDescriptions,
