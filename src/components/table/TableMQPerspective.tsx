@@ -107,11 +107,7 @@ export function TableMQPerspective(props: {
       data.push(csvRowArray);
     }
 
-    const headings = props.columns.map((column, index) => {
-      if (index > 2) {
-        return column;
-      }
-    });
+    const headings: string[] = ["Kennzahl", "Ist, [%, €]", "Soll, [%, €]"];
 
     // create csv and unparse stuff
     const blob = new Blob([Papa.unparse({ data: data, fields: headings })]);
