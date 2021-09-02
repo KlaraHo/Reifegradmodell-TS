@@ -289,7 +289,8 @@ export function TableMQPerspective(props: {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "70% auto"
+              gridTemplateColumns: "60% auto",
+              gridAutoFlow: "column"
             }}
           >
             <div>
@@ -298,7 +299,7 @@ export function TableMQPerspective(props: {
                   display: "grid",
                   gridTemplateColumns: `repeat(${props.columns.length}, 1fr)`,
                   justifyItems: "center",
-                  columnGap: 16,
+                  columnGap: 8,
                   marginTop: 40,
                   marginBottom: 24
                 }}
@@ -352,86 +353,88 @@ export function TableMQPerspective(props: {
             </div>
 
             {mqRowDescriptions.length === fulfilment.length && (
-              <Chart
-                // Perspective Chart
-                options={{
-                  chart: {
-                    id: props.perspective + "Diagramm"
-                  },
-                  xaxis: {
-                    categories: mqRowDescriptions,
-                    labels: {
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <Chart
+                  // Perspective Chart
+                  options={{
+                    chart: {
+                      id: props.perspective + "Diagramm"
+                    },
+                    xaxis: {
+                      categories: mqRowDescriptions,
+                      labels: {
+                        show: true,
+                        style: {
+                          colors: ["#000", "#000", "#000", "#000", "#000", "#000"],
+                          fontSize: "12px"
+                        }
+                      }
+                    },
+                    yaxis: {
+                      forceNiceScale: true,
+                      min: 0,
+                      max: 95,
+                      labels: {
+                        maxWidth: 1,
+                        style: {
+                          colors: ["#000"]
+                        },
+                        formatter: function (val, index) {
+                          return val.toFixed(2);
+                        }
+                      }
+                    },
+                    legend: {
+                      showForSingleSeries: true,
+                      markers: {
+                        fillColors: ["#FFE000"]
+                      }
+                    },
+                    stroke: {
                       show: true,
-                      style: {
-                        colors: ["#000", "#000", "#000", "#000", "#000", "#000"],
-                        fontSize: "12px"
-                      }
-                    }
-                  },
-                  yaxis: {
-                    forceNiceScale: true,
-                    min: 0,
-                    max: 95,
-                    labels: {
-                      maxWidth: 1,
-                      style: {
-                        colors: ["#000"]
-                      },
-                      formatter: function (val, index) {
-                        return val.toFixed(2);
-                      }
-                    }
-                  },
-                  legend: {
-                    showForSingleSeries: true,
+                      colors: ["#FFE000"]
+                    },
+                    fill: {
+                      colors: ["#FFE000"],
+                      opacity: 0.1
+                    },
                     markers: {
-                      fillColors: ["#FFE000"]
-                    }
-                  },
-                  stroke: {
-                    show: true,
-                    colors: ["#FFE000"]
-                  },
-                  fill: {
-                    colors: ["#FFE000"],
-                    opacity: 0.1
-                  },
-                  markers: {
-                    size: 4,
-                    colors: ["#FFE000"],
-                    hover: {
-                      size: 6
-                    }
-                  },
-                  plotOptions: {
-                    radar: {
-                      size: 140,
-                      polygons: {
-                        strokeColors: "#9D9F9E",
-                        connectorColors: "#9D9F9E"
+                      size: 4,
+                      colors: ["#FFE000"],
+                      hover: {
+                        size: 6
+                      }
+                    },
+                    plotOptions: {
+                      radar: {
+                        size: 140,
+                        polygons: {
+                          strokeColors: "#9D9F9E",
+                          connectorColors: "#9D9F9E"
+                        }
+                      }
+                    },
+                    title: {
+                      text: `${props.perspective} Diagramm`,
+                      align: "center",
+
+                      style: {
+                        fontSize: "14px"
                       }
                     }
-                  },
-                  title: {
-                    text: `${props.perspective} Diagramm`,
-                    align: "center",
-
-                    style: {
-                      fontSize: "14px"
+                  }}
+                  series={[
+                    {
+                      name: `Erfüllungsgrad, [%]`,
+                      data: fulfilment
                     }
-                  }
-                }}
-                series={[
-                  {
-                    name: `Erfüllungsgrad, [%]`,
-                    data: fulfilment
-                  }
-                ]}
-                type="radar"
-                width="700"
-                height="400"
-                key={reset + "b"}
-              />
+                  ]}
+                  type="radar"
+                  width="500"
+                  height="400"
+                  key={reset + "b"}
+                />
+              </div>
             )}
           </div>
         </div>

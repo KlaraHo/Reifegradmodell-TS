@@ -440,7 +440,7 @@ export function Table(props: {
 
         <Divider />
 
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 40 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", marginTop: 40 }}>
           <Chart
             // Metric Chart
             options={{
