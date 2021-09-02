@@ -49,12 +49,6 @@ button hover: #004d80
   height: 22px !important;
 }
 
-/* === APEX CHART-STYLING === */
-
-/* #apexchartperspectivexchart {
-  margin: auto !important;
-} */
-
 /* === GLOBAL === */
 
 html {
@@ -76,9 +70,6 @@ html {
 }
 
 /* === GRID-SYSTEM === */
-
-/* margin-left und margrin-right auto --> container immer mittig zentriert*/
-/* row clearfix hack */
 
 .container {
   width: 95%;
