@@ -30,16 +30,16 @@ function App() {
         }
         backgroundColor="#e6f5ff"
         columns={[
-          { name: "Korrektheit", weight: 0.18 },
-          { name: "Validität", weight: 0.09 },
-          { name: "Provenienz", weight: 0.08 },
-          { name: "Vollständigkeit", weight: 0.13 },
-          { name: "Verfügbarkeit", weight: 0.14 },
-          { name: "Granularität", weight: 0.09 },
-          { name: "Einzigartigkeit", weight: 0.02 },
-          { name: "System-Konsistenz", weight: 0.16 },
-          { name: "Zugänglichkeit", weight: 0.06 },
-          { name: "Pünktlichkeit", weight: 0.07 }
+          { name: "Korrektheit", weight: 0.175925925925926 },
+          { name: "Validität", weight: 0.087037037037037 },
+          { name: "Provenienz", weight: 0.0796296296296296 },
+          { name: "Vollständigkeit", weight: 0.133333333333333 },
+          { name: "Verfügbarkeit", weight: 0.137037037037037 },
+          { name: "Granularität", weight: 0.0925925925925926 },
+          { name: "Einzigartigkeit", weight: 0.0166666666666667 },
+          { name: "System-Konsistenz", weight: 0.155555555555556 },
+          { name: "Zugänglichkeit", weight: 0.0555555555555556 },
+          { name: "Pünktlichkeit", weight: 0.0666666666666667 }
         ]}
         resultTitle="Ergebnis Datenqualität:"
         resultInitials="DQ"
@@ -65,15 +65,15 @@ function App() {
         }
         backgroundColor="#dbf1ff"
         columns={[
-          { name: "Korrektheit", weight: 0.2 },
-          { name: "Validität", weight: 0.14 },
-          { name: "Erklärbarkeit", weight: 0.09 },
-          { name: "Aktualität", weight: 0.14 },
-          { name: "Prägnanz", weight: 0.02 },
-          { name: "Vollständigkeit", weight: 0.15 },
-          { name: "Pünktlichkeit", weight: 0.12 },
-          { name: "Zweckmäßigkeit", weight: 0.07 },
-          { name: "Informationsfluss", weight: 0.06 }
+          { name: "Korrektheit", weight: 0.203703703703704 },
+          { name: "Validität", weight: 0.136574074074074 },
+          { name: "Erklärbarkeit", weight: 0.0902777777777778 },
+          { name: "Aktualität", weight: 0.141203703703704 },
+          { name: "Prägnanz", weight: 0.0231481481481481 },
+          { name: "Vollständigkeit", weight: 0.150462962962963 },
+          { name: "Pünktlichkeit", weight: 0.12037037037037 },
+          { name: "Zweckmäßigkeit", weight: 0.0694444444444444 },
+          { name: "Informationsfluss", weight: 0.0648148148148148 }
         ]}
         resultTitle="Ergebnis Informationsqualität:"
         resultInitials="IQ"
@@ -99,10 +99,10 @@ function App() {
         }
         backgroundColor="#e6f5ff"
         columns={[
-          { name: "BnKQ,k", weight: 0.18 },
-          { name: "EnKQ,k", weight: 0.31 },
-          { name: "LeKQ,k", weight: 0.31 },
-          { name: "ZwKQ", weight: 0.21 }
+          { name: "BnKQ,k", weight: 0.180555555555556 },
+          { name: "EnKQ,k", weight: 0.305555555555556 },
+          { name: "LeKQ,k", weight: 0.305555555555556 },
+          { name: "ZwKQ", weight: 0.208333333333333 }
         ]}
         resultTitle="Ergebnis Wissensqualität:"
         resultInitials="KQ"
