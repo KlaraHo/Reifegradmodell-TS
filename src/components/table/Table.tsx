@@ -82,13 +82,13 @@ export function Table(props: {
       totalMetric += weightedSum;
     });
 
-    if (totalMetric <= 0.5) {
+    if (totalMetric <= 0.49999999999) {
       return (iconColor = "#FF0000");
-    } else if (0.51 < totalMetric && totalMetric <= 0.66) {
+    } else if (0.5 < totalMetric && totalMetric <= 0.6599999999) {
       return (iconColor = "#ff8e03");
-    } else if (0.67 < totalMetric && totalMetric <= 0.82) {
+    } else if (0.66 < totalMetric && totalMetric <= 0.8199999999) {
       return (iconColor = "#FFE000");
-    } else if (0.83 < totalMetric && totalMetric <= 1.03) {
+    } else if (0.82 < totalMetric && totalMetric <= 1.0) {
       return (iconColor = "#4EEE94");
     } else {
       return iconColor;

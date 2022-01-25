@@ -43,13 +43,13 @@ export function TableMQ(props: {
 
     mqMetric =
       (aggregationPerspective1 + aggregationPerspective2 + aggregationPerspective3 + aggregationPerspective4) / 4;
-    if (mqMetric <= 0.5) {
+    if (mqMetric <= 0.49999999999) {
       return (iconColor = "#FF0000");
-    } else if (0.51 < mqMetric && mqMetric <= 0.66) {
+    } else if (0.5 < mqMetric && mqMetric <= 0.6599999999) {
       return (iconColor = "#ff8e03");
-    } else if (0.67 < mqMetric && mqMetric <= 0.82) {
+    } else if (0.66 < mqMetric && mqMetric <= 0.8199999999) {
       return (iconColor = "#FFE000");
-    } else if (0.83 < mqMetric && mqMetric <= 1.03) {
+    } else if (0.82 < mqMetric && mqMetric <= 1.0) {
       return (iconColor = "#4EEE94");
     } else {
       return iconColor;

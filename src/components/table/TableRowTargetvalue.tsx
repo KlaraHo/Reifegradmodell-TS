@@ -9,7 +9,6 @@ export function TableRowTargetvalue(props: {
   tableID: string;
   reset: number;
 }) {
-  //reset does not work
   const [form] = Form.useForm();
 
   React.useEffect(() => {
