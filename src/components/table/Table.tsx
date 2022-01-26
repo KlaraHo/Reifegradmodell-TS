@@ -411,6 +411,7 @@ export function Table(props: {
             okText="OK"
             cancelText="Abbrechen"
             onConfirm={() => {
+              setInitialValues([]);
               for (let i = 0; i < props.columns.length; i++) {
                 sums[i] = 0;
               }

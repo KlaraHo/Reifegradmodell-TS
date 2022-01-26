@@ -21,6 +21,7 @@ export function TableRow(props: {
   const [sum, setSum] = React.useState<number>(0);
 
   React.useEffect(() => {
+    console.log("reset effect", form);
     if (form) {
       form.resetFields();
     }
@@ -68,7 +69,7 @@ export function TableRow(props: {
       form.submit();
     }
     setActive(true);
-  }, [props.initialValues, props.columns, form]);
+  }, [props.initialValues, form]);
 
   return (
     <Form

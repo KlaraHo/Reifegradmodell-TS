@@ -61,7 +61,7 @@ export function TableMQPerspective(props: {
               console.log("Heading or empty row!");
             } else if (index > 0 && e.length <= props.columns.length - 3) {
               const newItem: ITableRowInitialValues = { description: e[0], values: [] };
-              //umbauen auf description, actualValue und targetValue?!
+             
 
               for (let j = 1; j < e.length; j++) {
                 if (e[j] === "") {
