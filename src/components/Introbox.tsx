@@ -26,7 +26,7 @@ const Introbox = () => {
               Mit diesem Tool ist es möglich den unternehmenseigenen Reifegrad der Instandhaltung zu berechnen.
               <br />
               Es werden vier Faktoren: Datenqualität D<sub>Q</sub>, Informationsqualität I<sub>Q</sub>, Wissensqualität
-              K<sub>Q</sub> und Instandhaltungsqualität K<sub>Q</sub> zur Berechnung herangezogen. <br />
+              K<sub>Q</sub> und Instandhaltungsqualität M<sub>Q</sub> zur Berechnung herangezogen. <br />
               Visuell unterstützt werden die Ergebnisse mit interaktiven Diagrammen.
             </p>
           </div>

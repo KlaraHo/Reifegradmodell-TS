@@ -125,7 +125,6 @@ function App() {
         description={
           <>
             Bitte geben Sie die Instandhaltungsqualitätsindikatoren gemäß Ihrer Auswertung ein.
-            <br /> Für Prozentangaben werden ganze Zahlen zwischen Null und 100 akzeptiert.
             <br /> PI Kennzahlen können selbst benannt werden.
           </>
         }
