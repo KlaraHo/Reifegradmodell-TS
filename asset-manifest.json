@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Reifegradmodell-TS/static/css/main.fd5a6e55.css",
-    "main.js": "/Reifegradmodell-TS/static/js/main.06eacca2.js",
+    "main.js": "/Reifegradmodell-TS/static/js/main.1956cef3.js",
     "static/media/TU-Wien-Logo.png": "/Reifegradmodell-TS/static/media/TU-Wien-Logo.8d33c64699b80dd93dcd.png",
     "index.html": "/Reifegradmodell-TS/index.html",
     "main.fd5a6e55.css.map": "/Reifegradmodell-TS/static/css/main.fd5a6e55.css.map",
-    "main.06eacca2.js.map": "/Reifegradmodell-TS/static/js/main.06eacca2.js.map"
+    "main.1956cef3.js.map": "/Reifegradmodell-TS/static/js/main.1956cef3.js.map"
   },
   "entrypoints": [
     "static/css/main.fd5a6e55.css",
-    "static/js/main.06eacca2.js"
+    "static/js/main.1956cef3.js"
   ]
 }
